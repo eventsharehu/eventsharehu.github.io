@@ -47,7 +47,7 @@
 	  
 	  <script>
 		  
-		    
+    function init() {		    
    FB.ui({
   method: 'share_open_graph',
   action_type: 'og.likes',
@@ -58,7 +58,8 @@
   // Debug response (optional)
   console.log(response);
 });
-		  
+    }	
+		  /*
     function init() {
         FB.api(
           '/l214.animaux',
@@ -68,7 +69,8 @@
           }
         );
     }
-
+*/
+		  
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '156122217846925',
