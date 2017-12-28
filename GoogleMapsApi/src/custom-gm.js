@@ -47,15 +47,24 @@ var selectedplaceindex = "0";
       var map;
       var infowindow;  	   
 	  function initMap() {      
-	  var myLocation = places[parseInt(selectedplaceindex, 10)];	  //$(this).find("option:selected").text();	  //{lat: 47.565107, lng: 19.715893};
-    //    var myLocation = {lat: 47.5133138, lng: 19.0565847};
+	  var myLocation = places[parseInt(selectedplaceindex, 10)];	
 
 		
         map = new google.maps.Map(document.getElementById('map'), {
           center: myLocation,
           zoom: 18
         });
+		
+		//TODO: Create a marker in myLocation
+		//createMarker(myLocation);
 
+		  var marker = new google.maps.Marker({
+          position: myLocation,
+          map: map,
+          title: 'Hello World!'
+        });
+      
+		
 var placeTypes = [
 'bar' ];
 
@@ -67,23 +76,22 @@ var placeTypes = [
 		  rankBy: google.maps.places.RankBy.DISTANCE
         };
 		
-
-
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
       }
-
-var bars = [];
-bars.push( { "Name":"whatever" } );
-
+results = 0;
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           
+		  
+document.getElementById('proba').innerHTML='<br/>';
 document.getElementById('proba').innerHTML="<ul>";
 		  for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
 
+//TODO: Listázás formázása
+//Ha nincs találat, akkor ne maradjanak ott az előző keresés eredményei
 document.getElementById('proba').innerHTML+='<li>Név:\t\t'+results[i].name;
 document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].opening_hours.open_now+"</li>"+
 "<li>Értékelés:\t\t"+results[i].rating+"</li>"+
@@ -91,10 +99,8 @@ document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].ope
 "<li>Nyitvatartás:\t\t"+JSON.stringify(results[i].opening_hours.weekday_text)+"</li>"+
 "<li><a href=https://maps.googleapis.com/maps/api/place/details/json?placeid="+results[i].place_id+"&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap>Teljes adatlap (JSON object)</a></li>"+
 "</ul></li><br/><br/>";
-		//	document.getElementById('proba').innerHTML=JSON.stringify(results[i]);
-
-		//	document.getElementById('proba2').innerHTML+=JSON.stringify(results[i].name)+"\tnyitva:"+JSON.stringify(results[i].opening_hours.open_now)+"<br/>";
-          }//for vége
+		
+		}//for vége
 document.getElementById('proba').innerHTML+="</ul>";
         }
       }
@@ -111,4 +117,35 @@ document.getElementById('proba').innerHTML+="</ul>";
           infowindow.open(map, this);
         });
       }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
