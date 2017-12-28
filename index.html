@@ -1,157 +1,60 @@
-﻿
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Place searches</title>		<!-- BOOTSTRAP -->	  <meta name="viewport" content="width=device-width, initial-scale=1">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 50%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-      var map;
-      var infowindow;  	   
-	  function initMap() {      var myLocation = places[parseInt(selectedplaceindex, 10)];	  //$(this).find("option:selected").text();	  //{lat: 47.565107, lng: 19.715893};
-    //    var myLocation = {lat: 47.5133138, lng: 19.0565847};
-
-		
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: myLocation,
-          zoom: 18
-        });
-
-var placeTypes = [
-'bar'];
-
-		var request = {
-          location: myLocation,
-          ///radius: 500,  
-		  types: placeTypes,
-		//  keyword: "(söröző) OR (Burger*)",
-		  rankBy: google.maps.places.RankBy.DISTANCE
-        };
-		
-
-
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
-      }
-
-var bars = [];
-bars.push( { "Name":"whatever" } );
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          
-document.getElementById('proba').innerHTML="<ul>";
-		  for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-
-document.getElementById('proba').innerHTML+='<li>Név:\t\t'+results[i].name;
-document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].opening_hours.open_now+"</li>"+
-"<li>Értékelés:\t\t"+results[i].rating+"</li>"+
-"<li>Place id:\t\t"+results[i].place_id+"</li>"+
-"<li>Nyitvatartás:\t\t"+JSON.stringify(results[i].opening_hours.weekday_text)+"</li>"+
-"<li><a href=https://maps.googleapis.com/maps/api/place/details/json?placeid="+results[i].place_id+"&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap>Teljes adatlap (JSON object)</a></li>"+
-"</ul></li><br/><br/>";
-		//	document.getElementById('proba').innerHTML=JSON.stringify(results[i]);
-
-		//	document.getElementById('proba2').innerHTML+=JSON.stringify(results[i].name)+"\tnyitva:"+JSON.stringify(results[i].opening_hours.open_now)+"<br/>";
-          }//for vége
-document.getElementById('proba').innerHTML+="</ul>";
-        }
-      }
-	  
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-    </script>
-  </head>
-  <body><nav class="navbar navbar-inverse">  <div class="container-fluid">    <div class="navbar-header">      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">        <span class="icon-bar"></span>        <span class="icon-bar"></span>        <span class="icon-bar"></span>       </button>      <a class="navbar-brand" href="#">GoogleMaps</a>    </div>    <div class="collapse navbar-collapse" id="myNavbar">      <ul class="nav navbar-nav">        <li class="active"><a href="#">Home</a></li>        <li>				<a>		<script src="https://code.jquery.com/jquery-1.6.4.min.js"></script><select class="form-control" id="centerselect" name="mapcenterselect">    <option value="0">BP - Nyugati</option>    <option value="1">Jászfényszaru</option>    <option value="2">Göd</option>    <option value="3">BP - Deák tér</option>    <option value="4">Saját</option></select><script type="text/javascript">    function showPosition(){        if(navigator.geolocation){            navigator.geolocation.getCurrentPosition(function(position){                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";                document.getElementById("result").innerHTML = positionInfo;            });        } else{            alert("Sorry, your browser does not support HTML5 geolocation.");        }    }</script><script>			var places = [{lat: 47.5133138, lng: 19.0565847},  {lat: 47.5670783, lng: 19.7137274},  {lat: 47.6913011, lng: 19.1213873},{lat: 47.4978303, lng: 19.0522515},{lat: 47.4978303, lng: 19.0522515},{lat:0.0, lng:0.0}];	  var selectedplaceindex = "0";		 $('#centerselect').change(function () {    selectedplaceindex = $(this).find("option:selected").val();	    $(".test").text(selectedplaceindex);   initMap(); });	</script>		</a>				</li>        <li><a href="#">Page 2</a></li> 				      </ul>      <ul class="nav navbar-nav navbar-right">        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>      </ul>    </div>  </div></nav><div class="test"></div>
-
-  
-  
-
-<p id="demo">Click the button to get your position.</p>
-
-<button onclick="getLocation()">Try It</button>
-
-<div id="mapholder"></div>
-
-<script>
-var x = document.getElementById("demo");
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function showPosition(position) {
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
-    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
-    +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
-    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-}
-//To use this code on your website, get a free API key from Google.
-//Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
-
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation."
-            break;
-        case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable."
-            break;
-        case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out."
-            break;
-        case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred."
-            break;
-    }
-}
-</script>
-
-
-
-  <div id="map"></div>
-	
-	<div id="proba">
-	<br/>
-	<h1>proba</h1>
-	<br/>
-	<a href="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg"> array example </a>
-	</div>
-
-	
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap" async defer></script>
-  </body>
+<div class="container">
+  <h2>Projektjeim</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Info</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in warning">
+        <div class="panel-body">
+			Jelenleg az alábbi hobbiprojekteken dolgozom, melyek a rövid leírás végén található link segítségével kipróbálhatóak.
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Eszköznyilvántartó</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+			Tárgyi eszköz nyilvántartását elősegítő webes alkalmazás QuaggaJS segítségével <br/>
+			(csak https vagy localhost alól működik a vonalkódolvasás) <br/><br/>
+			<!-- http://a.kabachnik.info/a-javascript-barcode-reader-with-bootstrap-3-and-quaggajs.html -->
+			<a href="https://buzaslajos.github.io/eszkoznyilvantarto/" class="btn btn-primary" role="button">Link</a>
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Google maps API</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+			Listázza a közelben lévő pub-okat (később kiválasztható lesz, milyen típusú helyeket mutasson, illetve keresőszavakat is meg lehet majd adni)
+			<br/><br/>
+			<a href="https://buzaslajos.github.io/GoogleMapsApi/" class="btn btn-primary" role="button">Link</a>
+		</div>
+      </div>
+    </div>
+  </div> 
+</div>
+    
+</body>
 </html>
