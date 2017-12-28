@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Place searches</title>		<!-- BOOTSTRAP -->	  <meta name="viewport" content="width=device-width, initial-scale=1">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
+    <title>Place searches</title>		
+	<!-- BOOTSTRAP -->	 
+	<meta name="viewport" content="width=device-width, initial-scale=1">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -24,7 +26,8 @@
 
       var map;
       var infowindow;  	   
-	  function initMap() {      var myLocation = places[parseInt(selectedplaceindex, 10)];	  //$(this).find("option:selected").text();	  //{lat: 47.565107, lng: 19.715893};
+	  function initMap() {      
+	  var myLocation = places[parseInt(selectedplaceindex, 10)];	  //$(this).find("option:selected").text();	  //{lat: 47.565107, lng: 19.715893};
     //    var myLocation = {lat: 47.5133138, lng: 19.0565847};
 
 		
@@ -34,7 +37,7 @@
         });
 
 var placeTypes = [
-'bar'];
+'bar' ];
 
 		var request = {
           location: myLocation,
@@ -108,19 +111,38 @@ document.getElementById('proba').innerHTML+="</ul>";
   <script src="https://code.jquery.com/jquery-1.6.4.min.js"></script>
   
   <select class="form-control" id="centerselect" name="mapcenterselect">    
-  <option value="0">BP - Nyugati</option>    
-  <option value="1">Jászfényszaru</option>    
-  <option value="2">Göd</option>    
-  <option value="3">BP - Deák tér</option>    
-  <option value="4">Saját</option></select>
-  
-<script>			
-var places = [{lat: 47.5133138, lng: 19.0565847},
+  <option value="0">Saját pozíció</option>  
+  <option value="1">BP - Nyugati</option>    
+  <option value="2">Jászfényszaru</option>    
+  <option value="3">Göd</option>    
+  <option value="4">BP - Deák tér</option>  
+	</select>
+	
+	<script>	
+
+var myPos = {lat: 0, lng: 0};
+
+        // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+    }
+ 
+
+function getPosition(position) {
+myPos.lat = position.coords.latitude;
+myPos.lng = position.coords.longitude;
+
+    x.innerHTML = "<br/>myPos.llat: "+myPos.lat + 
+	"<br/> myPos.lng: " + myPos.lng; 
+} 
+
+var places = [
+myPos,
+{lat: 47.5133138, lng: 19.0565847},
 {lat: 47.5670783, lng: 19.7137274},
 {lat: 47.6913011, lng: 19.1213873},
-{lat: 47.4978303, lng: 19.0522515},
-{lat: 47.4978303, lng: 19.0522515},
-{lat:0.0, lng:0.0}];	  
+{lat: 47.4978303, lng: 19.0522515}
+];	  
 var selectedplaceindex = "0";		
  $('#centerselect').change(function () {  
  selectedplaceindex = $(this).find("option:selected").val();	
@@ -141,24 +163,18 @@ var selectedplaceindex = "0";
 
 <p id="demo">Click the button to get your position.</p>
 
-<button onclick="getLocation()">Try It</button>
+<button onclick="myLocation()">Try It</button>
+
+
 
 <div id="mapholder"></div>
-
-<script>
-var x = document.getElementById("demo");
-
-</script>
-
-
 
   <div id="map"></div>
 	
 	<div id="proba">
 	<br/>
-	<h1>proba</h1>
+	<h1>Lista</h1>
 	<br/>
-	<a href="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg"> array example </a>
 	</div>
 
 	
