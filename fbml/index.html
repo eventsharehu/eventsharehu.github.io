@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FBML example</title>		
+    <title>Place searches</title>		
 	<!-- BOOTSTRAP -->	 
 	<meta name="viewport" content="width=device-width, initial-scale=1">  
 	<meta charset="utf-8">
@@ -12,54 +12,28 @@
    
   </head>
   <body>
-  <!--
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '126818527474122',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.11'
-    });
-  };
+ 
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-   
-   
+  <div id="fb-root"></div>
+<script>
+
+  function init2() {		    
    FB.ui({
-  method: 'share_open_graph',
-  action_type: 'og.likes',
-  action_properties: JSON.stringify({
-    object:'https://developers.facebook.com/docs/',
-  })
-}, function(response){
-  // Debug response (optional)
-  console.log(response);
-});
-</script>
-	  
-	  <script>
-		  
-    function init2() {		    
-   FB.ui({
-  method: 'share_open_graph',
-  action_type: 'og.likes',
-  action_properties: JSON.stringify({
-    object:'https://buzaslajos.github.io/fbml/index.html',
-  })
+    method: 'share_open_graph',
+    action_type: 'og.shares',
+    action_properties: JSON.stringify({
+        object : {
+           'og:url': 'https://github.io/', 
+           'og:title': 'Here my custom title',
+           'og:description': 'here custom description'
+        }
+		    })
 }, function(response){
   // Debug response (optional)
   console.log(response);
   console.log('console log');
 });
     }	
-
     function init() {
         FB.api(
           '/l214.animaux',
@@ -69,62 +43,60 @@
           }
         );
     }
-
 	//appId 126818527474122
 	//Samsung TV 156122217846925
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '156122217846925',
+        appId      : '126818527474122',
         xfbml      : true,
         version    : 'v2.5'
       });
-
+	  
       init2();
-    };
-
+    
+	};
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      js.src = "https://connect.facebook.net/en_US/all.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>
-  -->
-	  
 
-  <div id="fb-root"></div>	  
-	  <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '126818527474122',
-      xfbml      : true,
-      version    : 'v2.11'
-    });
-    FB.AppEvents.logPageView();
-	  
-  console.log(response);
-  console.log('console log');
-	  
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
 </script>
-	  <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
 
 <div class="fb-login-button" data-max-rows="3" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
-	  
-	  
+
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
