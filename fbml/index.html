@@ -133,12 +133,13 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
 </div>
 
+	  <button onclick="customshare()">custom share</button>
 
 <div class="fb-login-button" data-max-rows="3" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
 
