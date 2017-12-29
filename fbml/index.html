@@ -18,16 +18,6 @@
 <script>
 
 	
-    function custom-login() {
-        FB.api(
-          '/l214.animaux',
-          {"fields":"fan_count"},
-          function(response) {
-            alert(response.fan_count);
-          }
-        );
-    }
-	
 
 //share doesn't work from localhost
 //response will return empty array if login didn't scope with 'publish_actions' or the user didn't log in to the app
