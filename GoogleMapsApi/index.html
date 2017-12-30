@@ -50,13 +50,16 @@
  </span> Login</a></li>   
 
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
-        <img src="img/profilepicture.png" class="img-circle special-img" height="30"> Profile <b class="caret"></b></a>
+    <a href="#"  id="profilename"  class="dropdown-toggle profile-image" data-toggle="dropdown">
+        <img  id="profilepicture"  src="img/profilepicture.png" class="img-circle special-img" height="30"> Profile <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="fa fa-sign-out"></i>
-asd
+
+<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"  data-size="small" data-auto-logout-link="true" data-show-faces="false">
+</fb:login-button>
+
 </a></li>
                 </ul>
 </li>
@@ -67,8 +70,6 @@ asd
  </nav>
 
   
-					<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"  data-size="large" data-auto-logout-link="true" data-show-faces="false">
-</fb:login-button>
 <div id="mapholder"></div>
 
 <div id="status">
