@@ -103,7 +103,7 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'+ '<br/><br/>' + '<img src="https://graph.facebook.com/' + response.id + '/picture">';
 	    
-	    document.getElementById('profilename').innerText =  response.first_name;
+	    document.getElementById('profilename').innerText =  (response.name).split(" ").splice(-1);
 	     
 	    
     });
