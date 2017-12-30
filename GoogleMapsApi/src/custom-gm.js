@@ -57,12 +57,12 @@ var selectedplaceindex = "0";
 		
 		//TODO: Create a marker in myLocation, that will be the center of the map
 		//createMarker(myLocation);
-
+		var markerimage = 'https://maps.google.com/mapfiles/kml/shapes/' + 'info-i_maps.png';
 		  var marker = new google.maps.Marker({
           position: myLocation,
           map: map,
-	  icon: 'img/profilepicture.png',
-          title: 'Hello World!'
+	  icon: markerimage,
+          title: 'Hello World2!'
         });
       
 		
