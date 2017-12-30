@@ -103,6 +103,9 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'+ '<br/><br/>' + '<img src="https://graph.facebook.com/' + response.id + '/picture">';
 	    
+	    document.getElementById('profilname').innerHTML =
+        'Thanks for logging in, ' + response.name + '!'+ '<br/><br/>' + '<img src="https://graph.facebook.com/' + response.id + '/picture">';
+	    
 	     
 	    
     });
