@@ -55,12 +55,13 @@ var selectedplaceindex = "0";
           zoom: 18
         });
 		
-		//TODO: Create a marker in myLocation
+		//TODO: Create a marker in myLocation, that will be the center of the map
 		//createMarker(myLocation);
 
 		  var marker = new google.maps.Marker({
           position: myLocation,
           map: map,
+	  icon: 'img/profilepicture.png',
           title: 'Hello World!'
         });
       
