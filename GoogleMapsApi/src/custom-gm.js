@@ -27,6 +27,8 @@ myPos,
 {lat: 47.4978303, lng: 19.0522515}
 ];	
 
+var myLocation = places[parseInt(selectedplaceindex, 10)];	
+ 
 //The default value of the dropdown menu
 // This index will change, if an other location is choosen  
 var selectedplaceindex = "0";		
@@ -34,11 +36,15 @@ var selectedplaceindex = "0";
  selectedplaceindex = $(this).find("option:selected").val();	
  $(".test").text(selectedplaceindex);   
  initMap(); 
+myLocation = places[parseInt(selectedplaceindex, 10)];
+
+	      createCustomMarker();
+	 
+	 
  //TODO: Collapse the menu in mobile view
  });	
  
 
- 
 
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
@@ -47,9 +53,7 @@ var selectedplaceindex = "0";
       var map;
       var infowindow;  	   
 	  function initMap() {      
-	  var myLocation = places[parseInt(selectedplaceindex, 10)];	
 	      
-	      createCustomMarker();
 		
         map = new google.maps.Map(document.getElementById('map'), {
           center: myLocation,
