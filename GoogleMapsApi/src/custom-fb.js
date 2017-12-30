@@ -105,7 +105,7 @@
 	    
 	    document.getElementById('profilename').innerText = ' ' + (response.name).split(" ").splice(-1) + ' ';
 	     
-	    document.getElementById('profilename').innerHTML = '<img src="https://i.pinimg.com/736x/a2/e1/8c/a2e18cbfbcaa8756fe5b40f472eeff45--profile-picture-profile-pics.jpg" class="img-circle special-img" height="30" />'
+	    document.getElementById('profilepicture').innerHTML = '<img src="https://i.pinimg.com/736x/a2/e1/8c/a2e18cbfbcaa8756fe5b40f472eeff45--profile-picture-profile-pics.jpg" class="img-circle special-img" height="30" />'
 	    //<img src="img/profilepicture.png" class="img-circle special-img" height="30" /></span>
     });
   }
