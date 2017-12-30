@@ -38,8 +38,9 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
  $('#centerselect').change(function () {  
  selectedplaceindex = $(this).find("option:selected").val();	
  $(".test").text(selectedplaceindex);   
- initMap(); 
+
 myLocation = places[parseInt(selectedplaceindex, 10)];
+ initMap(); 
 
 //createCustomMarker();
 	 
@@ -62,11 +63,23 @@ myLocation = places[parseInt(selectedplaceindex, 10)];
           center: myLocation,
           zoom: 18
         });
+
+		//The center of the map
+    var myCircle = new google.maps.Circle({
+      strokeColor: '#4286f4',
+      strokeOpacity: 0.5,
+      strokeWeight: 2,
+      fillColor: '#4286f4',
+      fillOpacity: 0.2,
+      map: map,
+      center: map.getCenter(),
+      radius: 3
+    });  
+
 	
-      
 		
 var placeTypes = [
-'bar' ];
+'bar', 'restaurant' ];
 
 		var request = {
           location: myLocation,
@@ -80,18 +93,22 @@ var placeTypes = [
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
       }
-results = 0;
+//end of initMap declaration
+	  
+	  results = '';
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           
 		  
 document.getElementById('proba').innerHTML='<br/>';
-document.getElementById('proba').innerHTML="<ul>";
+//document.getElementById('proba').innerHTML="<ul>";
 		  for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
 
+			
 //TODO: Listázás formázása
 //Ha nincs találat, akkor ne maradjanak ott az előző keresés eredményei
+/*
 document.getElementById('proba').innerHTML+='<li>Név:\t\t'+results[i].name;
 document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].opening_hours.open_now+"</li>"+
 "<li>Értékelés:\t\t"+results[i].rating+"</li>"+
@@ -99,12 +116,22 @@ document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].ope
 "<li>Nyitvatartás:\t\t"+JSON.stringify(results[i].opening_hours.weekday_text)+"</li>"+
 "<li><a href=https://maps.googleapis.com/maps/api/place/details/json?placeid="+results[i].place_id+"&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap>Teljes adatlap (JSON object)</a></li>"+
 "</ul></li><br/><br/>";
-		
+	*/
+$.getJSON('https://maps.googleapis.com/maps/api/place/details/json?placeid='+results[i].place_id+'&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap', function(data) {
+    //data is the JSON string
+	
+	document.getElementById('proba').innerHTML+= 'asd';
+	//'<p>Név:\t\t'+results[i].name+'</p>';
+
+	
+});//getJSON	
 		}//for vége
-document.getElementById('proba').innerHTML+="</ul>";
+//document.getElementById('proba').innerHTML+="</ul>";
         }
       }
-	  
+	//end of function callback declaration
+
+	
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -113,26 +140,36 @@ document.getElementById('proba').innerHTML+="</ul>";
         });
 
 	      function createCustomMarker(){
-	      	
+	     // TODO: The custom marker will be the profile images
+//	TODO: https://stackoverflow.com/questions/46416883/how-add-circle-shape-in-google-maps-custom-icon		 
 		//TODO: Create a marker in myLocation, 
 		// with profile picture (if avaiable)
 		// that will be the center of the map
-		var markerimage = 'https://maps.google.com/mapfiles/kml/shapes/' + 'info-i_maps.png';
+		var markerimage = document.getElementById('profilepicture').getElementsByTagName('img')[0].src;
+		console.log('profilepicture location: ' + document.getElementById('profilepicture').getElementsByTagName('img')[0].src);
 		var icon = {
     url: markerimage, // url
-    scaledSize: new google.maps.Size(50, 50), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(0, 0) // anchor
+  //  scaledSize: new google.maps.Size(30, 30), // scaled size
+	
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 30,
+        fillColor: "#F00",
+        fillOpacity: 0.5,
+        strokeWeight: 0.8,
+   // origin: new google.maps.Point(0,0), // origin
+   // anchor: new google.maps.Point(15, 15) // anchor
 };
 		  var marker = new google.maps.Marker({
           position: myLocation,
           map: map,
 	  icon: icon,
+       //set optimized to false otherwise the marker  will be rendered via canvas 
+       //and is not accessible via CSS
+       optimized:false,
           title: 'Hello World3!'
         });
 	      }
 	      
-createCustomMarker();
 
 	      
 	      
