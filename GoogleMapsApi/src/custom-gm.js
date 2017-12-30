@@ -117,14 +117,19 @@ document.getElementById('proba').innerHTML+="<ul><li>Nyitva:\t\t"+results[i].ope
 "<li><a href=https://maps.googleapis.com/maps/api/place/details/json?placeid="+results[i].place_id+"&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap>Teljes adatlap (JSON object)</a></li>"+
 "</ul></li><br/><br/>";
 	*/
-$.getJSON('https://maps.googleapis.com/maps/api/place/details/json?placeid='+results[i].place_id+'&key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap', function(data) {
-    //data is the JSON string
-	
-	document.getElementById('proba').innerHTML+= 'asd';
-	//'<p>Név:\t\t'+results[i].name+'</p>';
+var API_KEY = 'AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg';
+var placeid = results[i].place_id;
+var API_URL = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeid}&key=${API_KEY}&callback=?`;
 
-	
-});//getJSON	
+$.getJSON(API_URL, {
+        tags: placeid,
+        tagmode: "any",
+        format: "json"
+    },
+    function(data) {
+        console.log(data);
+    });
+//getJSON	
 		}//for vége
 //document.getElementById('proba').innerHTML+="</ul>";
         }
