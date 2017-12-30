@@ -102,11 +102,11 @@
 
 	    document.getElementById('profilename').innerText = ' ' + (response.name).split(" ").splice(-1) + ' ';
 	    document.getElementById('profilepicture').innerHTML = 
-		    '<img src="https://graph.facebook.com/' + response.id + '/picture">';
+		    '<img src="https://graph.facebook.com/' + response.id + '/picture" class="img-circle special-img" height="30" />';
     });
   }
   function notconnectedFB() {
 	    document.getElementById('profilename').innerText = ' ' + 'Profile' + ' ';
 	    document.getElementById('profilepicture').innerHTML = 
-		    '<img src="img/profilepicture.png">';
+		    '<img src="img/profilepicture.png" class="img-circle special-img" height="30" />';
   }
