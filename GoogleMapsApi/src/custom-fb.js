@@ -38,11 +38,10 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      connectedFB();
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      notconnectedFB();
     }
   }
 
@@ -96,16 +95,18 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
+  function connectedFB() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!'+ '<br/><br/>' + '<img src="https://graph.facebook.com/' + response.id + '/picture">';
-	    
+
 	    document.getElementById('profilename').innerText = ' ' + (response.name).split(" ").splice(-1) + ' ';
-	     
-	    document.getElementById('profilepicture').innerHTML = '<img src="https://i.pinimg.com/736x/a2/e1/8c/a2e18cbfbcaa8756fe5b40f472eeff45--profile-picture-profile-pics.jpg" class="img-circle special-img" height="30" />'
-	    //<img src="img/profilepicture.png" class="img-circle special-img" height="30" /></span>
+	    document.getElementById('profilepicture').innerHTML = 
+		    '<img src="https://graph.facebook.com/' + response.id + '/picture">';
     });
+  }
+  function notconnectedFB() {
+	    document.getElementById('profilename').innerText = ' ' + 'Profile' + ' ';
+	    document.getElementById('profilepicture').innerHTML = 
+		    '<img src="img/profilepicture.png">';
   }
