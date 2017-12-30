@@ -54,16 +54,7 @@ var selectedplaceindex = "0";
           center: myLocation,
           zoom: 18
         });
-		
-		//TODO: Create a marker in myLocation, that will be the center of the map
-		//createMarker(myLocation);
-		var markerimage = 'https://maps.google.com/mapfiles/kml/shapes/' + 'info-i_maps.png';
-		  var marker = new google.maps.Marker({
-          position: myLocation,
-          map: map,
-	  icon: markerimage,
-          title: 'Hello World2!'
-        });
+	
       
 		
 var placeTypes = [
@@ -113,6 +104,29 @@ document.getElementById('proba').innerHTML+="</ul>";
           position: place.geometry.location
         });
 
+	      function createCustomMarker(){
+	      	
+		//TODO: Create a marker in myLocation, 
+		// with profile picture (if avaiable)
+		// that will be the center of the map
+		var markerimage = 'https://maps.google.com/mapfiles/kml/shapes/' + 'info-i_maps.png';
+		var icon = {
+    url: markerimage, // url
+    scaledSize: new google.maps.Size(50, 50), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+};
+		  var marker = new google.maps.Marker({
+          position: myLocation,
+          map: map,
+	  icon: markerimage,
+          title: 'Hello World2!'
+        });
+	      }
+	      
+	      createCustomMarker();
+	      
+	      
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.setContent(place.name);
           infowindow.open(map, this);
