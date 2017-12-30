@@ -26,19 +26,22 @@ myPos,
 {lat: 47.6913011, lng: 19.1213873},
 {lat: 47.4978303, lng: 19.0522515}
 ];	
-
-var myLocation = places[parseInt(selectedplaceindex, 10)];	
+	
  
 //The default value of the dropdown menu
 // This index will change, if an other location is choosen  
-var selectedplaceindex = "0";		
+var selectedplaceindex = "0";	
+
+//The center of the map
+var myLocation = places[parseInt(selectedplaceindex, 10)];
+
  $('#centerselect').change(function () {  
  selectedplaceindex = $(this).find("option:selected").val();	
  $(".test").text(selectedplaceindex);   
  initMap(); 
 myLocation = places[parseInt(selectedplaceindex, 10)];
 
-	      createCustomMarker();
+//createCustomMarker();
 	 
 	 
  //TODO: Collapse the menu in mobile view
@@ -128,6 +131,8 @@ document.getElementById('proba').innerHTML+="</ul>";
           title: 'Hello World3!'
         });
 	      }
+	      
+createCustomMarker();
 
 	      
 	      
