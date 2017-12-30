@@ -48,7 +48,8 @@ var selectedplaceindex = "0";
       var infowindow;  	   
 	  function initMap() {      
 	  var myLocation = places[parseInt(selectedplaceindex, 10)];	
-
+	      
+	      createCustomMarker();
 		
         map = new google.maps.Map(document.getElementById('map'), {
           center: myLocation,
@@ -119,12 +120,11 @@ document.getElementById('proba').innerHTML+="</ul>";
 		  var marker = new google.maps.Marker({
           position: myLocation,
           map: map,
-	  icon: markerimage,
-          title: 'Hello World2!'
+	  icon: icon,
+          title: 'Hello World3!'
         });
 	      }
-	      
-	      createCustomMarker();
+
 	      
 	      
         google.maps.event.addListener(marker, 'click', function() {
