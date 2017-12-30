@@ -11,6 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
 
    
+	<script src="src/custom-fb.js"></script>  
   </head>
   <body>
   <nav class="navbar navbar-inverse">  
@@ -46,15 +47,32 @@
  </span> Sign Up</a></li>        
  <li><a href="#">
  <span class="glyphicon glyphicon-log-in">
- </span> Login</a></li>      
+ </span> Login</a></li>   
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+        <img src="img/profilepicture.png" class="img-circle special-img" height="30"> Profile <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i>
+asd
+</a></li>
+                </ul>
+</li>
+ 
  </ul>    
  </div>  
  </div>
  </nav>
 
   
-
+					<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"  data-size="large" data-auto-logout-link="true" data-show-faces="false">
+</fb:login-button>
 <div id="mapholder"></div>
+
+<div id="status">
+</div>
 
   <div id="map"></div>
 	
@@ -68,6 +86,8 @@
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
 	<script src="src/custom-gm.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap" async defer></script>
+  
+  
   
   </body>
 </html>
