@@ -114,7 +114,7 @@ function callback(results, status) {
                 service = new google.maps.places.PlacesService(map);
                 setTimeout(function() {
                     service.getDetails(request, callback);
-                }, j*1000);
+                }, j*10);    // }, j*1000);
 
 
             })(i);
@@ -179,31 +179,50 @@ function showPlaceList(placeObject, index){
 	var placeList = document.getElementById('placeList');
 	//placeList.innerHTML='asd'+'<br/>'+'asd';
 	
+	var open = 'panel-default'; //if open_now is undefined, the class will be panel-default
+	if(placeObject.opening_hours.open_now == true)
+	{
+		open='panel-success';
+	}else if(placeObject.opening_hours.open_now == false){
+		open='panel-danger';
+	}
+	
 	placeList.innerHTML+=''+
 	'<div class="container">'+
 	'<div class="panel-group">'+
-	'<div id="name_'+index+'" class="panel panel-primary">'+
-		'<a data-toggle="collapse" href="#collapse_name_'+index+'" class="panel-primary">'+
+	'<div id="name_'+index+'" class="panel '+open+'">'+
+		'<a data-toggle="collapse" href="#collapse_name_'+index+'" class="'+open+'">'+
 			'<div class="panel-heading" >'+placeObject.name+'</div>'+
 		'</a>'+
     
 	'<div id="collapse_name_'+index+'" class="panel-collapse collapse out panel-body">'+'Adatok'+
-	
+		
 		'<div class="panel-group">'+
 		'<div id="formatted_address_'+index+'" class="panel panel-default">'+
 			'<a data-toggle="collapse" href="#collapse_formatted_address_'+index+'" class="panel-default">'+
 				'<div class="panel-heading" >'+'formatted_address'+'</div>'+
 			'</a>'+
 		'<div id="collapse_formatted_address_'+index+'" class="panel-collapse collapse in panel-body">'+placeObject.formatted_address+'</div>'+
-	
 		'</div class="panel-default">'+
 		'</div class="panel-group">'+
-	
-	
-	
+		
+		
+		'<div class="panel-group">'+
+		'<div id="contact_'+index+'" class="panel panel-default">'+
+			'<a data-toggle="collapse" href="#collapse_contact_'+index+'" class="panel-default">'+
+				'<div class="panel-heading" >'+'Contact'+'</div>'+
+			'</a>'+
+		'<div id="collapse_contact_'+index+'" class="panel-collapse collapse out panel-body">'+
+			'formatted_address: '+placeObject.formatted_address+
+		'</div id="collapse_contact_">'+
+		'</div class="panel-default">'+
+		'</div class="panel-group">'+
+		
+		
 	'</div id="collapse" class="panel-body">'+
 	
-	'</div class="panel-primary">'+
+	
+	'</div class="open">'+
 	'</div class="panel-group">'+
 	'</div class="container">';
 	//placeList.innerHTML+='<div id="address_'+index+'"><p>address: '+placeObject.formatted_address+'</p></div>';
