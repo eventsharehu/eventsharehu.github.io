@@ -53,12 +53,12 @@ function initMap() {
 					
     var paris = {lat: 47.5133138, lng: 19.0565847}; //paris: {lat: 48.8704907, lng: 2.3309359};  
 		
-	var placeTypes = ['bar'];
+	var placeTypes = ['bar', 'restaurant'];
 
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLocation,
-        zoom: 18,
+        zoom: 15,
         styles: [{
             stylers: [{ visibility: 'simplified' }]
         }, {
@@ -70,25 +70,35 @@ function initMap() {
 			//The center of the map
     var myCircle = {
       strokeColor: '#4286f4',
-      strokeOpacity: 0.5,
+      strokeOpacity: 0.3,
       strokeWeight: 2,
       fillColor: '#4286f4',
-      fillOpacity: 0.2,
+      fillOpacity: 0.1,
       map: map,
       center: map.getCenter(),
-      radius: 500
+      radius: 1500
     }
+			//The center of the map
+    var myPosCircle = {
+      strokeColor: '#4286f4',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#4286f4',
+      fillOpacity: 0.6,
+      map: map,
+      center: map.getCenter(),
+      radius: 10
+    }
+    // Add the circle for this city to the map.
+    cityCircle = new google.maps.Circle(myCircle);
 
 	
     infowindow = new google.maps.InfoWindow();
 
-    // Add the circle for this city to the map.
-    cityCircle = new google.maps.Circle(myCircle);
-
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
           location: myLocation,
-          ///radius: 500,  
+          radius: 1500,  
 		  types: placeTypes,
 		  //  keyword: "(söröző) OR (Burger*)",
 		  rankBy: google.maps.places.RankBy.DISTANCE
