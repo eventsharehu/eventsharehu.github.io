@@ -75,11 +75,82 @@
 
   <div id="map"></div>
 	
-	<div id="proba">
-	<br/>
-	<h1>Lista</h1>
-	<br/>
-	</div>
+	
+	  
+  <div id="placeList">placeList</div>
+  
+<!-- Bálint kódja -->
+    <div class="container">
+  <h2>Place search</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><b>
+             <div class="alert alert-success">
+            <p id='log'></p></div>
+          </div>
+            <div class="alert alert-danger">
+            <p id='log'></p></div>
+          </b></a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><b>Helye</b></a>
+              </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+              <div class="panel-body"><p id='name'>List placeholder...</p></div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">  <b>Telefonszám</b></a>
+              </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+              <div class="panel-body"><p id='phone'>List placeholder...</p></div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">  <b>Nyitás</b></a>
+              </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="alert alert-success">
+                <p id='open_Now'></p></div>
+              </div>
+                <div class="alert alert-danger">
+                <p id='open_Not'></p></div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">  <b>Vélemények</b>:</a>
+              </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p id='reviews'>List placeholder...</p></div>
+            </div>
+          </div>
+        </div>
+         </div>
+      </div>
+    </div>
+
+
+<!-- Bálint kódja - vége -->
 
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
