@@ -27,7 +27,7 @@ var places = [
 	
 	//The default value of the dropdown menu
 	// This index will change, if an other location is choosen  
-var selectedplaceindex = "2";	
+var selectedplaceindex = "0";	
 
 	//The center of the map
 var myLocation = places[parseInt(selectedplaceindex, 10)];
@@ -44,17 +44,16 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 
 var map;
 var infowindow;
-var searchwords = "agence+web";
 
 // Initiate Map
 function initMap() {
 	
-					//clear the div that will be filled with the showPlaceList function
-					document.getElementById('placeList').innerHTML='asd'+'<br/>'+'asd';
+	//clear the div that will be filled with the showPlaceList function
+	document.getElementById('placeList').innerHTML='<br/>';
 					
     var paris = {lat: 47.5133138, lng: 19.0565847}; //paris: {lat: 48.8704907, lng: 2.3309359};  
 		
-	var placeTypes = ['bar', 'restaurant' ];
+	var placeTypes = ['bar'];
 
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -114,7 +113,7 @@ function callback(results, status) {
                 service = new google.maps.places.PlacesService(map);
                 setTimeout(function() {
                     service.getDetails(request, callback);
-                }, j*10);    // }, j*1000);
+                }, j*1000);    // }, j*1000);
 
 
             })(i);
@@ -163,14 +162,20 @@ Bálint függvénye
 
 function reviewsList(placeObject){
 
-var s = "";
+var s = ' ';
+try {
   for (var i = 0; i < placeObject.reviews.length; i++) {
 
-      s +=  "Neve: " + placeObject.reviews[i].author_name + "\n";
-      s +=  "Vélemény: " + placeObject.reviews[i].text + "\n";
-      s +=  "Értékelés: " + placeObject.reviews[i].rating + "\n";
-      s +=  "\n";
+      s +=  'Neve: ' + placeObject.reviews[i].author_name + '<br/>';
+      s +=  'Vélemény: ' + placeObject.reviews[i].text + '<br/>';
+      s +=  'Értékelés: ' + placeObject.reviews[i].rating + '<br/>';
+      s +=  '<br/>';
   }
+}catch(err) {
+document.getElementById("alertbox").style.display = 'show'; 
+document.getElementById("error").innerHTML += 
+'<strong>'+placeObject.name +'</strong>: nincsenek értékelései' + '<br/>' ; //err.message;
+}
   return s;
 
 }
@@ -180,12 +185,75 @@ function showPlaceList(placeObject, index){
 	//placeList.innerHTML='asd'+'<br/>'+'asd';
 	
 	var open = 'panel-default'; //if open_now is undefined, the class will be panel-default
+	var isOpen = ' nincs megadva ';
+	try{
 	if(placeObject.opening_hours.open_now == true)
 	{
 		open='panel-success';
+		isOpen = 'Most: nyitva';
 	}else if(placeObject.opening_hours.open_now == false){
 		open='panel-danger';
+		isOpen = 'Most: zárva';
 	}
+	}catch(err){
+		document.getElementById("alertbox").style.display = 'show';
+		document.getElementById("error").innerHTML  += 
+		'<strong>'+placeObject.name +'</strong>: nincs megadva nyitvatartás' + '<br/>' ; } //err.message;}
+	
+	var basicinfosDiv ='<div class="panel-group">'+
+		'<div id="formatted_address_'+index+'" class="panel panel-default">'+
+			'<a data-toggle="collapse" href="#collapse_formatted_address_'+index+'" class="panel-default">'+
+				'<div class="panel-heading" >'+'Alap adatok'+'</div>'+
+			'</a>'+
+		'<div id="collapse_formatted_address_'+index+'" class="panel-collapse collapse in panel-body">'+
+			'Cím: '+placeObject.formatted_address+
+		'</div>'+
+		'</div class="panel-default">'+
+		
+		'</div class="panel-group">';
+		
+	var contactDiv = '<div class="panel-group">'+
+		'<div id="contact_'+index+'" class="panel panel-default">'+
+			'<a data-toggle="collapse" href="#collapse_contact_'+index+'" class="panel-default">'+
+				'<div class="panel-heading" >'+'Kapcsolat'+'</div>'+
+			'</a>'+
+		'<div id="collapse_contact_'+index+'" class="panel-collapse collapse out panel-body">'+
+			'Address: \t\t'+placeObject.formatted_address+'<br/>'+
+			'Phone: \t\t'+placeObject.international_phone_number+'<br/>'+
+			'Web: \t\t'+placeObject.website+'<br/>'+
+		'</div id="collapse_contact_">'+
+		'</div class="panel-default">'+
+		'</div class="panel-group">';
+	
+	var reviewsDiv = '<div class="panel-group">'+
+		'<div id="reviews_'+index+'" class="panel panel-default">'+
+			'<a data-toggle="collapse" href="#collapse_reviews_'+index+'" class="panel-default">'+
+				'<div class="panel-heading" >'+'Értékelések'+'</div>'+
+			'</a>'+
+		'<div id="collapse_reviews_'+index+'" class="panel-collapse collapse out panel-body">'+
+			reviewsList(placeObject) +
+		'</div id="collapse_contact_">'+
+		'</div class="panel-default">'+
+		'</div class="panel-group">';
+	var weekday_text=' nincs megadva ';
+	try{
+	for(o = 0; o < placeObject.opening_hours.weekday_text.length ; o++){
+			weekday_text += placeObject.opening_hours.weekday_text[o]+'<br/>';
+			}
+	}catch(err){
+		//document.getElementById("error").innerHTML += placeObject.name +': nincs megadva nyitvatartási idő' + '<br/>' ; 
+		}//err.message;}	
+	
+	var openDiv = '<div class="panel-group">'+
+		'<div id="open_'+index+'" class="panel '+open+'">'+
+			'<a data-toggle="collapse" href="#collapse_open_'+index+'" class="'+open+'">'+
+				'<div class="panel-heading" >'+'Nyitvatartás \t\t ('+isOpen+')</div>'+
+			'</a>'+
+		'<div id="collapse_open_'+index+'" class="panel-collapse collapse out panel-body">'+
+			weekday_text +
+		'</div id="collapse_contact_">'+
+		'</div class="panel-default">'+
+		'</div class="panel-group">';
 	
 	placeList.innerHTML+=''+
 	'<div class="container">'+
@@ -195,29 +263,12 @@ function showPlaceList(placeObject, index){
 			'<div class="panel-heading" >'+placeObject.name+'</div>'+
 		'</a>'+
     
-	'<div id="collapse_name_'+index+'" class="panel-collapse collapse out panel-body">'+'Adatok'+
+	'<div id="collapse_name_'+index+'" class="panel-collapse collapse out panel-body">'+' '+
 		
-		'<div class="panel-group">'+
-		'<div id="formatted_address_'+index+'" class="panel panel-default">'+
-			'<a data-toggle="collapse" href="#collapse_formatted_address_'+index+'" class="panel-default">'+
-				'<div class="panel-heading" >'+'formatted_address'+'</div>'+
-			'</a>'+
-		'<div id="collapse_formatted_address_'+index+'" class="panel-collapse collapse in panel-body">'+placeObject.formatted_address+'</div>'+
-		'</div class="panel-default">'+
-		'</div class="panel-group">'+
-		
-		
-		'<div class="panel-group">'+
-		'<div id="contact_'+index+'" class="panel panel-default">'+
-			'<a data-toggle="collapse" href="#collapse_contact_'+index+'" class="panel-default">'+
-				'<div class="panel-heading" >'+'Contact'+'</div>'+
-			'</a>'+
-		'<div id="collapse_contact_'+index+'" class="panel-collapse collapse out panel-body">'+
-			'formatted_address: '+placeObject.formatted_address+
-		'</div id="collapse_contact_">'+
-		'</div class="panel-default">'+
-		'</div class="panel-group">'+
-		
+		basicinfosDiv+
+		openDiv +
+		reviewsDiv +
+		contactDiv +
 		
 	'</div id="collapse" class="panel-body">'+
 	
@@ -225,24 +276,8 @@ function showPlaceList(placeObject, index){
 	'</div class="open">'+
 	'</div class="panel-group">'+
 	'</div class="container">';
-	//placeList.innerHTML+='<div id="address_'+index+'"><p>address: '+placeObject.formatted_address+'</p></div>';
 	
-document.getElementById('log').innerText = placeObject.name;
-/*
-document.getElementById('name').innerText = placeObject.address_components[1].long_name + " " + placeObject.address_components[0].short_name;
-document.getElementById('phone').innerText = placeObject.international_phone_number;
-if(placeObject.opening_hours.open_now == true){
-  document.getElementById('open_Now').innerText = "Nyitva";
-    $(document).ready(function(){
-      $('.alert-danger').remove();
-    });
-} else {
-  $(document).ready(function(){
-      $('.alert-success').remove();
-  });
-  document.getElementById('open_Not').innerText = "Zárva";
-}
-document.getElementById('reviews').innerText = reviewsList(placeObject);
-*/
+
+
 }
 
