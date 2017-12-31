@@ -172,6 +172,7 @@ try {
       s +=  '<br/>';
   }
 }catch(err) {
+s=' Nincsenek vélemények ';
 document.getElementById("alertbox").style.display = 'show'; 
 document.getElementById("error").innerHTML += 
 '<strong>'+placeObject.name +'</strong>: nincsenek értékelései' + '<br/>' ; //err.message;
@@ -185,7 +186,7 @@ function showPlaceList(placeObject, index){
 	//placeList.innerHTML='asd'+'<br/>'+'asd';
 	
 	var open = 'panel-default'; //if open_now is undefined, the class will be panel-default
-	var isOpen = ' nincs megadva ';
+	var isOpen = '  ';
 	try{
 	if(placeObject.opening_hours.open_now == true)
 	{
@@ -196,6 +197,7 @@ function showPlaceList(placeObject, index){
 		isOpen = 'Most: zárva';
 	}
 	}catch(err){
+		isOpen = ' (nincs megadva nyitvatartás) ';
 		document.getElementById("alertbox").style.display = 'show';
 		document.getElementById("error").innerHTML  += 
 		'<strong>'+placeObject.name +'</strong>: nincs megadva nyitvatartás' + '<br/>' ; } //err.message;}
@@ -235,12 +237,13 @@ function showPlaceList(placeObject, index){
 		'</div id="collapse_contact_">'+
 		'</div class="panel-default">'+
 		'</div class="panel-group">';
-	var weekday_text=' nincs megadva ';
+	var weekday_text=' ';
 	try{
 	for(o = 0; o < placeObject.opening_hours.weekday_text.length ; o++){
 			weekday_text += placeObject.opening_hours.weekday_text[o]+'<br/>';
 			}
 	}catch(err){
+		weekday_text=' nincs megadva ';
 		//document.getElementById("error").innerHTML += placeObject.name +': nincs megadva nyitvatartási idő' + '<br/>' ; 
 		}//err.message;}	
 	
