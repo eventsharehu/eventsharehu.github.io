@@ -58,7 +58,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLocation,
-        zoom: 15,
+        zoom: 16,
         styles: [{
             stylers: [{ visibility: 'simplified' }]
         }, {
@@ -91,6 +91,7 @@ function initMap() {
     }
     // Add the circle for this city to the map.
     cityCircle = new google.maps.Circle(myCircle);
+    posCircle = new google.maps.Circle(myPosCircle);
 
 	
     infowindow = new google.maps.InfoWindow();
@@ -101,7 +102,7 @@ function initMap() {
           radius: 1500,  
 		  types: placeTypes,
 		  //  keyword: "(söröző) OR (Burger*)",
-		  rankBy: google.maps.places.RankBy.DISTANCE
+		 // rankBy: google.maps.places.RankBy.DISTANCE
     }, callback);
 }
 
