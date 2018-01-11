@@ -10,67 +10,52 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
 
-   
-	<script src="src/custom-fb.js"></script>  
+
+	<script src="src/custom-fb.js"></script>    
   </head>
+  
   <body>
-  <nav class="navbar navbar-inverse">  
-  <div class="container-fluid">    
-  <div class="navbar-header">      
-  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">        
-  <span class="icon-bar"></span>        
-  <span class="icon-bar"></span>        
-  <span class="icon-bar"></span>       
-  </button>      
-  <a class="navbar-brand" href="#">GoogleMaps</a>    
-  </div>    
-  <div class="collapse navbar-collapse" id="myNavbar">      
-  <ul class="nav navbar-nav">        
-  <li class="active"><a href="#">Home</a></li>        
-  <li>				
-  <a>
-  <select class="form-control" id="centerselect" name="mapcenterselect">    
-  <option value="0">Saját pozíció</option>  
-  <option value="1">BP - Nyugati</option>    
-  <option value="2">Jászfényszaru</option>    
-  <option value="3">Göd</option>    
-  <option value="4">BP - Deák tér</option>  
-	</select>
- </a>				
- </li>        
-      <li>&nbsp;</li> 
- <li><button type="button" class="btn-xs btn-primary" onclick="initMap();">initMap()</button></li> 
-      <li>&nbsp;</li> 
- <li><button type="button" class="btn-xs btn-warning" onclick='toggleContent("alertbox")'>Alerts on/off</button></li> 
+  
+<div id="main2">
+  <!-- 
+  Load navbar menu with JQuery, 
+  -->
+
+  <div id="menu" >menü placeholder</div>
+  <div id="settings" >settings placeholder</div>
+
+
+    
+<script type="text/javascript">
+$(document).ready(function() {
+$('#menu').load('navbar.html');
+});
+   
+   
+$(document).ready(function() {
+$('#settings').load('settings.html');
+});
+   
+</script>
  
- </ul> 
- 
+    
+<script type="text/javascript">
 
- <ul class="nav navbar-nav navbar-right">        
- <li>
- <a href="#"><span class="glyphicon glyphicon-user">
- </span> Sign Up</a></li>        
- <li><a href="#">
- <span class="glyphicon glyphicon-log-in">
- </span> Login</a></li>   
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
 
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown"><span id="profilepicture"><img id="profilepictureimg" src="img/profilepicture.png" class="img-circle special-img" height="30" /></span> <font id="profilename" > Profile </font>
-	    <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i>
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
+}
 
-<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"  data-size="small" data-auto-logout-link="true" data-show-faces="false">
-</fb:login-button>
-
-</a></li>
-                </ul>
-</li>  
- </div>  
- </div>
- </nav>
+</script>
 
  
  <script type="text/javascript">
@@ -84,7 +69,7 @@ contentId.style.display = "block";
 </script>
 
 
- <div class="container"> 
+ <div class="container" > 
 <div id="alertbox"  class="alert alert-warning alert-dismissable fade in" style="display:none;">
     <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
   <strong>Észrevételek!</strong> <br/>
@@ -93,17 +78,17 @@ contentId.style.display = "block";
 
 </div>
 
-  <div id="map"></div>
+  </div> <!-- main2 -->
+  <div id="map">map placeholder</div>
 	
-	
-	  
   <div id="placeList">placeList</div>
+
+
  
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
 	<script src="src/custom-gm.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap" async defer></script>
-  
   
   
   </body>
