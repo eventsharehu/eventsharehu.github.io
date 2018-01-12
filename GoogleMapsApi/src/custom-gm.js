@@ -1,46 +1,4 @@
-//initialize my current location
-//if the geolocation doesn't working, it's value stays 0
-var myPos = {lat: 0, lng: 0};
 
-        // Try HTML5 geolocation.
-if (navigator.geolocation) {
-	//determine the current position with magic and give it to the getPosition function
-	navigator.geolocation.getCurrentPosition(getPosition);
-}
- 
-//Give the recieved position datas to the myPos object
-function getPosition(position) {
-	myPos.lat = position.coords.latitude;
-	myPos.lng = position.coords.longitude;
-} 
-
-	//This positions can be select from the menu
-	// The determined current position is the first in the menu
-	// (it's value is (0,0) if the geolocation doesn't working)
-var places = [
-	myPos,
-	{lat: 47.5133138, lng: 19.0565847},
-	{lat: 47.5670783, lng: 19.7137274},
-	{lat: 47.6913011, lng: 19.1213873},
-	{lat: 47.4978303, lng: 19.0522515}
-];	
-	
-	//The default value of the dropdown menu
-	// This index will change, if an other location is choosen  
-var selectedplaceindex = "0";	
-
-	//The center of the map
-var myLocation = places[parseInt(selectedplaceindex, 10)];
-
-	//If the dropdown menu's value changed, give the new value to the selectedplaceindex, and the myLocation
-	//	then re-init the map
- $('#centerselect').change(function () {  
-	selectedplaceindex = $(this).find("option:selected").val();	
-	$(".test").text(selectedplaceindex);   
-
-	myLocation = places[parseInt(selectedplaceindex, 10)];
-	initMap(); 
- });	
 
 var map;
 var infowindow;
@@ -51,9 +9,6 @@ function initMap() {
 	//clear the div that will be filled with the showPlaceList function
 	document.getElementById('placeList').innerHTML='<br/>';
 					
-    var paris = {lat: 47.5133138, lng: 19.0565847}; //paris: {lat: 48.8704907, lng: 2.3309359};  
-		
-	var placeTypes = ['bar', 'restaurant'];
 
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -76,7 +31,7 @@ function initMap() {
       fillOpacity: 0.1,
       map: map,
       center: map.getCenter(),
-      radius: 1500
+      radius: radius
     }
 			//The center of the map
     var myPosCircle = {
@@ -99,9 +54,9 @@ function initMap() {
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
           location: myLocation,
-          radius: 1500,  
+          radius: radius,  
 		  types: placeTypes,
-		  //  keyword: "(söröző) OR (Burger*)",
+		  keyword: keywords
 		 // rankBy: google.maps.places.RankBy.DISTANCE
     }, callback);
 }
