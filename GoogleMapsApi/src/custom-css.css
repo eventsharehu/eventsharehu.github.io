@@ -2,15 +2,42 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
+        height: 40%;
+		margin: 0;
+		padding: 0;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
+        overflow: auto;
         margin: 0;
         padding: 0;
       }
 
+	/*  #alertbox, #error, #menu, #settings, #main2{
+		  margin: 0 !important;
+		  padding: 0 !important;
+	  }
+	  */
+	  
+	  /* Class for the placeList div (under the map) */
+	#placeList{
+		background: black;
+		height: 45%;
+		overflow-y: scroll;
+	}
+	
+	/*toogle the placeList to fullscreen mode */
+	#placeList.fullscreen{
+    z-index: 9999; 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+ }
+	
+	
 	  /*
 	  *	override some ootstrap style
 	  */
