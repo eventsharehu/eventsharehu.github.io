@@ -7,7 +7,14 @@ var infowindow;
 function initMap() {
 	
 	//clear the div that will be filled with the showPlaceList function
-	document.getElementById('placeList').innerHTML='<br/>';
+	document.getElementById('placeList').innerHTML=''+
+	'<div class="placeList_top">'+
+	'<button class="btn btn-primary" onclick="fullscreen()" style="float: right">'+
+	'<span class="glyphicon glyphicon-fullscreen"></span>'+
+	'</button>'+
+	' Here will be tabs with: Places, Events, People, etc. '+
+	'</div>'+
+	'';
 					
 
 
@@ -59,7 +66,7 @@ function initMap() {
 		  keyword: keywords
 		 // rankBy: google.maps.places.RankBy.DISTANCE
     }, callback);
-}
+}//initMap 
 
 var placeDetails = [];
 
@@ -119,6 +126,9 @@ function createMarker(place) {
 }//function createMarker
 
 
+function fullscreen(){
+    $('#placeList').toggleClass('fullscreen'); 
+}
 /*
 
 Bálint függvénye
@@ -203,6 +213,7 @@ function showPlaceList(placeObject, index){
 		'</div id="collapse_contact_">'+
 		'</div class="panel-default">'+
 		'</div class="panel-group">';
+		
 	var weekday_text=' ';
 	try{
 	for(o = 0; o < placeObject.opening_hours.weekday_text.length ; o++){
