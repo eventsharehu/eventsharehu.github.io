@@ -73,7 +73,7 @@ $(function () {
         var checkedItems = {}, counter = 0;
         $("#check-list-box li.active").each(function(idx, li) {
             checkedItems[counter] = $(li).text();
-			placeTypes.push($(li).text());
+			placeTypes.push($(li).prop("id"));
             counter++;
         });
         $('#display-json').html(JSON.stringify(placeTypes, null, '\t'));
