@@ -51,7 +51,7 @@
 
 <script>
 var cars = ["Saab", "Volvo", "BMW"];
-document.getElementById("demo").innerHTML = placeTypes_all;
+document.getElementById("demo").innerHTML = "elemek: "+placeTypes_all[0].length;
 </script>
 
             <div class="well" style="max-height: 300px;overflow: auto;">
@@ -60,21 +60,23 @@ document.getElementById("demo").innerHTML = placeTypes_all;
 					<script>
 						document.getElementById('check-list-box').innerHTML = '<li class="list-group-item" data-checked="true">bar</li>';
 						for(i=0; i<placeTypes_all.length; i++){
-							document.getElementById('check-list-box').innerHTML +='<li class="list-group-item" >'+
-							placeTypes_all[i]+'</li>';
+							document.getElementById('check-list-box').innerHTML +=''+
+							'<li class="list-group-item" id="'+placeTypes_all[i][0]+'">'+
+							'<img src="'+placeTypes_all[i][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
+							placeTypes_all[i][1]+'</li>';
 						}
 					</script>
 				  </li>
                 </ul>
             </div>
 
-			                <button class="btn btn-primary col-xs-12" id="get-checked-data">Get Checked Data</button>
+			            <!--    <button class="btn btn-primary col-xs-12" id="get-checked-data2">Get Checked Data</button>
             <pre id="display-json"></pre>
-
+-->
 			
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="get-checked-data">OK</button>
         </div>
       </div>
     </div>
