@@ -19,23 +19,7 @@
 		  padding: 0 !important;
 	  }
 	  */
-	  
-	  /* Class for the placeList div (under the map) */
-	#placeList{
-		background: black;
-		height: 45%;
-		overflow-y: scroll;
-	}
-	
-	/*toogle the placeList to fullscreen mode */
-	#placeList.fullscreen{
-    z-index: 9999; 
-    width: 100%; 
-    height: 100%; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
- }
+
 	
 	
 	  /*
@@ -168,8 +152,39 @@ menu elements' align
 }
 
 
+/*
+Tabs above listing the found places, events, people, etc
+*/
 
+.listing-tab{
+    padding:0;    
+}
 
+.listing-tab .nav-tabs>li,.nav-tabs>li a:hover{margin-bottom:0;background:none; }
+.listing-tab .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{border:none;background:none; }
+.listing-tab .nav-tabs>li>a:hover{border-color:none; color:white;}
+.listing-tab .nav-tabs>li>a{border:0;padding:17px 0 7px; color: lightgreen; margin-left:15px;}
+.listing-tab .nav-tabs>li.active>a{border-bottom:2px solid green; color: white;}
+.listing-tab{background-color:#000;}
+
+/* listing-tab can be toogle to fullscreen mode */
+	  
+	#listing-tab{
+		background: black;
+		height: 45%;
+		overflow-y: scroll;
+	}
+	
+	/*toogle the placeList to fullscreen mode */
+	#listing-tab.fullscreen{
+    z-index: 9999; 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+ }
+	
 
 
 

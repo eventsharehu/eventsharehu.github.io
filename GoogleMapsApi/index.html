@@ -20,10 +20,12 @@
   </head>
   
   <body>
+
   
-<div id="main2" style="height: 50px; border: 5px solid black;">
 
-
+  
+  
+  
 	
 	<!-- 
   Load navbar menu with JQuery, 
@@ -87,12 +89,62 @@ contentId.style.display = "block";
 
 </div>
 
-  </div> <!-- main2 -->
   <div id="map">map placeholder</div>
 	
-  <div id="placeList" >placeList</div>
+	
 
 
+<script>
+/* switching between the tabs in listing-tab */
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>  
+               
+            <div id="listing-tab" class="listing-tab ">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#places" aria-controls="places" role="tab" data-toggle="tab">Helyek</a></li>
+                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Események</a></li>
+                    <li role="presentation"><a href="#peoples" aria-controls="peoples" role="tab" data-toggle="tab">Emberek</a></li>
+                    <li role="presentation"><a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">Jegyzetek</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Üzenetek</a></li>
+					<li>
+						<button type="button" class="btn btn-link" aria-label="cog" onclick="openNav()" style="float: right">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</button>
+					</li>
+					<li>
+						<button class="btn btn-link" onclick="fullscreen()" style="float: right">
+							<span class="glyphicon glyphicon-fullscreen"></span>
+						</button>
+					</li>
+                  </ul>
+                
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="places">
+					  <div id="placeList" >placeList</div> 
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="events">
+                        <ul><li><a>tab-2</a></li></ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="peoples">
+                        <a href="#">Hamarosan...</a>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="notes">
+                        <a href="#">Hamarosan...</a>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        <a href="#">Hamarosan...</a>
+                    </div>
+                  </div> <!-- tabcontent -->
+            </div> <!-- listingcontent>
+     
+    
+  
+  
  
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->

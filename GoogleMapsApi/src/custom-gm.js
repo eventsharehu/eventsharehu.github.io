@@ -8,12 +8,6 @@ function initMap() {
 	
 	//clear the div that will be filled with the showPlaceList function
 	document.getElementById('placeList').innerHTML=''+
-	'<div class="placeList_top">'+
-	'<button class="btn btn-primary" onclick="fullscreen()" style="float: right">'+
-	'<span class="glyphicon glyphicon-fullscreen"></span>'+
-	'</button>'+
-	' Here will be tabs with: Places, Events, People, etc. '+
-	'</div>'+
 	'';
 					
 
@@ -127,7 +121,7 @@ function createMarker(place) {
 
 
 function fullscreen(){
-    $('#placeList').toggleClass('fullscreen'); 
+    $('#listing-tab').toggleClass('fullscreen'); 
 }
 /*
 
