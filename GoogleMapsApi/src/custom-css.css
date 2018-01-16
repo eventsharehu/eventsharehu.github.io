@@ -2,7 +2,17 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 40%;
+        
+/* Firefox */
+height: -moz-calc(40% - 50px);
+/* WebKit */
+height: -webkit-calc(40% - 50px);
+/* Opera */
+height: -o-calc(40% - 50px);
+/* Standard */
+height: calc(40% - 50px);
+
+
 		margin: 0;
 		padding: 0;
       }
@@ -24,7 +34,8 @@
 	margin: 0;
 }
 .navbar{
-	height: 5%;}
+	/* the navbar is 50 px height */
+}
 	
 	
 	  /*
@@ -162,24 +173,35 @@ Tabs above listing the found places, events, people, etc
 */
 
 .listing-tab{
-    padding:0;    
+    padding:0; margin: 0;   
 }
 
 .listing-tab .nav-tabs>li,.nav-tabs>li a:hover{margin-bottom:0;background:none; }
 .listing-tab .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{border:none;background:none; }
-.listing-tab .nav-tabs>li>a:hover{border-color:none; color:white;}
-.listing-tab .nav-tabs>li>a{border:0;padding:17px 0 7px; color: lightgreen; margin-left:15px;}
-.listing-tab .nav-tabs>li.active>a{border-bottom:2px solid green; color: white;}
+.listing-tab .nav-tabs>li>a:hover{border-bottom:2px solid green; color:white;}
+.listing-tab .nav-tabs>li>a{border:0;padding:5px 0 5px; color: lightgreen; margin-left:15px;}
+.listing-tab .nav-tabs>li.active>a{border-bottom:2px solid lightgreen; color: white;}
 .listing-tab{background-color:#000;}
 
 /* listing-tab can be toogle to fullscreen mode */
 	  
 	#listing-tab{
-		object-fit: cover;
+		margin: 0;
+		padding: 0;
 		float: right;
 		width: 100%;
 		background: black;
-		height: 50%;
+		
+		/* Firefox */
+height: -moz-calc(60% - 50px);
+/* WebKit */
+height: -webkit-calc(60% - 50px);
+/* Opera */
+height: -o-calc(60% - 50px);
+/* Standard */
+height: calc(60% - 50px);
+
+
 		overflow-y: none;
 	}
 	
@@ -192,16 +214,39 @@ Tabs above listing the found places, events, people, etc
     top: 0; 
     left: 0; 
  }
-	
+
+ 
+ #myTabs{border-bottom: 1px solid lightgreen !important; height: 33px;}
+
 	.tab-content, .tabpane, #placeList{
-		border: 5 px solid red !important;
 		width: 100%;
-		height: 90%; 
+		
+/*
+The listing_tab_header is 10 px height + 10 px padding (on bottom and on top) + 2px bottom border
+but with 100%-30px there will be a body scrollbar on the page
+*/		
+/* Firefox */
+height: -moz-calc(100% - 33px);
+/* WebKit */
+height: -webkit-calc(100% - 33px);
+/* Opera */
+height: -o-calc(100% - 33px);
+/* Standard */
+height: calc(100% - 33px);
+
 		overflow-y: auto;
+		margin: 0;
+		padding: 0;
 		
 	}
 
-
+/*
+ 5% --> navbar
+40% --> map
+55% --> listing-tab
+	5% --> listing-tab-header
+	95% --> .tab-content, .tabpane, #placeList
+*/
 
 
 
