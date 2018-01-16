@@ -6,9 +6,6 @@ var infowindow;
 // Initiate Map
 function initMap() {
 	
-	//clear the div that will be filled with the showPlaceList function
-	document.getElementById('placeList').innerHTML=''+
-	'';
 					
 
 
@@ -16,10 +13,10 @@ function initMap() {
         center: myLocation,
         zoom: 16,
         styles: [{
-            stylers: [{ visibility: 'simplified' }]
+            stylers: [{ visibility: 'simplified' }] 
         }, {
             elementType: 'labels',
-            stylers: [{ visibility: 'off' }]
+            stylers: [{ visibility: 'on' }]
         }]
     });
 
@@ -57,6 +54,11 @@ function initMap() {
 var placeDetails = [];
 
 function listPlaces(){
+	
+	//clear the div that will be filled with the showPlaceList function
+	document.getElementById('placeList').innerHTML=''+
+	'';
+	
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
           location: myLocation,
@@ -71,10 +73,15 @@ function callback(results, status) {
    // console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 		placeDetails = [];
+		var timeout = 1;
         for (var i = 0; i < results.length; i++) {
 
+			
+			console.log(timeout);
             //Using setTimeout and closure because limit of 10 queries /second for getDetails */
             (function (j) {
+			if((placeDetails.length)%7==0){timeout=1000;}
+			if((placeDetails.length)%7<7){timeout=1000;}
                 var request = {
                     placeId: results[i]['place_id']
                 };
@@ -82,7 +89,7 @@ function callback(results, status) {
                 service = new google.maps.places.PlacesService(map);
                 setTimeout(function() {
                     service.getDetails(request, callback);
-                }, j*1000);    // }, j*1000);
+                }, j*timeout);    // }, j*1000);
 
 
             })(i);
@@ -90,16 +97,19 @@ function callback(results, status) {
             function callback(place, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                     createMarker(place);
-                    console.log(place.name + ' index: ' + placeDetails.length ); //results.length + placeDetails.length);
+                    console.log('i= '+i +'  '+ place.name + ' index: ' + placeDetails.length ); //results.length + placeDetails.length);
 					
 					showPlaceList(place, placeDetails.length);
 					
                     placeDetails.push([place.name, place.id]);
 
                 } //if service status.OK
+				else{console.log('hiba (place.details): ' + status);}
             }// function callback
+			
         }//for
     }//if service status.OK
+	else{console.log('hiba2 (nearbysearch): ' + status);}
 }//function callback
 }//function listPlaces
 
@@ -126,7 +136,9 @@ function createMarker(place) {
 
 function fullscreen(){
     $('#listing-tab').toggleClass('fullscreen'); 
+    $('#tab-content').toggleClass('fullscreen'); 
 }
+
 /*
 
 Bálint függvénye

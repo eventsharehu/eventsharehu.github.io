@@ -12,6 +12,8 @@ if (navigator.geolocation) {
 function getPosition(position) {
 	myPos.lat = position.coords.latitude;
 	myPos.lng = position.coords.longitude;
+	
+	initMap();
 } 
 
 	//This positions can be select from the menu
@@ -47,7 +49,7 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 	var radius = 1500;
 	var keywords_array = [];
 	var keywords = ""; //"(söröző) OR (Burger*)",
-	var placeTypes = [""]; //["bar"]
+	var placeTypes = ["restaurant"]; //["bar"]
 		
 	var icon_prefix = 'https://maps.gstatic.com/mapfiles/place_api/icons/'; //bar-71.png 	
 	var placeTypes_all= [
@@ -158,7 +160,7 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
   document.getElementById('test').text = keywords;
   
   
-  radius = document.getElementById("radius").value;
+  radius = parseInt(document.getElementById("radius").value);
 
 document.getElementById("error").innerHTML = "";
   console.log(keywords);
@@ -167,5 +169,7 @@ document.getElementById("error").innerHTML = "";
   closeNav();
 
   }
+  
+	listPlaces();
 
 

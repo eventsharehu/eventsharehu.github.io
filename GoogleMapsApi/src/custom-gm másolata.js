@@ -6,9 +6,6 @@ var infowindow;
 // Initiate Map
 function initMap() {
 	
-	//clear the div that will be filled with the showPlaceList function
-	document.getElementById('placeList').innerHTML=''+
-	'';
 					
 
 
@@ -16,10 +13,10 @@ function initMap() {
         center: myLocation,
         zoom: 16,
         styles: [{
-            stylers: [{ visibility: 'simplified' }]
+            stylers: [{ visibility: 'simplified' }] 
         }, {
             elementType: 'labels',
-            stylers: [{ visibility: 'off' }]
+            stylers: [{ visibility: 'on' }]
         }]
     });
 
@@ -52,6 +49,16 @@ function initMap() {
 	
     infowindow = new google.maps.InfoWindow();
 
+}//initMap 
+
+var placeDetails = [];
+
+function listPlaces(){
+	
+	//clear the div that will be filled with the showPlaceList function
+	document.getElementById('placeList').innerHTML=''+
+	'';
+	
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
           location: myLocation,
@@ -59,11 +66,8 @@ function initMap() {
 		  types: placeTypes,
 		  keyword: keywords
 		 // rankBy: google.maps.places.RankBy.DISTANCE
-    }, callback);
-}//initMap 
-
-var placeDetails = [];
-
+    }, callback );  //}, callback);
+	
 function callback(results, status) {
     console.log(results.length+ ' db összesen');
    // console.log(results);
@@ -99,6 +103,8 @@ function callback(results, status) {
         }//for
     }//if service status.OK
 }//function callback
+}//function listPlaces
+
 
 function createMarker(place) {
     var photos = place.photos;
@@ -122,7 +128,9 @@ function createMarker(place) {
 
 function fullscreen(){
     $('#listing-tab').toggleClass('fullscreen'); 
+    $('#tab-content').toggleClass('fullscreen'); 
 }
+
 /*
 
 Bálint függvénye
