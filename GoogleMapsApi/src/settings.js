@@ -163,6 +163,7 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 document.getElementById("error").innerHTML = "";
   console.log(keywords);
   initMap();
+  listPlaces();
   closeNav();
 
   }

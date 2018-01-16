@@ -52,6 +52,11 @@ function initMap() {
 	
     infowindow = new google.maps.InfoWindow();
 
+}//initMap 
+
+var placeDetails = [];
+
+function listPlaces(){
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
           location: myLocation,
@@ -59,11 +64,8 @@ function initMap() {
 		  types: placeTypes,
 		  keyword: keywords
 		 // rankBy: google.maps.places.RankBy.DISTANCE
-    }, callback);
-}//initMap 
-
-var placeDetails = [];
-
+    }, callback );  //}, callback);
+	
 function callback(results, status) {
     console.log(results.length+ ' db összesen');
    // console.log(results);
@@ -99,6 +101,8 @@ function callback(results, status) {
         }//for
     }//if service status.OK
 }//function callback
+}//function listPlaces
+
 
 function createMarker(place) {
     var photos = place.photos;
