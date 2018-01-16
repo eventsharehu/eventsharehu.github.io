@@ -1,16 +1,11 @@
+#fullpage{height: calc(100% - 53px);}  /* The navbar is 50pxx height */
 
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
         
-/* Firefox */
-height: -moz-calc(40% - 50px);
-/* WebKit */
-height: -webkit-calc(40% - 50px);
-/* Opera */
-height: -o-calc(40% - 50px);
-/* Standard */
-height: calc(40% - 50px);
+position: relative;
+height: 40%;
 
 
 		margin: 0;
@@ -192,15 +187,8 @@ Tabs above listing the found places, events, people, etc
 		width: 100%;
 		background: black;
 		
-		/* Firefox */
-height: -moz-calc(60% - 50px);
-/* WebKit */
-height: -webkit-calc(60% - 50px);
-/* Opera */
-height: -o-calc(60% - 50px);
-/* Standard */
-height: calc(60% - 50px);
-
+		position: relative;
+		height: 60% !important;
 
 		overflow-y: none;
 	}
