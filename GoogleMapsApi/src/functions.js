@@ -46,3 +46,18 @@ function deg2rad(deg) {
 
   return d;
 }
+
+function get_orientation(){
+$(window).on('load', function() {
+    $('img').addClass(function() {
+        if (this.height === this.width) {
+            return 'square';
+        } else if (this.height > this.width) {
+            return 'portrait';
+        } else {
+            return 'landscape';
+        }
+    });
+});
+}
+

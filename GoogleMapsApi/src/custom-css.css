@@ -12,6 +12,7 @@ height: 40%;
 		margin: 0;
 		padding: 0;
       }
+	  
       /* Optional: Makes the sample page fill the window. */
       html, body {
 		background-color: black;
@@ -21,6 +22,83 @@ height: 40%;
         padding: 0;
       }
 
+/* for Autocomplete search */
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+/*
+End of map css
+*/	  
+	  
+	  
+	  
 	/*  #alertbox, #error, #menu, #settings, #main2{
 		  margin: 0 !important;
 		  padding: 0 !important;
@@ -427,6 +505,28 @@ listPlaces css
 */
  .space-ten{padding: 10px 0;}
 
+.thumbnail2 {
+  position: relative;
+  width: -500px;
+  height: 200px;
+  overflow: hidden;
+}
+.thumbnail2 img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
 
-
-
+.thumbnail2 img.portrait {
+  width: 100%;
+  height: auto;
+}
+.thumbnail{
+    height: 400px;
+    overflow: hidden;
+	}  

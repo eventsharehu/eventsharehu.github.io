@@ -1,4 +1,35 @@
 
+      function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Center Map';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          map.setCenter(myLocation);
+        });
+
+      }
 
 var map;
 var infowindow;
@@ -6,7 +37,7 @@ var infowindow;
 // Initiate Map
 function initMap() {
 	
-					
+				
 
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -19,7 +50,7 @@ function initMap() {
             stylers: [{ visibility: 'on' }]
         }]
     });
-
+	
 			//The center of the map
     var myCircle = {
       strokeColor: '#4286f4',
@@ -49,10 +80,81 @@ function initMap() {
 	
     infowindow = new google.maps.InfoWindow();
 
+        // Create the DIV to hold the control and call the CenterControl()
+        // constructor passing in this DIV.
+        var centerControlDiv = document.createElement('div');
+        var centerControl = new CenterControl(centerControlDiv, map);
+
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+		
+		/*
+		initAutoComplete
+		*/
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });		
 }//initMap 
 
 var placeDetails = [];
 var photoreference = '';
+var orientation = 'lancdscape';
 var distance = 0;
 var place_id = '';
 var name = '';
@@ -83,20 +185,25 @@ function callback(results, status) {
 		
         for (var i = 0; i < results.length; i++) {
 		createMarker(results[i])
-		distance = (haversineDistance(results[i].geometry.location.lat(), results[i].geometry.location.lng(), myLocation.lat, myLocation.lng)*1000).toFixed(0);
+		lat = results[i].geometry.location.lat()
+		lng = results[i].geometry.location.lng()
+		distance = (haversineDistance(lat, lng, myLocation.lat, myLocation.lng)*1000).toFixed(0);
 		name = results[i].name;
 		address = results[i].vicinity;
 		bounds=results[i].geometry.viewport;
-		placeId = results[i].place_id;
+		placeId = results[i].place_id
+		
 			console.log(results[i]);
 			try{
 				photoreference=results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
 			}catch(err) { photoreference='https://cdn.browshot.com/static/images/not-found.png'; }
 
+		orientation = get_orientation(photoreference);
+		
 	document.getElementById('placeList').innerHTML+=''+
         '<div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">'+
               '<div class="thumbnail">'+
-                '<img src="'+photoreference+'" alt="" class="img-responsive">'+
+                '<div class="thumbnail2"><img src="'+photoreference+'" alt="" class="img-responsive "></div>'+
                 '<div class="caption">'+
                   '<h4 class="pull-right badge badge-xs">'+distance+' m</h4>'+
                   '<h4 ><a href="#" >'+name+'</a></h4>'+
@@ -105,16 +212,13 @@ function callback(results, status) {
 	'<span class="stars">'+results[i].rating+'</span> '+results[i].rating+'/5<br/>'+
                 '<div class="space-ten"></div>'+
                 '<div class="btn-ground text-center">'+
-                    '<button type="button" class="btn btn-primary" onclick="toogleBounds(bounds)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button>'+
+                    '<button type="button" class="btn btn-primary" onclick="toogleBounds('+lat+', '+lng+')"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button>'+
                     '<button id="'+placeId+'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails(\''+placeId+'\')" ><i class="fa fa-search"></i> Részletek</button>'+
                 '</div>'+
                 '<div class="space-ten"></div>'+
               '</div>'+
             '</div>'+
 '';
-	
-
-			
 			
 			
         }//for
@@ -127,14 +231,20 @@ $(function() {
     $('span.stars').stars();
 });
 
+/*
+Add orientation classes for images
+*/
+get_orientation();
+			
 
     }//if service status.OK
 	else{console.log('hiba2 (nearbysearch): ' + status);}
 }//function callback
 }//function listPlaces
 
-function toogleBounds(bounds){
-	map.fitBounds(bounds);
+function toogleBounds(lat, lng){
+map.setCenter({'lat': lat, 'lng': lng});
+//	map.fitBounds(bounds);
 	//window.alert(map.getZoom());
 	//TODO: setZoom if needed
 }
