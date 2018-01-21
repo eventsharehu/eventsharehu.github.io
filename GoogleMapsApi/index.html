@@ -133,7 +133,34 @@ $('#myTabs a').click(function (e) {
                   <!-- Tab panes -->
                   <div id="tab-content" class="tab-content" >
                     <div role="tabpanel" class="tab-pane active" id="places">
-					  <div id="placeList" >placeList</div> 
+					  <div class="row" ><div id="placeList" >placeList</div></div> 
+					  
+					  
+					    
+  <!-- placeDetailsModal -->
+  <div class="modal fade" id="placeDetailsModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="placeDetailsHeaderText" class="modal-title">Modal Header</h4>
+        </div>
+        <div id="placeDetailsBody" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  <!-- placeDetailsModal -->
+ 
+ 
+ 
+ 
                     </div>
 					
                     <div role="tabpanel" class="tab-pane" id="events">
@@ -182,9 +209,7 @@ $('#myTabs a').click(function (e) {
             </div> <!-- listingcontent>
      
     
-  
-  
- 
+
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
 	<script src="src/custom-gm.js"></script>

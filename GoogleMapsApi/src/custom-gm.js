@@ -58,6 +58,7 @@ var place_id = '';
 var name = '';
 var address = '';
 var bounds = '';
+var placeId = '';
 		
 function listPlaces(){
 	
@@ -86,13 +87,13 @@ function callback(results, status) {
 		name = results[i].name;
 		address = results[i].vicinity;
 		bounds=results[i].geometry.viewport;
+		placeId = results[i].place_id;
 			console.log(results[i]);
 			try{
 				photoreference=results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
 			}catch(err) { photoreference='https://cdn.browshot.com/static/images/not-found.png'; }
 
 	document.getElementById('placeList').innerHTML+=''+
-	    '  <span class="stars" data-rating="4" data-num-stars="5" ></span>'+
         '<div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">'+
               '<div class="thumbnail">'+
                 '<img src="'+photoreference+'" alt="" class="img-responsive">'+
@@ -105,33 +106,14 @@ function callback(results, status) {
                 '<div class="space-ten"></div>'+
                 '<div class="btn-ground text-center">'+
                     '<button type="button" class="btn btn-primary" onclick="toogleBounds(bounds)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button>'+
-                    '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Részletek</button>'+
+                    '<button id="'+placeId+'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails(\''+placeId+'\')" ><i class="fa fa-search"></i> Részletek</button>'+
                 '</div>'+
                 '<div class="space-ten"></div>'+
               '</div>'+
             '</div>'+
 '';
 	
-	/*
-	'<div class="h3" style="background-color: white !important;">'+
-	'<a href="#">'+i+' </a> '+
-	'<br />'+
-	'<a>'+results[i].name+'</a><br/>'+
-	'<a>'+results[i].vicinity+'</a><br/>'+
-	
-	'<a>'+results[i].place_id+'</a><br/>'+
-	'<a>'+results[i].rating+'</a><br/>'+
-	'<a>'+results[i].opening_hours.open_now+'</a><br/>'+
-	'<a><img  src="'+results[i].icon+'" style="width: 20px;"/>icon</a><br/>'+
-	'<a><img  src="'+photoreference+'"  /></a><br/>'+
-	
-listPlaces_less(photoreference);
-	
-	//haversineDistance(coords1, coords2, isMiles)
-	'</div>';
-			console.log(results[i].geometry.location);
-			*/
-			
+
 			
 			
 			
@@ -155,6 +137,22 @@ function toogleBounds(bounds){
 	map.fitBounds(bounds);
 	//window.alert(map.getZoom());
 	//TODO: setZoom if needed
+}
+
+function listPlaceDetails(placeId){
+	 var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+          placeId: placeId
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            
+	showPlaceDetails(place, 0);
+	
+          }//if
+        });
+      
+	
 }
 
 function createMarker(place) {
@@ -232,10 +230,11 @@ document.getElementById("error").innerHTML +=
 
 }
 
-function showPlaceList(placeObject, index){
-	var placeList = document.getElementById('placeList');
+function showPlaceDetails(placeObject, index){
+	var placeList = document.getElementById('placeDetailsBody');
+	document.getElementById('placeDetailsHeaderText').innerHTML = placeObject.name;
 	//placeList.innerHTML='asd'+'<br/>'+'asd';
-	
+	placeList.innerHTML = ' ';
 	var open = 'panel-default'; //if open_now is undefined, the class will be panel-default
 	var isOpen = '  ';
 	try{
@@ -311,7 +310,6 @@ function showPlaceList(placeObject, index){
 		'</div class="panel-group">';
 	
 	placeList.innerHTML+=''+
-	'<div class="container">'+
 	'<div class="panel-group">'+
 	'<div id="name_'+index+'" class="panel '+open+'">'+
 		'<a data-toggle="collapse" href="#collapse_name_'+index+'" class="'+open+'">'+
@@ -329,8 +327,7 @@ function showPlaceList(placeObject, index){
 	
 	
 	'</div class="open">'+
-	'</div class="panel-group">'+
-	'</div class="container">';
+	'</div class="panel-group">';
 	
 
 
