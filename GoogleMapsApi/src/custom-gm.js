@@ -52,7 +52,13 @@ function initMap() {
 }//initMap 
 
 var placeDetails = [];
-
+var photoreference = '';
+var distance = 0;
+var place_id = '';
+var name = '';
+var address = '';
+var bounds = '';
+		
 function listPlaces(){
 	
 	//clear the div that will be filled with the showPlaceList function
@@ -73,46 +79,83 @@ function callback(results, status) {
    // console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 		placeDetails = [];
-		var timeout = 1;
+		
         for (var i = 0; i < results.length; i++) {
+		createMarker(results[i])
+		distance = (haversineDistance(results[i].geometry.location.lat(), results[i].geometry.location.lng(), myLocation.lat, myLocation.lng)*1000).toFixed(0);
+		name = results[i].name;
+		address = results[i].vicinity;
+		bounds=results[i].geometry.viewport;
+			console.log(results[i]);
+			try{
+				photoreference=results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
+			}catch(err) { photoreference='https://cdn.browshot.com/static/images/not-found.png'; }
 
+	document.getElementById('placeList').innerHTML+=''+
+	    '  <span class="stars" data-rating="4" data-num-stars="5" ></span>'+
+        '<div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">'+
+              '<div class="thumbnail">'+
+                '<img src="'+photoreference+'" alt="" class="img-responsive">'+
+                '<div class="caption">'+
+                  '<h4 class="pull-right badge badge-xs">'+distance+' m</h4>'+
+                  '<h4 ><a href="#" >'+name+'</a></h4>'+
+                  '<p>'+address+'</p>'+
+                '</div>'+
+	'<span class="stars">'+results[i].rating+'</span> '+results[i].rating+'/5<br/>'+
+                '<div class="space-ten"></div>'+
+                '<div class="btn-ground text-center">'+
+                    '<button type="button" class="btn btn-primary" onclick="toogleBounds(bounds)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button>'+
+                    '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Részletek</button>'+
+                '</div>'+
+                '<div class="space-ten"></div>'+
+              '</div>'+
+            '</div>'+
+'';
+	
+	/*
+	'<div class="h3" style="background-color: white !important;">'+
+	'<a href="#">'+i+' </a> '+
+	'<br />'+
+	'<a>'+results[i].name+'</a><br/>'+
+	'<a>'+results[i].vicinity+'</a><br/>'+
+	
+	'<a>'+results[i].place_id+'</a><br/>'+
+	'<a>'+results[i].rating+'</a><br/>'+
+	'<a>'+results[i].opening_hours.open_now+'</a><br/>'+
+	'<a><img  src="'+results[i].icon+'" style="width: 20px;"/>icon</a><br/>'+
+	'<a><img  src="'+photoreference+'"  /></a><br/>'+
+	
+listPlaces_less(photoreference);
+	
+	//haversineDistance(coords1, coords2, isMiles)
+	'</div>';
+			console.log(results[i].geometry.location);
+			*/
 			
-			console.log(timeout);
-            //Using setTimeout and closure because limit of 10 queries /second for getDetails */
-            (function (j) {
-			if((placeDetails.length)%7==0){timeout=1000;}
-			if((placeDetails.length)%7<7){timeout=1000;}
-                var request = {
-                    placeId: results[i]['place_id']
-                };
-
-                service = new google.maps.places.PlacesService(map);
-                setTimeout(function() {
-                    service.getDetails(request, callback);
-                }, j*timeout);    // }, j*1000);
-
-
-            })(i);
-
-            function callback(place, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    createMarker(place);
-                    console.log('i= '+i +'  '+ place.name + ' index: ' + placeDetails.length ); //results.length + placeDetails.length);
-					
-					showPlaceList(place, placeDetails.length);
-					
-                    placeDetails.push([place.name, place.id]);
-
-                } //if service status.OK
-				else{console.log('hiba (place.details): ' + status);}
-            }// function callback
+			
+			
 			
         }//for
+	
+/*
+After get all spans with ratings in it,
+show the stars instead
+*/		
+$(function() {
+    $('span.stars').stars();
+});
+
+
     }//if service status.OK
 	else{console.log('hiba2 (nearbysearch): ' + status);}
 }//function callback
 }//function listPlaces
 
+function toogleBounds(bounds){
+	map.fitBounds(bounds);
+	//window.alert(map.getZoom());
+	//TODO: setZoom if needed
+}
 
 function createMarker(place) {
     var photos = place.photos;
@@ -134,9 +177,31 @@ function createMarker(place) {
 }//function createMarker
 
 
-function fullscreen(){
-    $('#listing-tab').toggleClass('fullscreen'); 
-    $('#tab-content').toggleClass('fullscreen'); 
+function listPlaces_less(placeObject){
+	
+	document.getElementById("listPlaces_less").innerHTML += 'asd'+
+	
+	'<li>'+
+						'<time datetime="2014-07-20 2000">'+
+							'<span class="day">4.7</span>'+
+							'<span class="month">500 m</span>'+
+							'<span class="year">****</span>'+
+							'<span class="time">8:00 PM</span>'+
+						'</time>'+
+						'<div class="info">'+
+							'<h2 class="title">Mouse0270s 24th Birthday!</h2>'+
+							'<p class="desc">Bar Hopping in Erie, Pa.</p>'+
+							'<ul>'+
+								'<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>'+
+								'<li style="width:34%;">3 <span class="fa fa-question"></span></li>'+
+								'<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>'+
+							'</ul>'
+						'</div>'+
+					'</li>'+
+					
+					
+	'';
+
 }
 
 /*
