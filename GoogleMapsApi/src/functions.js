@@ -1,3 +1,49 @@
+/*
+Load html pages
+*/
+$(document).ready(function() {
+$('#menu').load('navbar.html');
+});
+   
+/*
+TODO: This would be enough to load, when the settings button is clicked
+*/
+$(document).ready(function() {
+$('#settings').load('settings.html');
+});
+   
+   
+
+/* Set the width of the side navigation to 350px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "350px";
+    document.getElementById("fullpage").style.marginLeft = "350px";
+   // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("fullpage").style.marginLeft = "0";
+ //   document.body.style.backgroundColor = "black";
+}
+
+/*
+Toogle a div's display property (for the error box)
+*/
+function toggleContent(divID) {
+  // Get the DOM reference
+  var contentId = document.getElementById(divID);
+  // Toggle 
+  contentId.style.display == "block" ? contentId.style.display = "none" : 
+contentId.style.display = "block"; 
+}
+   
+/* switching between the tabs in listing-tab */
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
 
 /*
 Turns a number into stars rating

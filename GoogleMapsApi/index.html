@@ -40,48 +40,6 @@
 
 
 <div id="fullpage" >
-    
-<script type="text/javascript">
-$(document).ready(function() {
-$('#menu').load('navbar.html');
-});
-   
-   
-$(document).ready(function() {
-$('#settings').load('settings.html');
-});
-   
-</script>
- 
-    
-<script type="text/javascript">
-
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    document.body.style.backgroundColor = "white";
-}
-
-</script>
-
- 
- <script type="text/javascript">
-function toggleContent(divID) {
-  // Get the DOM reference
-  var contentId = document.getElementById(divID);
-  // Toggle 
-  contentId.style.display == "block" ? contentId.style.display = "none" : 
-contentId.style.display = "block"; 
-}
-</script>
 
 	
  <div class="container" > 
@@ -98,16 +56,6 @@ contentId.style.display = "block";
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div id="map">map placeholder</div>
 	
-	
-
-
-<script>
-/* switching between the tabs in listing-tab */
-$('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-</script>  
                
             <div id="listing-tab" class="listing-tab ">
 				<div id="listing_tab_header" >

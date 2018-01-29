@@ -146,7 +146,7 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 ];
 
 	function submit() {
-  document.getElementById('test').text = 'asd';
+  document.getElementById('test').text = ' ';
   keywords_array = ($("#keywords").tagsinput('items') || ['']);
   keywords = "";
   if(keywords_array.length>1){
@@ -157,15 +157,15 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 	keywords += "(" + keywords_array[i] + ") ";
   }//if
   else if(keywords_array.length>0){keywords = keywords_array[0];}
-  document.getElementById('test').text = keywords;
+ // document.getElementById('test').text = keywords;
   
   
   radius = parseInt(document.getElementById("radius").value);
 
 document.getElementById("error").innerHTML = "";
   console.log(keywords);
+  listPlaces(); 
   initMap();
-  listPlaces();
   closeNav();
 
   }
