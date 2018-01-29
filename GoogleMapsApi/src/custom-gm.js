@@ -1,11 +1,8 @@
 
       function CenterControl(controlDiv, map) {
 
-        // Set CSS for the control border.
-        var controlUI = document.createElement('div');
+        var controlUI = document.createElement('button');
         controlUI.style.backgroundColor = '#fff';
-        controlUI.style.border = '2px solid #fff';
-        controlUI.style.borderRadius = '3px';
         controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
         controlUI.style.cursor = 'pointer';
         controlUI.style.marginBottom = '22px';
@@ -13,17 +10,27 @@
         controlUI.title = 'Click to recenter the map';
         controlDiv.appendChild(controlUI);
 
-        // Set CSS for the control interior.
-        var controlText = document.createElement('div');
+		
+        // Set image for the button
+        var buttonImage = document.createElement('img');
+        buttonImage.src = 'img/gps.svg';
+        buttonImage.height  = '20';
+        controlUI.appendChild(buttonImage);
+		
+		/*
+        // Set text for the button
+        var controlText = document.createElement('button');
         controlText.style.color = 'rgb(25,25,25)';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
         controlText.style.fontSize = '16px';
-        controlText.style.lineHeight = '38px';
+        controlText.style.lineHeight = '16px';
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
         controlText.innerHTML = 'Center Map';
         controlUI.appendChild(controlText);
-
+*/
+		
+		
         // Setup the click event listeners: simply set the map to Chicago.
         controlUI.addEventListener('click', function() {
           map.setCenter(myLocation);
@@ -86,7 +93,7 @@ function initMap() {
         var centerControl = new CenterControl(centerControlDiv, map);
 
         centerControlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+        map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(centerControlDiv);
 		
 		/*
 		initAutoComplete
