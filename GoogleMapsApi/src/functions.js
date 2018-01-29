@@ -26,6 +26,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("fullpage").style.marginLeft = "0";
  //   document.body.style.backgroundColor = "black";
+
 }
 
 /*

@@ -164,9 +164,9 @@ var myLocation = places[parseInt(selectedplaceindex, 10)];
 
 document.getElementById("error").innerHTML = "";
   console.log(keywords);
-  listPlaces(); 
+  listPlaces();
+  closeNav(); 
   initMap();
-  closeNav();
 
   }
   
