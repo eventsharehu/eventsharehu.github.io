@@ -530,3 +530,11 @@ listPlaces css
     height: 400px;
     overflow: hidden;
 	}  
+	
+/*
+Facebook profilepicture in the navbar top-right,
+*/
+.account{
+	//float: right;
+	padding-top: 10px;
+}	
