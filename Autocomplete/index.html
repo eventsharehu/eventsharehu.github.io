@@ -37,7 +37,6 @@
       function fillInAddress() {
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();       
-		document.getElementById('autocomplete').value = place.formatted_address;
 		console.log(place);
 		
 		var full_address = '<br />';
@@ -67,6 +66,9 @@
 		document.getElementById("formatted_address").innerHTML = '<br/>' + place.formatted_address;
 		document.getElementById("full_address").innerHTML = full_address;
 		document.getElementById("formatted_full_address").innerHTML = formatted_full_address;
+		
+		
+		document.getElementById('autocomplete').value = formatted_full_address;
       }
 
   
