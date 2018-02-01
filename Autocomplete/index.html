@@ -13,6 +13,11 @@
       <input id="autocomplete" placeholder="Enter your address"  type="text" style="width: 300px;" ></input>
     </div>
 
+	<div id="full_address_div">full address: &nbsp;<a id="full_address"></a></div>
+	<br/><br/>
+	<div id="formatted_address_div">formatted address: &nbsp;<a id="formatted_address"></a></div>
+  	<br/><br/>
+	<div id="formatted_full_address_div">formatted full address: &nbsp;<a id="formatted_full_address"></a></div>
   
 
     <script>
@@ -34,6 +39,34 @@
         var place = autocomplete.getPlace();       
 		document.getElementById('autocomplete').value = place.formatted_address;
 		console.log(place);
+		
+		var full_address = '<br />';
+		var formatted_full_address = '<br />';
+		var details = place.address_components;
+		
+		for(var i = 0; i<details.length; i++){
+			full_address+=details[i].long_name+' ';
+		}
+		
+		
+		for(var i = 0; i<details.length; i++){
+		
+			if(details[i].types[0]=='postal_code_suffix'){formatted_full_address+='- ';}
+			
+			formatted_full_address+=details[i].long_name;
+			
+			if(details[i].types[0]=='street_number'){formatted_full_address+='. ';}
+			if(details[i].types[0]=='route'){formatted_full_address+='; ';}
+			if(details[i].types[0]=='neighborhood'){formatted_full_address+='/';}
+			if(details[i].types[0]=='locality'){formatted_full_address+=', ';}
+			if(details[i].types[0]=='administrative_area_level_2'){formatted_full_address+=', ';}
+			if(details[i].types[0]=='administrative_area_level_1'){formatted_full_address+=', ';}
+			if(details[i].types[0]=='country'){formatted_full_address+='  ';}
+		}
+		
+		document.getElementById("formatted_address").innerHTML = '<br/>' + place.formatted_address;
+		document.getElementById("full_address").innerHTML = full_address;
+		document.getElementById("formatted_full_address").innerHTML = formatted_full_address;
       }
 
   
@@ -43,3 +76,33 @@
         async defer></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
