@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Autocomplete Address Form</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+
+  </head>
+
+  <body>
+    <div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"  type="text" style="width: 300px;" ></input>
+    </div>
+
+  
+
+    <script>
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */
+			(document.getElementById('autocomplete')),
+            {types: ['geocode']});  //another type could be address or geocode
+
+        // When the user selects an address from the dropdown, 
+		// change the autocomplete inputbox's value to the formatted address
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();       
+		document.getElementById('autocomplete').value = place.formatted_address;
+		console.log(place);
+      }
+
+  
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initAutocomplete"
+        async defer></script>
+  </body>
+</html>
