@@ -12,6 +12,8 @@ $(document).ready(function() {
 $('#settings').load('settings.html');
 });
    
+
+//tab-content
    
 
 /* Set the width of the side navigation to 350px and the left margin of the page content to 250px and add a black background color to body */
@@ -40,11 +42,28 @@ function toggleContent(divID) {
 contentId.style.display = "block"; 
 }
    
-/* switching between the tabs in listing-tab */
+/* switching between the tabs in listing-tab 
+	This is show/hide divs, but we should load html to tab-content div
+*/
 $('#myTabs a').click(function (e) {
   e.preventDefault()
   $(this).tab('show')
 })
+
+/*
+load html page to tab-content div
+*/
+
+
+function loadTab(url){
+//	var asd = 'navbar.html';
+//    document.getElementById('tab-content').innerHTML = asd;
+	
+ $("#tab-content").load(url);
+
+ 
+ }
+
 
 /*
 Turns a number into stars rating

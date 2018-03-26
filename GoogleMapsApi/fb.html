@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+	<!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
+
+  <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+  <style>
+  body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+}
+
+  /* Style the tab */
+  .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+      background-color: #ddd;
+  }
+
+  /* Create an active/current tablink class */
+  .tab button.active {
+      background-color: #ccc;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+  }
+
+  /* Style the close button */
+  .topright {
+      float: right;
+      cursor: pointer;
+      font-size: 28px;
+  }
+
+  .topright:hover {color: red;}
+
+  </style>
+  </head>
+  <body>
+  <div id="fb-root"></div>
+  <script>
+  
+
+
+  
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+<script>
+
+
+//share doesn't work from localhost
+//response will return empty array if login didn't scope with 'publish_actions' or the user didn't log in to the app
+  function customshare() {
+   FB.ui({
+    method: 'share_open_graph',
+    action_type: 'og.shares',
+    action_properties: JSON.stringify({
+        object : {
+           'og:url': 'https://github.io/fbml',
+           'og:title': 'Here my custom title',
+           'og:description': 'here custom description'
+        }
+		    })
+      }, function(response){
+        // Debug response (optional)
+        console.log(response);
+        console.log('console log');
+      });
+    }
+
+    function init() {
+        FB.api(
+          '/l214.animaux',
+          {"fields":"fan_count"},
+          function(response) {
+            alert(response.fan_count);
+          }
+        );
+    }
+
+	  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+	//Bálint appID: 1804086756332445
+	//appId 126818527474122
+	//Samsung TV 156122217846925
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '126818527474122',
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+
+      //custom-share();
+	  //init();
+
+
+  // Now that we've initialized the JavaScript SDK, we call
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+	};
+	  // Load the SDK asynchronously
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/all.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+
+  // Adataidat keresi ki és ezeket továbbítja a userData függvénynek response formában
+  function testAPI() {
+    FB.api('/me?fields=name,email,location,birthday,gender,hometown,about,education', function(response) {
+        if (response && !response.error) {
+            userData(response);
+          }
+      });
+    }
+
+/* Ez egy kurva jó függvény ami olyan többként funkciónál amit egy az egyben ki lehet íratni a status div-re */
+  function userData(user){
+    let profile = `
+      <ul>
+        <li>  name:   ${user.name} </li>
+		
+        <li>  Profile picture:  <img src="https://graph.facebook.com/${user.id}" /> </li>
+		<li>  Email address:   ${user.email}  </li>
+		
+        <li>  birthday:  ${user.birthday} </li>
+        <li>  about me:  ${user.about} </li>
+        <li>  University:  ${user.education[0].school.name} </li>
+
+    </ul>`;
+	
+	//var profile =  'Hibakeresés idejére kiiktatva';
+    document.getElementById('status').innerHTML = profile;
+  }
+
+
+/* Posttolja a youtube-ot a facebook faladra */
+  function doPost(){
+    FB.api('/me/feed','post',{link: 'https://www.youtube.com'},function(response){
+          document.getElementById('post').innerHTML = response.id;
+    });
+  }
+  
+  // Amiket like-oltál facebookon, azokat listázza ki
+  function myFavorites(){
+      //FB.api("/me?fields=likes{name,events{name}}",
+      FB.api("/me/likes?fields=name, events{name}",
+          function (response) {
+            if (response && !response.error) {
+				console.log('myFavorites-ra kapott response: ');
+                console.log(response);
+                favoriteData(response);
+            }
+          }
+      );
+    }
+/*
+  function pageEvents(page_id){
+      let s = ' ';
+    FB.api(page_id+'/events',
+        function (response) {
+          if (response && !response.error) {
+             console.log(response);
+              s += `<ul>`;
+              for (let i in response.data) {
+                    s += ` <li> ${response.data[i].name} </li> </br>`;
+
+              }
+            s+= '</ul>';
+
+              document.getElementById('asd').innerHTML = s;
+          }
+        }
+    );
+}
+*/
+  // Ugyan úgy for ciklusban egy stringhez fűzzük az adatokat.
+  function favoriteData(favorites){
+
+  var myObject = JSON.stringify(favorites);
+  var s = 'Fejlesztés alatt';
+  s+=myObject;
+  console.log('A favorites object tartalma: ');
+  console.log(favorites);
+  /*    
+	let s = ' ';
+        s += `<ul>`;
+        for (var i = 0; i < favorites.likes.data.length; i++) {
+            s += `<li> ${favorites.likes.data[i].name} </li></br>`;
+            try {
+              for (var j = 0; j < favorites.likes.data[i].events.data.length; j++) {
+                  s += `<b> ${favorites.likes.data[i].events.data[j].name} </b> </br>`;
+              }
+            } catch(e){
+                s += "<b>Ehhez az oldalhoz nem tartoznak események </b></br>";
+            }
+      }
+      s+= '</ul>';
+	  */
+        document.getElementById('favorites').innerHTML = s;
+  }
+
+  // Események lekérdezése.
+  function myEvents(){
+    FB.api('/me?fields=events{name,place,start_time,end_time,description,attending_count,interested_count,picture}',
+        function (response) {
+          if (response && !response.error) {
+            //  console.log(response);
+              eventsData(response);
+
+          }
+        }
+    );
+  }
+// Eseményeket hzzáfűzzük egy stringhez és majd azt írjatjuk ki.
+  function eventsData(events){
+    let s = ' ';
+    for (let i in events.events.data) {
+
+          s += `<ul>
+                  <li><b>Neve:</b> ${events.events.data[i].name} </li>
+                  <b>ID:</b> ${events.events.data[i].id} </br>
+                  <b>Hol:</b> ${events.events.data[i].place.name} </br>
+                  <b>Mikortól:</b> ${events.events.data[i].start_time} </br>
+                  <b>Meddig:</b> ${events.events.data[i].end_time} </br>
+                  <b>Leírás:</b> ${events.events.data[i].description} </br>
+                  <b><u>Egyéb leírások:</u></b> </br>
+                  <b>Résztvevők száma:</b> ${events.events.data[i].attending_count} </br>
+                  <b>Érdeklődök száma:</b> ${events.events.data[i].interested_count} </br>
+                  <b>Esemény képe:</b> <img src="${events.events.data[i].picture.data.url}" /> </br>
+               </ul>
+                <hr size="2">`;
+
+    }
+      document.getElementById('events').innerHTML = s;
+  }
+  // 2 lehívást csináltam egybe, mivel taggable_friends object-ben nincs összegezés az ismerettség számáról, ezért friends objektumban keresem vissza.
+  function myFriends(){
+    FB.api('/me?fields=taggable_friends.limit(100),friends',
+
+        function (response) {
+          if (response && !response.error) {
+              //console.log(response);
+              friendsData(response);
+          }
+        }
+    );
+  }
+
+// Barátokat kérdezzük le, 2 objektet írhatunk ki, ahol a taggable_friends a fő ág és azon belül van még egy taggable_friends és egy friends object. (Nehéz volt felfogni elsőre xD)
+  function friendsData(taggable_friends){
+    let s = ' ';
+    s += `<h4> Összes ismerős száma: ${taggable_friends.friends.summary.total_count} </h4>`;
+
+    for (let i in taggable_friends.taggable_friends.data) {
+          s += `<ul>
+
+                  <li><b>Neve:</b> ${taggable_friends.taggable_friends.data[i].name} </li> </br>
+                  <b>ID:</b> ${taggable_friends.taggable_friends.data[i].id} </br>
+                  <b>Profil képe:</b> <img src="${taggable_friends.taggable_friends.data[i].picture.data.url}" /> </br>
+               </ul>
+                <hr size="2">`;
+    }
+
+ // Sajna nem működik jól a lapozás, majd ezt még elemzem tovább.
+    s += `<a href="..//${taggable_friends.taggable_friends.paging.cursors.after}">Előre</a> </br>`;
+
+    s += `<a href="fb.html/${taggable_friends.taggable_friends.paging.cursors.before}">hátra</a>`;
+      document.getElementById('friends').innerHTML = s;
+  }
+
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+<br/>Login button with original scopes:<br/>
+<fb:login-button scope="public_profile,publish_actions,email,user_birthday,user_location,user_hometown,user_friends,user_likes,user_posts,user_events,user_relationship_details,user_about_me,user_education_history,user_events,user_likes,user_friends"  data-auto-logout-link="true" onlogin="checkLoginState();">
+</fb:login-button>
+
+<br/>Login button with few scope:<br/>
+<div class="fb-login-button
+    align-right"
+    data-max-rows="1"
+    data-size="medium"
+    data-show-faces="false"
+    onlogin="checkLoginState()"
+    data-auto-logout-link="false"
+    data-scope="public_profile"></div>
+
+<br/><br/><br/>
+
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div id="post"></div>
+ <div class="fb-quote"></div>
+ <div class="fb-follow" data-href="https://www.facebook.com/zuck" data-layout="standard" data-size="small" data-show-faces="true"></div>
+
+<!--
+<div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true"></div>
+
+/me?fields=,events{name,type,ticket_uri,event_times,attending_count,interested_count,start_time,end_time},videos,family,sports,friendlists{name},tagged_places
+
+ -->
+
+<!-- Menü rendszer felépítése, és a gombokhoz hozzárendeltem a függvényeket -->
+     <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Információk rólam</button>
+      <button class="tablinks" onclick="openCity(event, 'Paris',myEvents())">Események amikre jelentkeztem</button>
+      <button class="tablinks" onclick="openCity(event, 'Tokyo',myFavorites())">Kedvencek</button>
+      <button class="tablinks" onclick="openCity(event, 'asd',myFriends())">Barátok</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <div class="w3-container" id="about">
+      <div class="w3-content" style="max-width:700px">
+
+        <div class="w3-panel w3-leftbar w3-light-grey">
+            <h3>alap infók:</h3>
+        <div id="status"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <div class="w3-container" id="about">
+      <div class="w3-content" style="max-width:700px">
+
+        <div class="w3-panel w3-leftbar w3-light-grey">
+            <h3>Események:</h3>
+        <div id="events"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <div class="w3-container" id="about">
+      <div class="w3-content" style="max-width:700px">
+        <div class="w3-panel w3-leftbar w3-light-grey">
+            <h3>Kedvencek:</h3>
+            <div id="favorites"></div>
+              <div id="asd"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="asd" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <div class="w3-container" id="about">
+      <div class="w3-content" style="max-width:700px">
+        <div class="w3-panel w3-leftbar w3-light-grey">
+            <h3>Barátaim:</h3>
+            <div id="friends"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+	</body>
+	
+	
+	<script>
+
+
+function permStatus(){
+//window.alert('permissions');
+        FB.api('/me/permissions', function (response) {
+            //console.log(response);
+			let perms='<br />';
+			for(var i =0; i<response.data.length; i++){
+			perms+=response.data[i].permission;
+			
+			perms+=' asd ___   ';
+			}
+			//perms+=JSON.stringify(response.data);
+			//perms+='\r\n<br/>'; 
+			document.getElementById('perm').innerHTML = perms;
+        } );
+}   
+	</script>
+</html>

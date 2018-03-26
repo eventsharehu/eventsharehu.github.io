@@ -38,9 +38,18 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+	  // Change the profile picture and the profile name in the navbar to the user's
       connectedFB();
+	  
+	  /* we don't call the testAPI function here,
+	     that list the users data to the 'status' div
+		 because the status div is in the profile.html
+		 and that div will be reachable only if that html is loaded
+	  */
+	  
     } else {
       // The person is not logged into your app or we are unable to tell.
+	  // Change the profile picture and the profile name in the navbar to default
       notconnectedFB();
     }
   }
@@ -110,3 +119,86 @@
 	    document.getElementById('profilepicture').innerHTML = 
 		    '<img src="img/profilepicture.png" class="img-circle special-img" height="30" />';
   }
+  
+/*
+Functions wrote by Bálint
+*/
+
+  // Adataidat keresi ki és ezeket továbbítja a userData függvénynek response formában
+  function testAPI() {
+    FB.api('/me?fields=name,email,location,birthday,gender,hometown,about,education', function(response) {
+        if (response && !response.error) {
+            userData(response);
+          }
+      });
+    }
+	
+/* Ez egy kurva jó függvény ami olyan többként funkciónál amit egy az egyben ki lehet íratni a status div-re */
+  function userData(user){
+    let profile = `
+      <ul>
+        <li>  name:   ${user.name} </li>
+		
+        <li>  Profile picture:  <img src="https://graph.facebook.com/${user.id}" /> </li>
+		<li>  Email address:   ${user.email}  </li>
+		
+        <li>  birthday:  ${user.birthday} </li>
+        <li>  about me:  ${user.about} </li>
+        <li>  University:  ${user.education[0].school.name} </li>
+
+    </ul>`;
+	
+	//var profile =  'Hibakeresés idejére kiiktatva';
+    document.getElementById('status').innerHTML = profile;
+
+  }
+
+
+function permStatus(){
+//window.alert('permissions');
+        FB.api('/me/permissions', function (response) {
+            //console.log(response);
+			var perms2 = 'Permissions: <br />';
+			for(var i =0; i < response.data.length; i++){
+			perms2 += response.data[i].permission;
+			perms2 += ': \t';
+			perms2 += response.data[i].status;
+			perms2 += '  <br/>   ';
+			}
+			document.getElementById('perm').innerHTML = perms2;
+        } );
+}  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
