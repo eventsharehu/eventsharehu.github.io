@@ -1,6 +1,13 @@
 //this will get a value if the response.status is connected
 var myAccessToken = '';
 
+
+  	//Bálint appID: 1804086756332445
+	//Aztamindenitneki appId 126818527474122
+	//Samsung TV 156122217846925
+	var myAppId='1804086756332445';
+	
+	
 //share doesn't work from localhost
 //response will return empty array if login didn't scope with 'publish_actions' or the user didn't log in to the app
   function customshare() {		    
@@ -68,12 +75,9 @@ var myAccessToken = '';
     });
   }
   
-  	//Bálint appID: 1804086756332445
-	//appId 126818527474122
-	//Samsung TV 156122217846925
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '126818527474122',
+        appId      : myAppId,
         xfbml      : true,
         version    : 'v2.12'
       });
@@ -114,7 +118,7 @@ var myAccessToken = '';
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.12&appId=126818527474122&autoLogAppEvents=1';
+  js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.12&appId=' +myAppId+'&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 	
@@ -196,7 +200,7 @@ Functions wrote by Bálint
 	  next page: 935825559803267/likes?pretty=0&limit=25&after=NDgzNjA2OTM1MTQ5MDg0
 	  */
       //FB.api("/me?fields=likes{name,events{name}}",
-  FB.api('/me?fields=name, likes{events{name}}',
+  FB.api('/me?fields=name,likes{name, events}',
           function (response) {
             if (response && !response.error) {
 				console.log('myFavorites-ra kapott response: ');
@@ -215,6 +219,7 @@ Functions wrote by Bálint
   s+=myObject;
   console.log('A favorites object tartalma: ');
   console.log(favorites);
+  s+=JSON.stringify(favorites);
   /*    
 	let s = ' ';
         s += `<ul>`;
