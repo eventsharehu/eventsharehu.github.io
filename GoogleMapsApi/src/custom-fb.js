@@ -5,7 +5,7 @@ var myAccessToken = '';
   	//Bálint appID: 1804086756332445
 	//Aztamindenitneki appId 126818527474122
 	//Samsung TV 156122217846925
-	var myAppId='1804086756332445';
+	var myAppId='126818527474122';
 	
 	
 //share doesn't work from localhost
