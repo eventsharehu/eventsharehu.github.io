@@ -24,7 +24,7 @@
 
   </head>
   
-  <body>
+  <body onload='loadTab("readme.html");'>
 
 
   
@@ -60,9 +60,13 @@
 				<div id="listing_tab_header" >
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#places" aria-controls="places" role="tab" data-toggle="tab">Helyek</a></li>
-                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("profile.html");' >Profil</a></li>
-                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Események</a></li>
+                  <!--  <li role="presentation" class="active"><a href="#places" aria-controls="places" role="tab" data-toggle="tab">Helyek</a></li> -->
+					<li role="presentation" class="active" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("readme.html");' >Profil</a></li>
+                    
+                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("profile.html");' >Profil</a></li>
+                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places.html");' >Helyek</a></li>
+                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li>
+                   <!-- <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Események</a></li> -->
                     <!--
 					<li role="presentation"><a href="#peoples" aria-controls="peoples" role="tab" data-toggle="tab">Emberek</a></li>
                     <li role="presentation"><a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">Jegyzetek</a></li>
@@ -82,66 +86,16 @@
                 </div> <!-- listing-tab-header -->
                   <!-- Tab panes -->
                   <div id="tab-content" class="tab-content" >
-                    <div role="tabpanel" class="tab-pane active" id="places">
-					  <div class="row" ><div id="placeList" >placeList</div></div> 
-					  
-					  
-					    
-  <!-- placeDetailsModal -->
-  <div class="modal fade" id="placeDetailsModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 id="placeDetailsHeaderText" class="modal-title">Modal Header</h4>
-        </div>
-        <div id="placeDetailsBody" class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>  <!-- placeDetailsModal -->
- 
- 
- 
- 
-                    </div>
+                    
 					
-                    <div role="tabpanel" class="tab-pane" id="events">
-		<div class="container"> <div class="row">
-			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
-				<ul class="event-list">
+                    <div role="tabpanel" class="tab-pane" id="events">asd
+					</div>
+                    
+                    <div role="tabpanel" class="tab-pane" id="places">
 					
-					<div id="listPlaces_less"></div>
-					<li>
-						<time datetime="2014-07-20 2000">
-							<span class="day">4.7</span>
-							<span class="month">500 m</span>
-							<span class="year">****</span>
-							<span class="time">8:00 PM</span>
-						</time>
-						<img alt="My 24th Birthday!" src="https://farm5.staticflickr.com/4150/5045502202_1d867c8a41_q.jpg" />
-						<div class="info">
-							<h2 class="title">Mouse0270's 24th Birthday!</h2>
-							<p class="desc">Bar Hopping in Erie, Pa.</p>
-							<ul>
-								<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
-								<li style="width:34%;">3 <span class="fa fa-question"></span></li>
-								<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
-							</ul>
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-		</div>
-		</div> <!-- container -->
+					<div class="container">
+Ez lesz a kezdőoldal, leírással az API használatáról...
+					</div>
                     
 					
 					<div role="tabpanel" class="tab-pane" id="peoples">

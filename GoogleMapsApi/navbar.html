@@ -28,9 +28,14 @@
                     <li ><a href="#" ><i class="fa fa-cog"></i> Account</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="fa fa-sign-out"></i>
-
+<!--
 	<fb:login-button scope="public_profile,email,publish_actions" onlogin="checkLoginState();"  data-size="small" data-auto-logout-link="true" data-show-faces="false">
 	</fb:login-button>
+-->
+
+<div id="fb-root"></div>
+<fb:login-button scope="public_profile,email,user_birthday,user_location,user_hometown,user_posts,user_relationship_details,user_about_me,user_education_history,user_events,user_likes,user_friends"  data-auto-logout-link="true" onlogin="checkLoginState();">
+</fb:login-button>
 					</a></li>              </ul>
 </li> 
 

@@ -1,3 +1,6 @@
+//this will get a value if the response.status is connected
+var myAccessToken = '';
+
 //share doesn't work from localhost
 //response will return empty array if login didn't scope with 'publish_actions' or the user didn't log in to the app
   function customshare() {		    
@@ -40,6 +43,8 @@
       // Logged into your app and Facebook.
 	  // Change the profile picture and the profile name in the navbar to the user's
       connectedFB();
+	  myAccessToken=response.authResponse.accessToken;
+
 	  
 	  /* we don't call the testAPI function here,
 	     that list the users data to the 'status' div
@@ -63,14 +68,14 @@
     });
   }
   
-  
+  	//Bálint appID: 1804086756332445
 	//appId 126818527474122
 	//Samsung TV 156122217846925
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '126818527474122',
         xfbml      : true,
-        version    : 'v2.5'
+        version    : 'v2.12'
       });
 	  
       //custom-share();
@@ -93,6 +98,7 @@
   });
     
 	};
+/*	
 	  // Load the SDK asynchronously
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -101,14 +107,23 @@
       js.src = "https://connect.facebook.net/en_US/all.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
+*/
+	
+//<div id="fb-root"></div>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.12&appId=126818527474122&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+	
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function connectedFB() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-
 	    document.getElementById('profilename').innerText = ' ' + (response.name).split(" ").splice(-1) + ' ';
 	    document.getElementById('profilepicture').innerHTML = 
 		    '<img src="https://graph.facebook.com/' + response.id + '/picture" class="img-circle special-img" height="30" />';
@@ -119,6 +134,24 @@
 	    document.getElementById('profilepicture').innerHTML = 
 		    '<img src="img/profilepicture.png" class="img-circle special-img" height="30" />';
   }
+  
+
+//check the permissions get from the user  
+function permStatus(){
+//window.alert('permissions');
+        FB.api('/me/permissions', function (response) {
+			var perms2 = 'Permissions: <br />';
+			for(var i =0; i < response.data.length; i++){
+			perms2 += response.data[i].permission;
+			perms2 += ': \t';
+			perms2 += response.data[i].status;
+			perms2 += '  <br/>   '; 
+			}
+			document.getElementById('perm').innerHTML = perms2;
+        } );
+}  
+	
+	
   
 /*
 Functions wrote by Bálint
@@ -154,25 +187,90 @@ Functions wrote by Bálint
   }
 
 
-function permStatus(){
-//window.alert('permissions');
-        FB.api('/me/permissions', function (response) {
-            //console.log(response);
-			var perms2 = 'Permissions: <br />';
-			for(var i =0; i < response.data.length; i++){
-			perms2 += response.data[i].permission;
-			perms2 += ': \t';
-			perms2 += response.data[i].status;
-			perms2 += '  <br/>   ';
-			}
-			document.getElementById('perm').innerHTML = perms2;
-        } );
-}  
+  // Amiket like-oltál facebookon, azokat listázza ki
+  function myFavorites(){
+	  /*
+	  Graph explorer queries
+	  v2.12 --> me/likes?fields=name,events{start_time,end_time,attending_count,name}
+	  v2.5  --> me/likes?fields=name,events{start_time,end_time,attending_count,name}
+	  next page: 935825559803267/likes?pretty=0&limit=25&after=NDgzNjA2OTM1MTQ5MDg0
+	  */
+      //FB.api("/me?fields=likes{name,events{name}}",
+  FB.api('/me?fields=name, likes{events{name}}',
+          function (response) {
+            if (response && !response.error) {
+				console.log('myFavorites-ra kapott response: ');
+                console.log(response);
+                favoriteData(response);
+            }else{document.getElementById('favorites').innerHTML += JSON.stringify(response.error);}
+          }
+      );
+    }  
 	
+  // Ugyan úgy for ciklusban egy stringhez fűzzük az adatokat.
+  function favoriteData(favorites){
+
+  var myObject = JSON.stringify(favorites);
+  var s = 'Fejlesztés alatt';
+  s+=myObject;
+  console.log('A favorites object tartalma: ');
+  console.log(favorites);
+  /*    
+	let s = ' ';
+        s += `<ul>`;
+        for (var i = 0; i < favorites.likes.data.length; i++) {
+            s += `<li> ${favorites.likes.data[i].name} </li></br>`;
+            try {
+              for (var j = 0; j < favorites.likes.data[i].events.data.length; j++) {
+                  s += `<b> ${favorites.likes.data[i].events.data[j].name} </b> </br>`;
+              }
+            } catch(e){
+                s += "<b>Ehhez az oldalhoz nem tartoznak események </b></br>";
+            }
+      }
+      s+= '</ul>';
+	  */
+        document.getElementById('favorites').innerHTML = s;
+  }	
 	
-	
-	
-	
+
+  // Események lekérdezése.
+  function myEvents(){
+    FB.api('/me?fields=events{name,place,start_time,end_time,description,attending_count,interested_count,picture}',
+        function (response) {
+          if (response && !response.error) {
+			  console.log('myEvents response:');
+              console.log(response);
+              eventsData(response);
+
+          }
+        }
+    );
+  }
+// Eseményeket hzzáfűzzük egy stringhez és majd azt írjatjuk ki.
+  function eventsData(events){
+    let s = ' ';
+    for (let i in events.events.data) {
+
+          s += `<ul>
+                  <li><b>Neve:</b> ${events.events.data[i].name} </li>
+                  <b>ID:</b> ${events.events.data[i].id} </br>
+                  <b>Hol:</b> ${events.events.data[i].place.name} </br>
+                  <b>Mikortól:</b> ${events.events.data[i].start_time} </br>
+                  <b>Meddig:</b> ${events.events.data[i].end_time} </br>
+                  <b>Leírás:</b> ${events.events.data[i].description} </br>
+                  <b><u>Egyéb leírások:</u></b> </br>
+                  <b>Résztvevők száma:</b> ${events.events.data[i].attending_count} </br>
+                  <b>Érdeklődök száma:</b> ${events.events.data[i].interested_count} </br>
+                  <b>Esemény képe:</b> <img src="${events.events.data[i].picture.data.url}" /> </br>
+               </ul>
+                <hr size="2">`;
+
+    }
+      document.getElementById('events').innerHTML = s;
+  }
+
+  
 	
 	
 	
