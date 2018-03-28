@@ -24,7 +24,7 @@ if (navigator.geolocation) {
 	
 var optn = {
 			enableHighAccuracy : false,
-			timeout : 3000,
+			timeout : 5000,
 			maximumAge : 0
 		};
 	
