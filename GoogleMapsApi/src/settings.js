@@ -19,7 +19,7 @@ function getPosition(position) {
 */
 
 function getCoords(){
-	window.alert('getCoords called');
+	window.alert('getCoords called - Starting to locate coords without timeout');
         // Try HTML5 geolocation.
 if (navigator.geolocation) {
 	//determine the current position with magic and give it to the getPosition function
