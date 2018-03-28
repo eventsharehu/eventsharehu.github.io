@@ -18,6 +18,25 @@ function getPosition(position) {
 } 
 */
 
+function getCoords(){
+	window.alert('getCoords called');
+        // Try HTML5 geolocation.
+if (navigator.geolocation) {
+	//determine the current position with magic and give it to the getPosition function
+	navigator.geolocation.getCurrentPosition(getPosition);
+}
+ 
+//Give the recieved position datas to the myPos object
+function getPosition(position) {
+	myPos.lat = position.coords.latitude;
+	myPos.lng = position.coords.longitude;
+	
+	window.alert('new coords set');
+	//initMap();
+} 	
+	
+}//function getCoords
+
 
 function myinitMap(){
 if (navigator.geolocation) {
