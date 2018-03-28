@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="src/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<script src="src/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+	<script src="src/settings.js"></script>
+	<script src="src/checked_list_group.js"></script>
+	
+ <div id="mySidenav" class="sidenav">
+  <div class="container">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+		
+		<label class="h5" for="centerselect"><kbd>Keresés helye:</kbd></label> 
+		<select class="form-control" id="centerselect" name="mapcenterselect">    
+			<option value="0">Saját pozíció</option>  
+			<option value="1">BP - Nyugati</option>    
+			<option value="2">Jászfényszaru</option>    
+			<option value="3">Göd</option>    
+			<option value="4">BP - Deák tér</option>  
+		</select>
+	
+		<label class="h5" for="radius"><kbd>radius (max 25000 m)</kbd></label> 
+	    <input type="number" id="radius" min="0" max="25000" step="1" value="1500" data-bind="value:radius" />
+
+	
+	<div class="form-group">
+		<label class="h5" for="myTagLabel"><kbd>Kulcsszavak:</kbd></label> 
+		<input class="form-control" id="keywords" name="keywords" type="text" data-role="tagsinput" value="kocsma" >
+	</div>
+
+	<!-- <a><button type="button" class="btn-xl btn-primary" onclick="initMap();">initMap()</button></a> -->
+	<button type="button" class="btn-lg btn-warning" onclick='toggleContent("alertbox")'>Alerts on/off</button>
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Set placetypes</button>
+<br/><br/>
+
+	<a><button type="button" class="btn-xl btn-primary" onclick="submit();">SUBMIT</button></a> 
+
+	
+  <a id="test" style="color: white !important;">testDiv</a>
+</div> <!-- container -->
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Set placetypes</h4>
+        </div>
+        <div class="modal-body">
+          <p>Here will be a checkbox list of selectable placetypes...</p>
+		  <p id="demo"></p>
+
+<script>
+var cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo").innerHTML = "elemek: "+placeTypes_all[0].length;
+</script>
+
+            <div class="well" style="max-height: 300px;overflow: auto;">
+            	<ul id="check-list-box" class="list-group checked-list-box">
+                  
+					<script>
+						document.getElementById('check-list-box').innerHTML = '<li class="list-group-item" data-checked="true">bar</li>';
+						for(i=0; i<placeTypes_all.length; i++){
+							document.getElementById('check-list-box').innerHTML +=''+
+							'<li class="list-group-item" id="'+placeTypes_all[i][0]+'">'+
+							'<img src="'+placeTypes_all[i][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
+							placeTypes_all[i][1]+'</li>';
+						}
+					</script>
+				  </li>
+                </ul>
+            </div>
+
+			            <!--    <button class="btn btn-primary col-xs-12" id="get-checked-data2">Get Checked Data</button>
+            <pre id="display-json"></pre>
+-->
+			
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="get-checked-data">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

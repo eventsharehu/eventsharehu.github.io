@@ -17,6 +17,7 @@
 
 	<script src="src/custom-fb.js"></script>    
 	
+	<script src="src/settings-init.js"></script>
 	<script src="src/settings.js"></script>
 
 	<script src="src/functions.js"></script>	
@@ -35,7 +36,7 @@
   Load navbar menu with JQuery, 
   -->
   <div id="menu" >menü placeholder</div>
-  <div id="settings" >settings placeholder</div>
+  <div id="settings" > </div>
 
 
 <div id="fullpage" >
@@ -52,6 +53,11 @@
 </div>
 
 
+<script>
+
+
+</script> 
+
   <input id="pac-input" class="controls" class="form-control" type="text" placeholder="Search Box" style="max-width: 150px;">
   <div id="map">map placeholder</div>
 	
@@ -60,23 +66,24 @@
 				<div id="listing_tab_header" >
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                  <!--  <li role="presentation" class="active"><a href="#places" aria-controls="places" role="tab" data-toggle="tab">Helyek</a></li> -->
-					<li role="presentation" class="active" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("readme.html");' >Kezdőlap</a></li>
-                    
-                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("profile.html");' >Profil</a></li>
-                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places.html");' >Helyek</a></li>
-                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li>
-                   <!-- <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Események</a></li> -->
-                    <!--
-					<li role="presentation"><a href="#peoples" aria-controls="peoples" role="tab" data-toggle="tab">Emberek</a></li>
-                    <li role="presentation"><a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">Jegyzetek</a></li>
-                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Üzenetek</a></li>
-					-->
+					<!--
 					<li>
 						<button type="button" class="btn btn-link" aria-label="cog" onclick="openNav()" style="float: right">
 						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 						</button>
 					</li>
+					-->
+					<li>
+						<button type="button" class="btn btn-link" aria-label="cog" data-toggle="modal" data-target="#settingsModal">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</button>
+					</li>
+					
+					<li role="presentation" class="active" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("readme.html");' >Kezdőlap</a></li>
+                    
+                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("profile.html");' >Profil</a></li>
+                    <li role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places.html");' >Helyek</a></li>
+                    <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li>
 					<li>
 						<button class="btn btn-link" onclick="fullscreen()" style="float: right">
 							<span class="glyphicon glyphicon-fullscreen"></span>
@@ -86,38 +93,43 @@
                 </div> <!-- listing-tab-header -->
                   <!-- Tab panes -->
                   <div id="tab-content" class="tab-content" >
-                    
-					
-                    <div role="tabpanel" class="tab-pane" id="events">asd
-					</div>
+                    <div role="tabpanel" class="tab-pane" id="events">asd</div>
                     
                     <div role="tabpanel" class="tab-pane" id="places">
-					
-					<div class="container">
-Ez lesz a kezdőoldal, leírással az API használatáról...
-					</div>
-                    
-					
-					<div role="tabpanel" class="tab-pane" id="peoples">
-
-					
-
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="notes">
-                        <a href="#">Hamarosan...</a>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="messages">
-                        <a href="#">Hamarosan...</a>
-                    </div>
-                  </div> <!-- tabcontent -->
-            </div> <!-- listingcontent>
-     
+						<div class="container">
+							Ez lesz a kezdőoldal, leírással az API használatáról...
+						</div>
+					</div> <!-- tabcontent -->
+				  </div> <!-- listingcontent>
     
+
+<!-- Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="settingsModalBody" class="modal-body">
+        settings...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submit();">Save changes</button>
+		<button type="button" class="btn btn-primary" onclick="getRadius();">getRadius</button>
+		
+      </div>
+    </div>
+  </div>
+</div>
 
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
 	<script src="src/custom-gm.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=myinitMap" async defer></script>
   
 </div> <!-- fullpage -->  
   </body>

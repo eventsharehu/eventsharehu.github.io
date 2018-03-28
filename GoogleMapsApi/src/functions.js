@@ -8,11 +8,21 @@ $('#menu').load('navbar.html');
 /*
 TODO: This would be enough to load, when the settings button is clicked
 */
+/*
 $(document).ready(function() {
 $('#settings').load('settings.html');
 });
-   
+  */ 
 
+//Load settings html to the Modal, when its opened
+$(document).on('shown.bs.modal','#settingsModal', function () {
+//    alert('hi');
+//    $('#myInput').trigger('focus')
+ $("#settingsModalBody").load("settings_01.html");
+})
+
+  
+  
 //tab-content
    
 
