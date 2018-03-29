@@ -103,24 +103,26 @@
 				  </div> <!-- listingcontent>
     
 
-<!-- Modal -->
-<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<!-- settingsModal Modal -->
+<div class="modal fade" id="settingsModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h3 class="modal-title" id="exampleModalLongTitle">
+		Helyek keresési beállítása
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>		
+		</h3>
+
       </div>
+	  
       <div id="settingsModalBody" class="modal-body">
         settings...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="submit();">Save changes</button>
-		<button type="button" class="btn btn-primary" onclick="getRadius();">getRadius</button>
-		
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
+        <button type="button" class="btn btn-primary" onclick="submit();"  data-dismiss="modal">OK</button>		
       </div>
     </div>
   </div>

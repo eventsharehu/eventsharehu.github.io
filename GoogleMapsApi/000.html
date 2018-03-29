@@ -14,14 +14,75 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <!-- BOOTSTRAP -->
 	<!-- BOOTSTRAP -->
 
+<link rel="stylesheet" href="src/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+<script src="src/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="src/checked_list_group.js"></script>
+<script src="src/settings-init.js"></script>
 
+
+
+
+					<script>
+					function checkBoxList(){
+						document.getElementById('check-list-box').innerHTML = '<li class="list-group-item" data-checked="true">bar</li>';
+						for(i=0; i<placeTypes_all.length; i++){
+							document.getElementById('check-list-box').innerHTML +=''+
+							'<li class="list-group-item" id="'+placeTypes_all[i][0]+'">'+
+							'<img src="'+placeTypes_all[i][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
+							placeTypes_all[i][1]+'</li>';
+						}//for
+					}//function
+						</script>
+						
+						
   </head>
   
   <body >
 
+  
+  
+  
+  
+  
+	<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Company Name</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+
+				
+				
+				
+				</div>
+			</div>
+		</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 <div id="fullpage" >
-
-
 
 <script>
 
@@ -38,20 +99,80 @@ $(document).on('shown.bs.modal','#exampleModal', function () {
 						</button>
 					
 
+						<button type="button" class="btn btn-link" aria-label="cog" data-toggle="modal" data-target="#myModal2">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</button>
+						
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h3 class="modal-title" id="exampleModalLongTitle">Modal title</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-			<input type="name" id="myInput"></input>
-		</form>
+					<form class="form-horizontal container" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						</div>
+						<div class="login-register">
+				            <a href="index.php">Login</a>
+				         </div>
+					</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -61,6 +182,105 @@ $(document).on('shown.bs.modal','#exampleModal', function () {
   </div>
 </div>
 
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-m">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Set placetypes</h4>
+        </div>
+        <div class="modal-body">
+		
+
+					<form class="form-horizontal container  col-xs-14 col-sm-12 col-md-12 col-lg-12 col-xl-6" method="post" action="#">
+						
+						<div class="form-group ">
+							<label for="centerselect" class="control-label">Keresés helye</label> <!-- cols-sm-2 -->
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+									<select class="form-control" id="centerselect" name="mapcenterselect" >    
+										<option value="0">Saját pozíció</option>  
+										<option value="1">BP - Nyugati</option>    
+										<option value="2">Jászfényszaru</option>    
+										<option value="3">Göd</option>    
+										<option value="4">BP - Deák tér</option>  
+									</select>
+									<!-- TODO: Here will be an autocomplete search if "Egyéb" is selected from the dropdown list -->
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" style="display: none;" />
+								</div>
+						</div>
+						
+						<div class="form-group ">
+							<label for="radius" class="control-label">Keresés sugara (0-25.000 m)</label> <!-- cols-sm-2 -->
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-record" aria-hidden="true"></i></span>
+									<input type="number" class="form-control" id="radius" name="radius" min="0" max="25000" step="1" value="1500" data-bind="value:radius" />
+								</div>
+						</div>
+						
+						<div class="form-group ">
+							<label for="myTagLabel" class="control-label">Kulcsszavak</label> <!-- cols-sm-2 -->
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-tags" aria-hidden="true"></i></span>
+									<input class="form-control" id="keywords" name="keywords" type="text" data-role="tagsinput" value="étterem" >
+								</div>
+						</div>
+						
+						<div class="form-group ">
+						<div class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+		<div  class="well" style="max-height: 300px;overflow: auto;">
+			<ul id="check-list-box" class="list-group checked-list-box">qwe
+				<script>checkBoxList();</script>asd
+			</ul>
+		</div>	  
+    </div> <!-- collapse1 -->
+  </div>
+</div> <!-- panel-group -->
+						</div> <!-- form-group -->
+						
+					</form>
+						
+          <p>Here will be a checkbox list of selectable placetypes...</p>
+		  <p id="demo"></p>
+
+<script>
+var cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo").innerHTML = "elemek: "+placeTypes_all[0].length;
+</script>
+
+                  
+				
+
+			            <!--    <button class="btn btn-primary col-xs-12" id="get-checked-data2">Get Checked Data</button>
+            <pre id="display-json"></pre>
+-->
+			
+        </div> <!-- modal-body -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="get-checked-data">OK</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- Checkboxlist modal -->
+
+  
+  
+  
+  
 
 </div> <!-- fullpage -->  
   </body>

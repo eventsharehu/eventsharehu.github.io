@@ -30,6 +30,7 @@ var selectedplaceindex = "0";
 		
 	var icon_prefix = 'https://maps.gstatic.com/mapfiles/place_api/icons/'; //bar-71.png 	
 	var placeTypes_all= [
+["restaurant", "Étterem", icon_prefix+"restaurant"+"-71.png"],	
 ["accounting", "Számvitel", icon_prefix+"accounting"+"-71.png"], //nincs ikonja
 ["airport", "Repülőtér", icon_prefix+"airport"+"-71.png"],
 ["amusement_park", "Vidámpark", icon_prefix+"amusement"+"-71.png"],
@@ -101,7 +102,6 @@ var selectedplaceindex = "0";
 ["police", "police", icon_prefix+"police"+"-71.png"],
 ["post_office", "post_office", icon_prefix+"post_office"+"-71.png"],
 ["real_estate_agency", "real_estate_agency", icon_prefix+"real_estate_agency"+"-71.png"],
-["restaurant", "restaurant", icon_prefix+"restaurant"+"-71.png"],
 ["roofing_contractor", "roofing_contractor", icon_prefix+"roofing_contractor"+"-71.png"],
 ["rv_park", "rv_park", icon_prefix+"rv_park"+"-71.png"],
 ["school", "school", icon_prefix+"school"+"-71.png"],

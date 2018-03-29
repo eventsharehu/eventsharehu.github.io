@@ -127,16 +127,44 @@ $.getJSON('https://ipinfo.io/geo', function(response) {
 	
  });	
 	
- 
+					//Shoow the checkboxlist in the div where it is called
+					function checkBoxList(){
+						document.getElementById('check-list-box').innerHTML =''+
+							'<li class="list-group-item" id="'+placeTypes_all[0][0]+'" data-checked="true">'+
+							'<img src="'+placeTypes_all[0][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
+							placeTypes_all[0][1]+'</li>';
+							
+						//'<li class="list-group-item" data-checked="true">bar</li>';
+						for(i=1; i<placeTypes_all.length; i++){
+							document.getElementById('check-list-box').innerHTML +=''+
+							'<li class="list-group-item" id="'+placeTypes_all[i][0]+'">'+
+							'<img src="'+placeTypes_all[i][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
+							placeTypes_all[i][1]+'</li>';
+						}//for
+					}//function
+
+
+   function getcheckeddata(){
+       // event.preventDefault(); 
+		placeTypes = [];
+        var checkedItems = {}, counter = 0;
+        $("#check-list-box li.active").each(function(idx, li) {
+            checkedItems[counter] = $(li).text();
+			placeTypes.push($(li).prop("id"));
+            counter++;
+        });
+       // window.alert(JSON.stringify(placeTypes, null, '\t'));
+		
+    }
+	
 
 function submit() {
 	
 	selectedplaceindex = document.getElementById("centerselect").value;	
 	myLocation = places[parseInt(selectedplaceindex, 10)];
 	radius = parseInt(document.getElementById("radius").value);
-
+	getcheckeddata();
 	
-  document.getElementById('test').text = 'asd ';
   keywords_array = ($("#keywords").tagsinput('items') || ['']);
   keywords = "";
   if(keywords_array.length>1){
@@ -147,9 +175,10 @@ function submit() {
 	keywords += "(" + keywords_array[i] + ") ";
   }//if
   else if(keywords_array.length>0){keywords = keywords_array[0];}
- // document.getElementById('test').text = keywords;
-  
-  
+ 
+
+// window.alert(keywords);
+ 
   radius = parseInt(document.getElementById("radius").value);
 
 document.getElementById("error").innerHTML = "";
