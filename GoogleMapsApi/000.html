@@ -6,8 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">  
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+	
+	<!--
 	<link rel="stylesheet" href="src/custom-css.css">  
-
+	-->
+	
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
@@ -19,20 +22,48 @@
 <script src="src/checked_list_group.js"></script>
 <script src="src/settings-init.js"></script>
 
+<style>
+body{
+	background-color: black !important;
+}
 
 
+/*
+listPlaces css
+*/
+ .space-ten{padding: 10px 0;}
 
-					<script>
-					function checkBoxList(){
-						document.getElementById('check-list-box').innerHTML = '<li class="list-group-item" data-checked="true">bar</li>';
-						for(i=0; i<placeTypes_all.length; i++){
-							document.getElementById('check-list-box').innerHTML +=''+
-							'<li class="list-group-item" id="'+placeTypes_all[i][0]+'">'+
-							'<img src="'+placeTypes_all[i][2]+'" style="max-height: 20px; margin-right:10px; margin-left:10px;" />'+
-							placeTypes_all[i][1]+'</li>';
-						}//for
-					}//function
-						</script>
+.thumbnail2 {
+  position: relative;
+  width: -500px;
+  height: 200px;
+  overflow: hidden;
+}
+.thumbnail2 img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.thumbnail2 img.portrait {
+  width: 100%;
+  height: auto;
+}
+.thumbnail{
+    height: 400px;
+    overflow: hidden;
+	}  
+	
+.thumbnail .caption{
+//	display: none !important;
+
+}
+</style>
 						
 						
   </head>
@@ -42,9 +73,92 @@
   
   
   
+  <br/><br/>
   
   
+              <div class="caption">
+                <h4 class="pull-right badge badge-xs">526 m</h4>
+                <h4><a href="#">Régi Kaszinó Vendéglő</a></h4>
+                <p>Jászfényszaru, Dózsa György út 1</p>
+            </div>
+			
+			
+			
 	<div class="container">
+	
+<div role="tabpanel" class="tab-pane active" id="places">
+	<div class="row" >
+	
+	
+<div id="placeList">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">
+        <div class="thumbnail">
+            <div class="thumbnail2"><img class="portrait" src="https://lh3.googleusercontent.com/p/AF1QipMgVC5xeZGKgSfe7GN4J3E9n29Gk9d6Yp6fPQqX=w500-h500-k" alt="" class="img-responsive "></div>
+            <div class="caption">
+                <h4 class="pull-right badge badge-xs">526 m</h4>
+                <h4><a href="#">Régi Kaszinó Vendéglő</a></h4>
+                <p>Jászfényszaru, Dózsa György út 1</p>
+            </div><span class="stars"><span style="width: 68.8px;"></span></span> 4.3/5<br>
+            <div class="space-ten"></div>
+            <div class="btn-ground text-center"><button type="button" class="btn btn-primary" onclick="toogleBounds(47.56753750000001, 19.715661100000034)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button><button id="ChIJty8gyNetQUcR_9nY4ZPs39Y" type="button" class="btn btn-primary"
+                    data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('ChIJty8gyNetQUcR_9nY4ZPs39Y')"><i class="fa fa-search"></i> Részletek</button></div>
+            <div class="space-ten"></div>
+        </div>
+    </div>
+	
+    <div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">
+        <div class="thumbnail">
+            <div class="thumbnail2"><img src="https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k" alt="" class="img-responsive "></div>
+            <div class="caption">
+                <h4 class="pull-right badge badge-xs">273 m</h4>
+                <h4><a href="#">Doner Hamm Gyros Falatozo</a></h4>
+                <p>Jászfényszaru, Szabadság út 25</p>
+            </div><span class="stars"><span style="width: 75.2px;"></span></span> 4.7/5<br>
+            <div class="space-ten"></div>
+            <div class="btn-ground text-center"><button type="button" class="btn btn-primary" onclick="toogleBounds(47.5703979, 19.71778889999996)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button><button id="ChIJ1akr1tatQUcRuT8iCgW5wCs" type="button" class="btn btn-primary"
+                    data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('ChIJ1akr1tatQUcRuT8iCgW5wCs')"><i class="fa fa-search"></i> Részletek</button></div>
+            <div class="space-ten"></div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">
+        <div class="thumbnail">
+            <div class="thumbnail2"><img src="https://cdn.browshot.com/static/images/not-found.png" alt="" class="img-responsive "></div>
+            <div class="caption">
+                <h4 class="pull-right badge badge-xs">321 m</h4>
+                <h4><a href="#">Flamingó Étterem és Pizzéria</a></h4>
+                <p>Jászfényszaru, Szabadság út 17</p>
+            </div><span class="stars"><span style="width: 62.4px;"></span></span> 3.9/5<br>
+            <div class="space-ten"></div>
+            <div class="btn-ground text-center"><button type="button" class="btn btn-primary" onclick="toogleBounds(47.5698011, 19.717197400000032)"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;</button><button id="ChIJFRHIKdetQUcRDeAf52ZosfY" type="button" class="btn btn-primary"
+                    data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('ChIJFRHIKdetQUcRDeAf52ZosfY')"><i class="fa fa-search"></i> Részletek</button></div>
+            <div class="space-ten"></div>
+        </div>
+    </div>
+</div>
+	</div> 
+asd
+	</div><!-- placeList -->
+</div><!-- tabpanel -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			<div class="row main">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
