@@ -63,14 +63,677 @@ listPlaces css
 //	display: none !important;
 
 }
+
+
+
+/*
+List view
+*/
+
+
+
+
+.inner {
+  display: table-row;
+  overflow: hidden;
+}
+.li-img {
+  display: table-cell;
+  vertical-align: middle;
+  width: 30%;
+  padding-right: 1em;
+}
+.li-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.li-text {
+  display: table-cell;
+  vertical-align: middle;
+  width: 70%;
+}
+.li-head {
+  margin: 5x;
+}
+.li-sub {
+  margin: 0;
+}
+
+@media all and (min-width: 45em) {
+  .list li {
+    float: left;
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 75em) {
+  .list li {
+    width: 33.33333%;
+  }
+}
+
+.li-img img.portrait {
+  border: 10px solid red !important;
+  height: auto;
+  width: 100%;
+}
+
+
+
+/*
+Thumbnail with caption
+*/
+
+body
+{
+    padding-top: 30px;
+}
+
+h1
+{
+font-family: 'News Cycle', sans-serif;
+}
+article
+{
+    padding-bottom: 20px;
+}
+.article-caption
+{
+position: absolute;
+bottom: 16px;
+max-width: 90%;
+text-align: center;
+background-color: rgba(200,200,200,0.5);
+
+}
+
+.article-img
+{
+width: 100%; 
+max-height: 400px;
+object-fit: cover;
+}
+
+
+@media screen and (max-width: 768px) { 
+.article-title
+{
+font-size: 28px;
+}
+}
+
+@media screen and (max-width: 500px) { 
+.article-title
+{
+font-size: 20px;
+}
+}
+
+.article-caption a
+{
+color: white;
+
+margin: 10px;
+}
+
+
+/*
+Event-list-group
+*/
+
+ 
+    .event-list {
+		list-style: none;
+		font-family: 'Lato', sans-serif;
+		margin: 0px;
+		padding: 0px;
+	}
+	.event-list > li {
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0px 0px 5px rgb(51, 51, 51);
+		box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+		padding: 0px;
+		margin: 0px 0px 20px;
+	}
+	.event-list > li > time {
+		display: inline-block;
+		width: 100%;
+		color: rgb(255, 255, 255);
+		background-color: rgb(197, 44, 102);
+		padding: 1px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.event-list > li:nth-child(even) > time {
+		background-color: rgb(165, 82, 167);
+	}
+	.event-list > li > time > span {
+		display: none;
+	}
+	.event-list > li > time > .day {
+		display: block;
+		font-size: 36pt;
+		font-weight: 100;
+		line-height: 1;
+	}
+	.event-list > li time > .month {
+		display: block;
+		font-size: 10pt;
+		font-weight: 900;
+		line-height: 1;
+	}
+	.event-list > li > img {
+		width: 100%;
+	}
+	.event-list > li > .info {
+		padding-top: 5px;
+		text-align: center;
+	}
+	.event-list > li > .info > .title {
+		font-size: 12pt;
+		font-weight: 500;
+		margin: 0px;
+	}
+	.event-list > li > .info > .desc {
+		font-size: 10pt;
+		font-weight: 300;
+		margin: 0px;
+	}
+	.event-list > li > .info > ul,
+	.event-list > li > .social > ul {
+		display: table;
+		list-style: none;
+		margin: 10px 0px 0px;
+		padding: 0px;
+		width: 100%;
+		text-align: center;
+	}
+	.event-list > li > .social > ul {
+		margin: 0px;
+	}
+	.event-list > li > .info > ul > li,
+	.event-list > li > .social > ul > li {
+		display: table-cell;
+		cursor: pointer;
+		color: rgb(30, 30, 30);
+		font-size: 11pt;
+		font-weight: 300;
+        padding: 3px 0px;
+	}
+    .event-list > li > .info > ul > li > a {
+		display: block;
+		width: 100%;
+		color: rgb(30, 30, 30);
+		text-decoration: none;
+	} 
+    .event-list > li > .social > ul > li {    
+        padding: 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        padding: 3px 0px;
+	} 
+	.event-list > li > .info > ul > li:hover,
+	.event-list > li > .social > ul > li:hover {
+		color: rgb(30, 30, 30);
+		background-color: rgb(200, 200, 200);
+	}
+	@media (min-width: 300px) {
+		.event-list > li {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 90px;
+			padding: 0px;
+		}
+		.event-list > li > time,
+		.event-list > li > img  {
+			display: inline-block;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 90px;
+			float: left;
+		}
+		.event-list > li > .info {
+			background-color: rgb(245, 245, 245);
+			overflow: hidden;
+		}
+		.event-list > li > time,
+		.event-list > li > img {
+			width: 90px;
+			height: 90px;
+			padding: 0px;
+			margin: 0px;
+		}
+		.event-list > li > .info {
+			position: relative;
+			height: 90px;
+			text-align: left;
+			padding-right: 40px;
+		}	
+		.event-list > li > .info > .title, 
+		.event-list > li > .info > .desc {
+			padding: 0px 10px;
+		}
+		.event-list > li > .info > ul {
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+		}
+    
+	}
+	
+/*
+End of Event-list
+*/
+
+
+/*
+contact list
+*/
+.glyphicon-lg
+{
+    font-size:4em
+}
+.info-block
+{
+    border-right:5px solid #E6E6E6;margin-bottom:25px
+}
+.info-block .square-box
+{
+    width:100px;min-height:110px;margin-right:22px;text-align:center!important;background-color:#676767;padding:20px 0
+}
+.info-block.block-info
+{
+    border-color:#20819e
+}
+.info-block.block-info .square-box
+{
+    background-color:#20819e;color:#FFF
+}
+
+/*
+End of contact list
+*/
+
 </style>
 						
 						
   </head>
   
   <body >
+  
+
+<div class="container">
+	<div class="row">
+		<h2>Filtered List</h2>
+        <div class="col-lg-12">
+            <input type="search" class="form-control" id="input-search" placeholder="Search Attendees..." >
+        </div>
+        <div class="searchable-container " >
+            <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix jumbotron">
+               <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left" style="background-image: url('http://farm1.staticflickr.com/258/18511405422_d7c67c0ff8_k.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+
+                    </div>
+                    <h5>Company Name</h5>
+                    <h4>Name: Tyreese Burn</h4>
+                    <p>Title: Manager</p>
+                    <span>Phone: 555-555-5555</span>
+                    <span>Email: sample@company.com</span>
+                </div>
+            </div>
+            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6 clearfix jumbotron">
+               <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipMgVC5xeZGKgSfe7GN4J3E9n29Gk9d6Yp6fPQqX=w500-h500-k'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    </div>
+                    <h5>Company Name</h5>
+                    <h4>Name: Brenda Tree</h4>
+                    <p>Title: Manager</p>
+                    <span>Phone: 555-555-5555</span>
+                    <span>Email: sample@company.com</span>
+                </div>
+            </div>
+			
+            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6 clearfix jumbotron">
+               <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    </div>
+                    <h5>Company Name</h5>
+                    <h4>Name: Brenda Tree</h4>
+                    <p>Title: Manager</p>
+                    <span>Phone: 555-555-5555</span>
+                    <span>Email: sample@company.com</span>
+                </div>
+            </div>
+			
+            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6">
+               <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    </div>
+                    <h5>Company Name</h5>
+                    <h4>Name: Glenn Pho shizzle</h4>
+                    <p>Title: Manager</p>
+                    <span>Phone: 555-555-5555</span>
+                    <span>Email: sample@company.com</span>
+                </div>
+            </div>
+            <div class="items col-xs-12 col-sm-12 col-md-6 col-lg-6">
+               <div class="info-block block-info clearfix">
+                    <div class="square-box pull-left">
+                        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
+                    </div>
+                    <h5>Company Name</h5>
+                    <h4>Name: Brian Hoyies</h4>
+                    <p>Title: Manager</p>
+                    <span>Phone: 555-555-5555</span>
+                    <span>Email: sample@company.com</span>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+
+			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+				<div class="event-list">
+					
+					<div id="listPlaces_less"></div>
+					<li>
+						<time datetime="2014-07-20 2000">
+							<span class="day">4.7</span>
+							<span class="month">500 m</span>
+							<span class="year">****</span>
+							<span class="time">8:00 PM</span>
+						</time>
+						<img alt="My 24th Birthday!"   style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k'); background-repeat: no-repeat; background-size: cover; background-position: center;" />
+						
+
+											
+						<div class="info">
+							<h2 class="title">Mouse0270's 24th Birthday!</h2>
+							<p class="desc">Bar Hopping in Erie, Pa.</p>
+							<ul>
+								<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
+								<li style="width:34%;">3 <span class="fa fa-question"></span></li>
+								<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
+							</ul>
+						</div>
+					</li>
+					
+					
+					<li>
+						<time datetime="2014-07-20 2000">
+							<span class="day">4.7</span>
+							<span class="month">500 m</span>
+							<span class="year">****</span>
+							<span class="time">8:00 PM</span>
+						</time>
+						<img alt="My 24th Birthday!" src="https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k" />
+						<div class="info">
+							<h2 class="title">Mouse0270's 24th Birthday!</h2>
+							<p class="desc">Bar Hopping in Erie, Pa.</p>
+							<ul>
+								<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
+								<li style="width:34%;">3 <span class="fa fa-question"></span></li>
+								<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
+							</ul>
+						</div>
+					</li>
+					
+				</div> <!-- event-li>
+			</div>
+		</div>
+		</div> <!-- container -->
+	
+	
+  
+  
+
+<div class="container">
+	<div class="row">
+       <div class="row">
+		<article class="col-md-6">
+    			<figure class="col-lg-12">
+				<a href=""><img class="img img-responsive article-img img-thumbnail" src="http://farm1.staticflickr.com/258/18511405422_d7c67c0ff8_k.jpg"></a>
+				<figcaption class="article-caption">
+				<h1 class="article-title"><a href="">Doner Hamm Gyros Falatozo + hosszú cím, több sorba tördelve</a></h1>
+				<h5 class=" " style="color: white;"><p href="">Your article title goes here</p></h5>
+				</figcaption>
+				</figure>
+				<div class="article-intro col-lg-12" style="padding-top: 10px;">
+				<strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
+				</div>
+				
+				</article>
+                
+                <article class="col-md-6">
+        		<figure class="col-lg-12">
+				<a href=""><img class="img img-responsive article-img img-thumbnail portrait" src="https://lh3.googleusercontent.com/p/AF1QipMgVC5xeZGKgSfe7GN4J3E9n29Gk9d6Yp6fPQqX=w500-h500-k"></a>
+				<figcaption class="article-caption"><h1 class="article-title">
+					<a href="">Your article title goes here</a></h1>
+					<h5 style="color: white;" >Jászfényszaru, Dózsa György út 1</h5>
+				</figcaption>
+				</figure>
+
+				<div class="article-intro col-lg-12" style="padding-top: 10px;">
+				<strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
+				</div>
+				
+				</article>
+                </div>
+                
+                <hr>
+                
+                <div class="row">
+                <article class="col-md-6">
+        		<figure class="col-lg-12">
+				<a href=""><img class="img img-responsive article-img" src="http://farm1.staticflickr.com/510/18737505996_98a20bf592_k.jpg"></a>
+				<figcaption class="article-caption"><h1 class="article-title"><a href="">Your article title goes here</a></h1>
+				</figcaption>
+				</figure>
+				<div class="article-intro col-lg-12" style="padding-top: 10px;">
+				<strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
+				</div>
+				
+				</article>
+                
+                <article class="col-md-6">
+        		<figure class="col-lg-12">
+				<a href=""><img class="img img-responsive article-img" src="http://farm1.staticflickr.com/346/18328027128_704280cd4c_k.jpg"></a>
+				<figcaption class="article-caption"><h1 class="article-title"><a href="">Your article title goes here</a></h1>
+				</figcaption>
+				</figure>
+
+				<div class="article-intro col-lg-12" style="padding-top: 10px;">
+				<strong>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor. Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor..</strong>
+				</div>
+				
+				</article>
+                </div>
+	</div>
+</div>
+
 
   
+
+  
+  
+<!--Pattern HTML-->
+  <div id="pattern" class="pattern">
+  	<ul class="list img-list">
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Content</h4>
+						<p class="li-sub">Summary of content</p>
+						<p class="li-sub">Summary of content</p>
+						<p class="li-sub">Summary of content</p>
+						<p class="li-sub">Summary of content</p>
+						<p class="li-sub">Summary of content</p>
+						<p class="li-sub">Summary of content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img class="portrait" src="https://lh3.googleusercontent.com/p/AF1QipMgVC5xeZGKgSfe7GN4J3E9n29Gk9d6Yp6fPQqX=w500-h500-k" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of More Content</h4>
+						<p class="li-sub">Summary of more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://cdn.browshot.com/static/images/not-found.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Even More Content</h4>
+						<p class="li-sub">Summary of even more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Content</h4>
+						<p class="li-sub">Summary of content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of More Content</h4>
+						<p class="li-sub">Summary of more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Even More Content</h4>
+						<p class="li-sub">Summary of even more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Content</h4>
+						<p class="li-sub">Summary of content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of More Content</h4>
+						<p class="li-sub">Summary of more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Even More Content</h4>
+						<p class="li-sub">Summary of even more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Content</h4>
+						<p class="li-sub">Summary of content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of More Content</h4>
+						<p class="li-sub">Summary of more content</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="inner">
+					<div class="li-img">
+						<img src="https://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+					</div>
+					<div class="li-text">
+						<h4 class="li-head">Title of Even More Content</h4>
+						<p class="li-sub">Summary of even more content</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!--End Pattern HTML-->
+	
+	<div class="container">	
+		<section class="pattern-description">
+			<h1>List with Thumbnails</h1>
+			<p>A list of items that contain a thumbnail image and a block of text, which could be as simple as a headline, but could also contain sub-text or calls to action.</p>
+			<h2>Considerations</h2>
+			<ul>
+				<li>Read: <a href="http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/" rel="external">The media object saves hundreds of lines of code</a></li>
+			</ul>
+		</section>
+		<footer role="contentinfo">   
+			<div>
+				<nav id="menu">
+					<a href="https://bradfrost.github.com/this-is-responsive/patterns.html">&larr;More Responsive Patterns</a>
+				</nav>
+			</div>
+		</footer>
+	</div>
+
+
+
+
+
+	
   
   
   <br/><br/>
