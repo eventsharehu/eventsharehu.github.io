@@ -248,6 +248,122 @@ get_orientation();
 }//function callback
 }//function listPlaces
 
+/*
+End of listPlaces
+*/
+
+
+
+/*
+Start listPlaces2
+*/
+		
+function listPlaces2(){
+	
+	//clear the div that will be filled with the showPlaceList function
+	document.getElementById('placeList').innerHTML=``;
+	
+	
+	
+	document.getElementById('placeList').innerHTML=`
+			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+				<div class="event-list">`;
+	
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+          location: myLocation,
+          radius: radius,  
+		  types: placeTypes,
+		  keyword: keywords
+		 // rankBy: google.maps.places.RankBy.DISTANCE
+    }, callback );  //}, callback);	document.getElementById('placeList').innerHTML+='qwe';
+
+	
+	
+function callback(results, status) {
+//    console.log(results.length+ ' db összesen');
+console.log('Status of listPlaces2:');
+console.log(status);
+console.log(results);
+
+
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+		placeDetails = [];
+		
+        for (var i = 0; i < results.length; i++) {
+		createMarker(results[i])
+		lat = results[i].geometry.location.lat()
+		lng = results[i].geometry.location.lng()
+		distance = (haversineDistance(lat, lng, myLocation.lat, myLocation.lng)*1000).toFixed(0);
+		name = results[i].name;
+		address = results[i].vicinity;
+		bounds=results[i].geometry.viewport;
+		placeId = results[i].place_id
+		
+			console.log(results[i]);
+			try{
+				photoreference=results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
+			}catch(err) { photoreference='https://cdn.browshot.com/static/images/not-found.png'; }
+
+		orientation = get_orientation(photoreference);
+		
+	document.getElementById('placeList').innerHTML+=``+
+name+` 
+					<li>
+						<img style="background-image: url(https://cdn.browshot.com/static/images/not-found.png); background-repeat: no-repeat; background-size: cover; background-position: center;" />
+
+												
+						<div class="info">
+							<h2 class="title">Mouse0270's 24th Birthday!</h2>
+							<p class="desc">Bar Hopping in Erie, Pa.</p>
+							<p class="desc">Bar Hopping in Erie, Pa.</p>
+							<ul>
+								<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
+								<li style="width:34%;">3 <span class="fa fa-question"></span></li>
+								<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
+							</ul>
+						</div>
+					</li> `;
+			
+        }//for
+	document.getElementById('placeList').innerHTML+=`
+</div> </div>`;	
+/*
+After get all spans with ratings in it,
+show the stars instead
+*/		
+$(function() {
+    $('span.stars').stars();
+});
+
+/*
+Add orientation classes for images
+*/
+get_orientation();
+			
+
+    }//if service status.OK
+	else{console.log('hiba2 (nearbysearch): ' + status);}
+	
+	
+			
+document.getElementById('placeList').innerHTML+='asd';
+}//function callback
+}//function listPlaces
+
+
+
+/*
+End of listPlaces2
+*/
+
+
+
+
+
+
+
+
 function toogleBounds(lat, lng){
 map.setCenter({'lat': lat, 'lng': lng});
 //	map.fitBounds(bounds);
