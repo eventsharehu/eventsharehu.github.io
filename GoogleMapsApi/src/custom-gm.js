@@ -265,9 +265,6 @@ function listPlaces2(){
 	
 	
 	
-	document.getElementById('placeList').innerHTML=`
-			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
-				<div class="event-list">`;
 	
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
@@ -281,14 +278,17 @@ function listPlaces2(){
 	
 	
 function callback(results, status) {
-//    console.log(results.length+ ' db összesen');
-console.log('Status of listPlaces2:');
-console.log(status);
-console.log(results);
+
 
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 		placeDetails = [];
+
+/*
+Before for loop
+*/
+
+
 		
         for (var i = 0; i < results.length; i++) {
 		createMarker(results[i])
@@ -307,14 +307,13 @@ console.log(results);
 
 		orientation = get_orientation(photoreference);
 		
-	document.getElementById('placeList').innerHTML+=``+
-name+` 
+	document.getElementById('placeList2').innerHTML+=`
 					<li>
 						<img style="background-image: url(https://cdn.browshot.com/static/images/not-found.png); background-repeat: no-repeat; background-size: cover; background-position: center;" />
 
 												
 						<div class="info">
-							<h2 class="title">Mouse0270's 24th Birthday!</h2>
+							<h2 class="title">`+name+`</h2>
 							<p class="desc">Bar Hopping in Erie, Pa.</p>
 							<p class="desc">Bar Hopping in Erie, Pa.</p>
 							<ul>
@@ -326,8 +325,11 @@ name+`
 					</li> `;
 			
         }//for
-	document.getElementById('placeList').innerHTML+=`
-</div> </div>`;	
+		
+/*
+After the for loop
+*/
+
 /*
 After get all spans with ratings in it,
 show the stars instead
