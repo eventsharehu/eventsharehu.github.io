@@ -285,6 +285,15 @@ function callback(results, status) {
 		placeDetails = [];
 
 		
+/*
+TODO:
+ - a href: thumbnail when click to image, open the full-size image in a modal
+   120x120px is  the image, so we should create a 120x(120-16px) a tag that href to the full-sized image 
+ - when click to starrating, open a modal, where you can give a rating to that place, if you logged in whith Google profile
+ 
+*/	
+	
+		
         for (var i = 0; i < results.length; i++) {
 		createMarker(results[i])
 		lat = results[i].geometry.location.lat()
