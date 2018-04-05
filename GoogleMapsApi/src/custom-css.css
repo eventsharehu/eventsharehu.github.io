@@ -380,7 +380,10 @@ Event-list-group
 		line-height: 1;
 	}
 	.event-list > li > img {
-		width: 100%;
+	/*	width: 100%; */
+		
+			display: inline-block; 
+			
 	}
 	.event-list > li > .info {
 		padding-top: 5px;
@@ -395,6 +398,7 @@ Event-list-group
 		font-size: 10pt;
 		font-weight: 300;
 		margin: 0px;
+		padding-bottom: 20px; /*edited version, padding for the bottom icons  */
 	}
 	.event-list > li > .info > ul,
 	.event-list > li > .social > ul {
@@ -434,21 +438,24 @@ Event-list-group
 		color: rgb(30, 30, 30);
 		background-color: rgb(200, 200, 200);
 	}
-	@media (min-width: 400px) {
+	
+	@media (max-width: 400px) {
 		.event-list > li {
 			position: relative;
 			display: block;
 			width: 100%;
-			height: 90px;
+			/*height: 90px; */
+			height: 120px;
 			padding: 0px;
 		}
 		.event-list > li > time,
 		.event-list > li > img  {
-			display: inline-block;
+			display: inline-block; 
 		}
 		.event-list > li > time,
 		.event-list > li > img {
-			width: 90px;
+			/*width: 90px;*/
+			width: 120px;
 			float: left;
 		}
 		.event-list > li > .info {
@@ -457,16 +464,20 @@ Event-list-group
 		}
 		.event-list > li > time,
 		.event-list > li > img {
-			width: 90px;
-			height: 90px;
+			/*width: 90px;
+			height: 90px; */
+			width: 120px;
+			height: 120px;
 			padding: 0px;
 			margin: 0px;
 		}
 		.event-list > li > .info {
 			position: relative;
-			height: 90px;
+		/*	height: 90px; */
+			height: 120px;
 			text-align: left;
-			padding-right: 40px;
+			/*padding-right: 40px;*/
+			padding-right: 10px;
 		}	
 		.event-list > li > .info > .title, 
 		.event-list > li > .info > .desc {
@@ -478,7 +489,7 @@ Event-list-group
 			bottom: 0px;
 		}
     
-	}
+	} //media min 400px
 	
 /*
 End of Event-list

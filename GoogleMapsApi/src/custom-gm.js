@@ -284,11 +284,6 @@ function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 		placeDetails = [];
 
-/*
-Before for loop
-*/
-
-
 		
         for (var i = 0; i < results.length; i++) {
 		createMarker(results[i])
@@ -309,17 +304,19 @@ Before for loop
 		
 	document.getElementById('placeList2').innerHTML+=`
 					<li>
-						<img style="background-image: url(https://cdn.browshot.com/static/images/not-found.png); background-repeat: no-repeat; background-size: cover; background-position: center;" />
+						<img style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" />
 
 												
 						<div class="info">
 							<h2 class="title">`+name+`</h2>
-							<p class="desc">Bar Hopping in Erie, Pa.</p>
-							<p class="desc">Bar Hopping in Erie, Pa.</p>
+							<p class="desc">Bar Hopping in Erie, Pa.<br/>
+							Második bekezdés <br/>
+							Harmadik bekezdés
+							</p>
 							<ul>
-								<li style="width:33%;">1 <span class="glyphicon glyphicon-ok"></span></li>
-								<li style="width:34%;">3 <span class="fa fa-question"></span></li>
-								<li style="width:33%;">103 <span class="fa fa-envelope"></span></li>
+								<li style="width:33%;"><span class="glyphicon glyphicon-ok" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ></span></li>
+								<li style="width:34%;"><span class="fa fa-question"></span></li>
+								<li style="width:33%;"><span class="fa fa-envelope"></span></li>
 							</ul>
 						</div>
 					</li> `;
