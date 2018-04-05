@@ -1,3 +1,5 @@
+
+
 /* The navbar is 50pxx height */
 #fullpage{height: calc(100% - 53px);}  
 
@@ -334,6 +336,33 @@ Tabs above listing the found places, events, people, etc
 	95% --> .tab-content, .tabpane, #placeList
 */
 
+
+
+
+/*
+turns a number into stars
+*/
+/*  background: url('../img/stars.png') 0 -16px repeat-x;  */
+
+span.stars, span.stars span {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+
+
+
+
+
+
+
+
 /*
 Event-list-group
 */
@@ -439,7 +468,28 @@ Event-list-group
 		background-color: rgb(200, 200, 200);
 	}
 	
-	@media (max-width: 400px) {
+	@media (min-width: 300px) {
+	
+		.mystarrating{
+			background-color: green !important;
+			position: absolute;
+			bottom: 0px;
+			left: 0px;;
+			}
+
+	
+		.mystarratingvalue{
+			color: white; 
+			background-color: green; 
+			position: absolute;
+			bottom: 0px;
+			left: 80px; 
+			width: 40px;
+			height: 16px;
+			text-align: right;
+		}
+		
+		
 		.event-list > li {
 			position: relative;
 			display: block;
@@ -449,11 +499,11 @@ Event-list-group
 			padding: 0px;
 		}
 		.event-list > li > time,
-		.event-list > li > img  {
+		.event-list > li > .thumb  {
 			display: inline-block; 
 		}
 		.event-list > li > time,
-		.event-list > li > img {
+		.event-list > li > .thumb {
 			/*width: 90px;*/
 			width: 120px;
 			float: left;
@@ -463,7 +513,7 @@ Event-list-group
 			overflow: hidden;
 		}
 		.event-list > li > time,
-		.event-list > li > img {
+		.event-list > li > .thumb {
 			/*width: 90px;
 			height: 90px; */
 			width: 120px;
@@ -489,27 +539,13 @@ Event-list-group
 			bottom: 0px;
 		}
     
-	} //media min 400px
+	} /* media min 400px */
 	
 /*
 End of Event-list
 */
 
 
-/*
-turns a number into stars
-*/
-
-span.stars, span.stars span {
-    display: block;
-    background: url('../img/stars.png') 0 -16px repeat-x;
-    width: 80px;
-    height: 16px;
-}
-
-span.stars span {
-    background-position: 0 0;
-}
 
 /*
 listPlaces css

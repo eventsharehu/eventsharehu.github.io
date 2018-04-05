@@ -75,6 +75,9 @@ function loadTab(url){
  }
 
 
+ 
+function asd(){window.alert('asd called');} 
+
 /*
 Turns a number into stars rating
 */
@@ -90,7 +93,6 @@ $.fn.stars = function() {
         $(this).html($span);
     });
 }
-
 
 /*
 Toogle the listing-tab div to fullscreem

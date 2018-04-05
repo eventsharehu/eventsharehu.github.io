@@ -261,7 +261,7 @@ Start listPlaces2
 function listPlaces2(){
 	
 	//clear the div that will be filled with the showPlaceList function
-	document.getElementById('placeList').innerHTML=``;
+	document.getElementById('placeList').innerHTML=`<br/>`;
 	
 	
 	
@@ -304,19 +304,21 @@ function callback(results, status) {
 		
 	document.getElementById('placeList2').innerHTML+=`
 					<li>
-						<img style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" />
-
+						
+						<div class="thumb" style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" >
+						
+						<span class="stars mystarrating">`+results[i].rating+`</span>
+						<span class="mystarratingvalue">`+results[i].rating+`/5</span>
+						</div>
 												
 						<div class="info">
 							<h2 class="title">`+name+`</h2>
-							<p class="desc">Bar Hopping in Erie, Pa.<br/>
-							Második bekezdés <br/>
-							Harmadik bekezdés
+							<p class="desc">`+address+`<br/>
 							</p>
-							<ul>
-								<li style="width:33%;"><span class="glyphicon glyphicon-ok" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ></span></li>
-								<li style="width:34%;"><span class="fa fa-question"></span></li>
-								<li style="width:33%;"><span class="fa fa-envelope"></span></li>
+							<ul>								
+								<li style="width:33%; color: green;"  onclick="toogleBounds(`+lat+`, `+lng+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
+								<li style="width:33%; color: green;" class="fa fa-info" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ><span  ></span></li>
+								<li style="width:33%; color: green;"  onclick="window.alert('Fejlesztés alatt!')" ><span class="fa fa-location-arrow"></span></li>
 							</ul>
 						</div>
 					</li> `;
