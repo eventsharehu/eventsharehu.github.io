@@ -260,6 +260,69 @@ Tabs above listing the found places, events, people, etc
 .listing-tab .nav-tabs>li.active>a{border-bottom:2px solid lightgreen; color: white;}
 .listing-tab{background-color:#000;}
 
+
+/*
+listing-tab with horizontal scrollable arrow icon
+*/
+
+.listing-tab .nav-tabs2>li,.nav-tabs2>li a:hover{margin-bottom:0;background:none; }
+.listing-tab .nav-tabs2>li.active>a, .nav-tabs2>li.active>a:hover, .nav-tabs2>li.active>a:focus{border:none;background:none; }
+.listing-tab .nav-tabs2>li>a:hover{border-bottom:2px solid green; color:white;}
+
+.listing-tab .nav-tabs2>li>a{border:0;padding:7px 0 0px; color: lightgreen; margin-left:15px;} 
+
+.listing-tab .nav-tabs2>li.active>a{border-bottom:2px solid lightgreen; color: white;}
+.listing-tab{background-color:#000;}
+
+
+.menu-wrapper {	padding: 0px; margin: 0px;
+border-bottom:2px solid lightgreen;
+
+  height: 33px;  
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.menu {
+		padding: 0px; margin: 0px;
+
+  white-space: nowrap; 
+  overflow-x: auto;
+  overflow-y: hidden; 
+  -webkit-overflow-scrolling: touch;
+}
+.menu .item {
+	text-align: center;
+    vertical-align: text-top;
+
+  /*  border: 1px solid red;  */
+	padding: 0px !important; margin: 0px !important;
+  display: inline-block;
+  width: 100px;
+  height: 30px !important; 
+
+		  }
+
+.paddle {
+	height: 33px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+}
+
+.left-paddle {
+  left: 0;
+}
+
+.right-paddle {
+  right: 0;
+}
+
+.hidden {
+  display: none;
+}
+
 /* listing-tab can be toogle to fullscreen mode */
 	  
 	#listing-tab{

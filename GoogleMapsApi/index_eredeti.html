@@ -20,6 +20,8 @@
 	<script src="src/settings-init.js"></script>
 	<script src="src/settings.js"></script>
 
+	<script src="src/functions.js"></script>	
+
 
   </head>
   
@@ -61,46 +63,6 @@
 	
                
             <div id="listing-tab" class="listing-tab ">
-			
-			
-				<div class="menu-wrapper listing-tab" id="listing_tab_header" > <!-- class listing-tab -->
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs2 menu" > <!-- class nav nav-tabs -->
-					
-					<li class="item">
-						<button type="button" class="btn btn-link" aria-label="cog" data-toggle="modal" data-target="#settingsModal">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</button>
-					</li>
-					
-					<li class="item" role="presentation" class="active" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("readme.html");' >Kezdőlap</a></li>
-                    
-                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("profile.html");' >Profil</a></li>
-                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places.html");' >Helyek</a></li> 
-                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places2.html");' >Helyek2</a></li>
-                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li>
-                   <!-- <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li> -->
-					<li class="item">
-						<button class="btn btn-link" onclick="fullscreen()" style="float: right">
-							<span class="glyphicon glyphicon-fullscreen"></span>
-						</button>
-					</li>
-                  </ul>
-				  
-	<div class="paddles">
-		<button class="left-paddle paddle">
-			&lt;
-		</button>
-		<button class="right-paddle paddle">
-			&gt;
-		</button>
-	</div>
-	
-                </div> <!-- listing-tab-header -->
-				
-				
-			<script>
-			/*
 				<div id="listing_tab_header" >
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -130,8 +92,6 @@
 					</li>
                   </ul>
                 </div> <!-- listing-tab-header -->
-		*/		</script>
-				
                   <!-- Tab panes -->
                   <div id="tab-content" class="tab-content" >
                     <div role="tabpanel" class="tab-pane" id="events">asd</div>
@@ -174,8 +134,6 @@
 	<script src="src/custom-gm.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=myinitMap" async defer></script>
   
-	<script src="src/functions.js"></script>	
-
 </div> <!-- fullpage -->  
   </body>
 </html>
