@@ -62,7 +62,12 @@
                
             <div id="listing-tab" class="listing-tab ">
 			
-			
+	<!--
+	TODO: Here will be the settings button,
+	but now it is under the left arrow, that is floating left
+	
+	<button class="btn btn-success active pull-left">asd</button>
+	-->				
 				<div class="menu-wrapper listing-tab" id="listing_tab_header" > <!-- class listing-tab -->
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs2 menu" > <!-- class nav nav-tabs -->
@@ -79,7 +84,7 @@
                     <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places.html");' >Helyek</a></li> 
                     <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("places2.html");' >Helyek2</a></li>
                     <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li>
-                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events_signed.html");' >Érdekelt események</a></li>
+                    <li class="item" role="presentation" ><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events_signed.html");' >Eseményeim</a></li>
                    <!-- <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab" onclick='loadTab("events.html");' >Események</a></li> -->
 					<li class="item">
 						<button class="btn btn-link" onclick="fullscreen()" style="float: right">
@@ -87,18 +92,23 @@
 						</button>
 					</li>
                   </ul>
-				  
-	<div class="paddles">
-		<button class="left-paddle paddle">
-			&lt;
+
+			  
+		
+	<div class="paddles" >				
+
+		<button class="left-paddle paddle" style="background-color: black; color: lightgreen;">
+			&lt;		
 		</button>
-		<button class="right-paddle paddle">
+		
+		<button class="right-paddle paddle" style="background-color: black; color: lightgreen;">
 			&gt;
 		</button>
-	</div>
+	</div> <!-- paddles -->
+	
+
 	
                 </div> <!-- listing-tab-header -->
-				
 				
 			<script>
 			/*

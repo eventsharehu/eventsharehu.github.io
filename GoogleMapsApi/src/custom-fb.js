@@ -290,8 +290,7 @@ for (var i = 0; i < events.events.data.length; i++) {
 						
 						<div class="thumb" style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" >
 						
-						<span class="stars mystarrating">`+`asd`+`</span>
-						<span class="mystarratingvalue">`+`asd`+`/5</span>
+						<span class="bottom_date" style="background-color: green; color: white;">`+events.events.data[i].start_time.substring(0, 10)+`</span>
 						</div>
 												
 						<div class="info">
@@ -299,7 +298,7 @@ for (var i = 0; i < events.events.data.length; i++) {
 							<p class="desc">`+events.events.data[i].place.name+`<br/>
 							</p>
 							<ul>								
-								<li style="width:33%; color: green;"  onclick="toogleBounds(`+`asd`+`, `+`asd`+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
+								<li style="width:33%; color: green;"  onclick="toogleBounds(`+events.events.data[i].place.location.latitude+`, `+events.events.data[i].place.location.longitude+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
 								<li style="width:33%; color: green;" class="fa fa-info" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ><span  ></span></li>
 								<li style="width:33%; color: green;"  onclick="window.alert('Fejlesztés alatt!')" ><span class="fa fa-location-arrow"> `+distance+` m</span></li>
 							</ul>
