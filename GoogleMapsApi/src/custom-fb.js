@@ -244,14 +244,76 @@ Functions wrote by Bálint
     FB.api('/me?fields=events{name,place,start_time,end_time,description,attending_count,interested_count,picture}',
         function (response) {
           if (response && !response.error) {
-			  console.log('myEvents response:');
-              console.log(response);
-              eventsData(response);
+			  //console.log('myEvents response:');
+              //console.log(response);
+              //eventsData(response);
+			  showMyEvent(response);
 
-          }
-        }
-    );
-  }
+          }else{events2 = response.error;
+		  showMyEvent(response.error); }//else
+								
+						
+        }// function response
+    ); //FB.api
+	
+	/*
+	 * If we return a variable there, it will returned before
+	 * the variable would be overwritten in the if-statement 
+	*/
+  } // function myEvents
+  
+ 
+function showMyEvent(events){
+	
+//	window.alert('showSignedEvents called' + JSON.stringify(events.events.data[0].name) );
+	
+			//document.getElementById('showMyEvents').innerHTML=` `;
+			//document.getElementById('showMyEvents').innerHTML+=JSON.stringify(events.events.data[0].picture);
+			
+			console.log(events.events.data);
+			
+			
+for (var i = 0; i < events.events.data.length; i++) {
+
+			try{
+				photoreference=events.events.data[i].picture.data.url;
+			}catch(err) { 
+			  //photoreference='https://cdn.browshot.com/static/images/not-found.png'; 
+			  photoreference = 'http://graph.facebook.com/'+events.events.data[i].id+'/picture';
+
+			} //catch
+
+	
+		document.getElementById('showMyEvents').innerHTML+=`
+		
+					<li>
+						
+						<div class="thumb" style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" >
+						
+						<span class="stars mystarrating">`+`asd`+`</span>
+						<span class="mystarratingvalue">`+`asd`+`/5</span>
+						</div>
+												
+						<div class="info">
+							<h2 class="title">`+events.events.data[i].name+`</h2>
+							<p class="desc">`+events.events.data[i].place.name+`<br/>
+							</p>
+							<ul>								
+								<li style="width:33%; color: green;"  onclick="toogleBounds(`+`asd`+`, `+`asd`+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
+								<li style="width:33%; color: green;" class="fa fa-info" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ><span  ></span></li>
+								<li style="width:33%; color: green;"  onclick="window.alert('Fejlesztés alatt!')" ><span class="fa fa-location-arrow"> `+distance+` m</span></li>
+							</ul>
+						</div>
+					</li> `;
+}//for				
+			
+	
+}//  function showMyEvent
+	
+  
+  
+  
+  
 // Eseményeket hzzáfűzzük egy stringhez és majd azt írjatjuk ki.
   function eventsData(events){
     let s = ' ';
@@ -275,8 +337,7 @@ Functions wrote by Bálint
       document.getElementById('events').innerHTML = s;
   }
 
-  
-	
+ 
 	
 	
 	
