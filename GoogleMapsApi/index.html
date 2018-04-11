@@ -182,9 +182,15 @@
 
 	
 	<!-- The custom-gm.js uses the dropdown menu's (id=centerselect) .change event, so the custom js must be imported after the dropdown menu is declared -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=myinitMap" ></script>
+
 	<script src="src/custom-gm.js"></script>
+<!--
+the maps api must load before the custom-gm and without async defer
+	otherwise we couldnt create html markers, because eg. the this.setMap(map) function 
+	will throw an error 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs3TZ0EDhCvd2F-q9Xtj9yl8LbS8Eh1Rg&libraries=places&callback=myinitMap" async defer></script>
-  
+-->  
 	<script src="src/functions.js"></script>	
 
 </div> <!-- fullpage -->  

@@ -171,6 +171,98 @@ var name = '';
 var address = '';
 var bounds = '';
 var placeId = '';
+
+
+
+/*
+Create HTML Marker
+https://humaan.com/blog/custom-html-markers-google-maps/
+*/
+function CustomMarker(latlng, map, args) {
+	this.latlng = latlng;	
+	this.args = args;	
+	this.setMap(map);	
+}
+
+CustomMarker.prototype = new google.maps.OverlayView();
+
+CustomMarker.prototype.draw = function() {
+	
+	var self = this;
+	
+	var div = this.div;
+	
+	if (!div) {
+	
+		div = this.div = document.createElement('div');
+		
+		div.className = 'marker';
+		
+		div.style.position = 'absolute';
+		div.style.cursor = 'pointer';
+		div.style.width = '20px';
+		div.style.height = '20px';
+		div.style.background = 'blue';
+		
+		if (typeof(self.args.marker_id) !== 'undefined') {
+			div.dataset.marker_id = self.args.marker_id;
+		}
+		if (typeof(self.args.colour) !== 'undefined') {
+			div.style.background = self.args.colour;
+		}
+
+/*		
+		google.maps.event.addDomListener(div, "click", function(event) {
+			alert('You clicked on a custom marker!');			
+			google.maps.event.trigger(self, "click");
+		});
+*/
+		google.maps.event.addDomListener(div, "click", function(event) {
+        infowindow.setContent("asd" + " : " + "qwe");
+        infowindow.open(map, this);
+					google.maps.event.trigger(self, "click");
+
+    });
+	
+		var panes = this.getPanes();
+		panes.overlayImage.appendChild(div);
+	}
+	
+	var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+	
+	if (point) {
+		div.style.left = (point.x - 10) + 'px';
+		div.style.top = (point.y - 20) + 'px';
+	}
+};
+
+CustomMarker.prototype.remove = function() {
+	if (this.div) {
+		this.div.parentNode.removeChild(this.div);
+		this.div = null;
+	}	
+};
+
+CustomMarker.prototype.getPosition = function() {
+	return this.latlng;	
+};
+	
+/*
+End of creating HTML Marker
+Eample to use it:
+	overlay = new CustomMarker(
+		myLatlng, 
+		map,
+		{
+			marker_id: '123'
+		}
+	);
+*/
+
+
+
+
+
 		
 function listPlaces(){
 	
@@ -194,7 +286,8 @@ function callback(results, status) {
 		placeDetails = [];
 		
         for (var i = 0; i < results.length; i++) {
-		createMarker(results[i])
+		//createMarker(results[i]);
+
 		lat = results[i].geometry.location.lat()
 		lng = results[i].geometry.location.lng()
 		distance = (haversineDistance(lat, lng, myLocation.lat, myLocation.lng)*1000).toFixed(0);
@@ -203,6 +296,20 @@ function callback(results, status) {
 		bounds=results[i].geometry.viewport;
 		placeId = results[i].place_id
 		
+	var LatLngObject = new google.maps.LatLng(lat,lng);
+	//window.alert(JSON.stringify(LatLngObject));
+	
+	overlay = new CustomMarker(
+		new google.maps.LatLng(lat,lng), 
+		map,
+		{
+			marker_id: '123',
+			colour: 'Red'
+
+		}
+	);
+	
+				
 			console.log(results[i]);
 			try{
 				photoreference=results[i].photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
@@ -431,6 +538,15 @@ function createMarker(place) {
 
 	 
 }//function createMarker
+
+
+
+
+
+
+
+
+
 
 
 function listPlaces_less(placeObject){
