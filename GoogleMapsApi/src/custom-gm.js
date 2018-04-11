@@ -155,7 +155,11 @@ function initMap() {
             }
           });
           map.fitBounds(bounds);
-        });		
+        });	
+
+
+
+	 
 }//initMap 
 
 var placeDetails = [];
@@ -407,13 +411,25 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location,
         title: place.name,
-        icon: photos[0].getUrl({'maxWidth': 50, 'maxHeight': 50})
+        icon: photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})
     });
 
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name + " : " + place.website);
         infowindow.open(map, this);
     });
+	
+
+     //Create an OverlayView, and set it to add the "markerLayer" class to the markerLayer DIV
+	 //So we can style the map icons with CSS
+     var myoverlay = new google.maps.OverlayView();
+     myoverlay.draw = function () {
+         this.getPanes().markerLayer.id='markerLayer';
+     };
+     myoverlay.setMap(map);
+
+
+	 
 }//function createMarker
 
 

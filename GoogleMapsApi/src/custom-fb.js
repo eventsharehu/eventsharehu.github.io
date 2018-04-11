@@ -181,7 +181,7 @@ Functions wrote by Bálint
 		
         <li>  birthday:  ${user.birthday} </li>
         <li>  about me:  ${user.about} </li>
-        <li>  University:  ${user.education[0].school.name} </li>
+        <li>  University:  ${JSON.stringify(user.education)} </li>
 
     </ul>`;
 	
@@ -241,7 +241,7 @@ Functions wrote by Bálint
 
   // Események lekérdezése.
   function myEvents(){
-    FB.api('/me?fields=events{name,place,start_time,end_time,description,attending_count,interested_count,picture}',
+    FB.api('/me?fields=events{name,place,start_time,end_time,description,attending_count,interested_count,picture}',  /* picture.type(large) */
         function (response) {
           if (response && !response.error) {
 			  //console.log('myEvents response:');
@@ -279,7 +279,7 @@ for (var i = 0; i < events.events.data.length; i++) {
 				photoreference=events.events.data[i].picture.data.url;
 			}catch(err) { 
 			  //photoreference='https://cdn.browshot.com/static/images/not-found.png'; 
-			  photoreference = 'http://graph.facebook.com/'+events.events.data[i].id+'/picture';
+			  photoreference = 'http://graph.facebook.com/'+events.events.data[i].id+'/picture'; 
 
 			} //catch
 

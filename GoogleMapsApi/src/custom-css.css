@@ -95,6 +95,35 @@ height: 40%;
       #target {
         width: 345px;
       }
+ 
+      #markerLayer div div div{
+/*		  width:120% !important;
+		  height:120% !important;
+		  backround-color: black !important;
+		  border: 14px solid black !important; */
+	  }
+	  
+      #markerLayer img {
+        border-left: 3px solid green !important;
+        border-right: 3px solid green !important;
+        border-top: 3px solid green !important;
+
+		/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+        border-radius: 10px;
+		  backround-color: black !important; */
+
+		  
+   /* padding: 10px !important;  */ /* adjust that depend on your image size */
+	padding-bottom: 10px !important;
+    background-image: url("marker.png");
+    background-position: bottom center;
+    
+	
+    background-size: 100px auto;
+      }	  
+	  
+	  
+	  
 /*
 End of map css
 */	  
