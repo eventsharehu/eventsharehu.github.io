@@ -108,7 +108,63 @@ height: 40%;
         border-right: 3px solid green !important;
         border-top: 3px solid green !important;
 
+			
 		
+		/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+        border-radius: 10px;
+		  backround-color: black !important; */
+
+		  
+   /* padding: 10px !important;  */ /* adjust that depend on your image size */
+	padding-bottom: 10px !important;
+    background-image: url("marker.png");
+    background-position: bottom center;
+    
+	
+    background-size: 100px auto;
+      }	  
+	  
+
+		
+/*
+Arrow bubble marker pin
+*/
+
+
+div.arrow_box{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  margin:-100px -50px;
+  border:solid 5px #fff;
+    color: red;
+    cursor: pointer;
+  overflow:hidden;
+}
+div.arrow_box img{
+  min-width:100px;
+  width:auto;
+  max-height:100px;
+  height:auto;
+}
+
+.arrow_box:after {
+	top: 5px;
+	left: 5px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+
+  
+	border-color: black; /* rgba(136, 183, 213, 0); */
+	border-top-color: #fff; /* #fff */
+	border-width: 20px;
+	margin-left: -20px;
+}
+
 /*
 Arrow bubble marker pin
 */
@@ -149,26 +205,11 @@ div.arrow_box img{
 }
 
 
+
 /*
 End of Arrow bubble marker pin
 
-*/		
-		
-		/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-        border-radius: 10px;
-		  backround-color: black !important; */
-
-		  
-   /* padding: 10px !important;  */ /* adjust that depend on your image size */
-	padding-bottom: 10px !important;
-    background-image: url("marker.png");
-    background-position: bottom center;
-    
-	
-    background-size: 100px auto;
-      }	  
-	  
-	  
+*/		  
 	  
 /*
 End of map css
