@@ -34,8 +34,10 @@ Arrow bubble marker pin
 
 #marker {
     position: absolute;
+	border-color: #4267b2;
+	border-radius: 15px;
 	border-style: solid;
-	border-width: 5px;
+	border-width: 10px;
 	cursor: pointer;
 	width: 100px;
 	height: 100px;
@@ -61,6 +63,7 @@ Arrow bubble marker pin
 		}
 
 .triangle {
+	margin: -10px !important;
     position: relative;
     width: 0;
     height: 0;
@@ -68,7 +71,7 @@ Arrow bubble marker pin
     border-width: 25px 12px 0px 12px;
     top: 100px;
     left: 38px;
-    border-color: #000000 transparent transparent transparent;
+    border-color: #4267b2 transparent transparent transparent;
 }
 
 .exit    {
