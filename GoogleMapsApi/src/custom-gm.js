@@ -177,163 +177,177 @@ var placeId = '';
 /*
 Create Custom Marker with HTML div
 https://humaan.com/blog/custom-html-markers-google-maps/
+
+modified version of that:
+https://jsfiddle.net/2aeuyy6e/1/
 */
 
 
-function CustomMarker(latlng, map, args) {
-	this.latlng = latlng;	
-	this.args = args;	
-	this.setMap(map);	
-}
-
-CustomMarker.prototype = new google.maps.OverlayView();
-
-CustomMarker.prototype.draw = function() {
-	
-	var self = this;
-	
-	var div = this.div;
-	
-	if (!div) {
-	
-	
-		
-		div = this.div = document.createElement('div');
-		
-		div.className = 'arrow_box'; /* marker */
-		div.innerHTML = '<img  src="https://lh3.googleusercontent.com/p/AF1QipNEy-Z-xelTkS1y78cq11znvrc2XhwA5LIk24J_=w500-h500-k" alt="">';
-		
-		
-		div.style.width = '100px';
-		div.style.height = '100px';
-		div.style.position = 'absolute';
-		div.style.cursor = 'pointer';
-
-		/*
-		div.style.position = 'absolute';
-		div.style.cursor = 'pointer';
-		div.style.width = '20px';
-		div.style.height = '20px';
-		div.style.background = 'blue';
-		*/
-		
-		/*
-		div = this.div = document.createElement('DIV');
-        div.className = "arrow_box";
-        div.innerHTML = "<img  src='https://lh3.googleusercontent.com/p/AF1QipNEy-Z-xelTkS1y78cq11znvrc2XhwA5LIk24J_=w500-h500-k' alt=''>";
-		*/
-		
-		if (typeof(self.args.marker_id) !== 'undefined') {
-			div.dataset.marker_id = self.args.marker_id;
-		}
-		if (typeof(self.args.colour) !== 'undefined') {
-			div.style.background = self.args.colour;
-		}
-
-/*		
-		google.maps.event.addDomListener(div, "click", function(event) {
-			alert('You clicked on a custom marker!');			
-			google.maps.event.trigger(self, "click");
-		});
-*/
+	var markershtml = [ 
+							{ Lat:"40.78142", Lng:"-73.96655", name:"CENTRAL PARK", img: "https://lh3.googleusercontent.com/p/AF1QipPrufw2qU3Cl3TraWziqlfIV19fJDEe2evLKYDv=w500-h500-k" },
+							{ Lat:"40.78", Lng:"-73.96", name:"Custom", img:"https://lh3.googleusercontent.com/p/AF1QipMgVC5xeZGKgSfe7GN4J3E9n29Gk9d6Yp6fPQqX=w500-h500-k" }
+					  ];
 
 
-		google.maps.event.addDomListener(div, "click", function(event) {
-        infowindow.setContent("asd" + " : " + "qwe");
-        infowindow.open(map, this);
-					google.maps.event.trigger(self, "click");
-
-    });
-	
-		var panes = this.getPanes();
-		panes.overlayImage.appendChild(div);
+function customMarker(latlng, map, args)
+	{
+		this.latlng = latlng;
+		this.args = args;
+		this.setMap(map);
 	}
 	
-	var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+	customMarker.prototype = new google.maps.OverlayView();
 	
-	if (point) { 
-		/*div.style.left = (point.x - 10) + 'px';
-		div.style.top = (point.y - 20) + 'px';
-		*/
-		
-        div.style.left = (point.x) + 'px';
-        div.style.top = (point.y - 30) + 'px';
-		
-	} 
-};
-
-CustomMarker.prototype.remove = function() {
-	if (this.div) {
-		this.div.parentNode.removeChild(this.div);
-		this.div = null;
-	}	
-};
-
-CustomMarker.prototype.getPosition = function() {
-	return this.latlng;	
-};
-
-
-
+	customMarker.prototype.draw = function() 
+	{
+		var self = this;
+		var div = this.div;
 	
-/*
-End of creating HTML Marker
-Eample to use it:
-	overlay = new CustomMarker(
-		myLatlng, 
+		if (!div) 
+		{
+		
+		div = this.div = document.createElement('div');
+		div.id = 'marker';
+		div.style.width = '100px';
+		div.style.height = '100px';;
+		
+		var div_pointer = document.createElement('div');
+		div_pointer.className = 'triangle';
+		
+		var image_container = document.createElement('div');
+		image_container.className = 'image_container';
+		
+		var img = document.createElement('img');
+		img.className = "marker_image";
+		img.src = self.args.img;
+		
+		var name_container = document.createElement('div');
+		name_container.className = 'name_container';
+		
+		var text = document.createElement('p');
+		text.innerText = self.args.name;
+		text.className = 'text';
+		
+		var exit = document.createElement('div');
+		exit.className = 'exit';
+		exit.innerHTML = '<img className="exit_image" style="width:30px; height:30px;" src="https://cdn3.iconfinder.com/data/icons/security-1/512/delete-512.png">' + '</img>';
+        exit.style.display = 'none';
+		
+		
+		function large()
+		{
+			div.classList.add('large');
+			div.style.width = '300px'; 
+			div.style.height = '300px';
+			div.style.zIndex = '1000';
+
+			exit.style.display = 'block';
+			exit.style.opacity = '1';
+			exit.addEventListener('mouseover', function()
+			{
+				exit.style.opacity = '1';
+			}, false);
+			exit.addEventListener('mouseout', function()
+			{
+				exit.style.opacity = '0.3';
+			}, false);
+			
+		}
+		
+		function close(e)
+		{
+				var target = e.target;
+				e.stopPropagation();
+				div.classList.remove('large');
+				div.style.width = '100px';
+				div.style.height = '100px';
+				
+				exit.style.display = 'none';
+		}
+		
+		div.appendChild(image_container);
+		image_container.appendChild(img);
+		div.appendChild(div_pointer);
+		div.appendChild(name_container);
+		name_container.appendChild(text);
+		div.appendChild(exit);
+		
+		name_container.onmouseover = function(){ name_container.style.opacity = '0.6'; div.style.zIndex = '1000' };
+		name_container.onmouseout = function(){ name_container.style.opacity = '0'; div.style.zIndex = '100' };
+		div.addEventListener('click', large, false);
+		exit.addEventListener('click', close, false);
+		
+			if(typeof(self.args.marker_id) !== 'undefined') 
+			{
+				div.dataset.marker_id = self.args.marker_id; 
+			}
+		
+			google.maps.event.addDomListener(div, "click", function(event) 
+			{ 
+				google.maps.event.trigger(self, "click");
+			});
+		
+		var panes = this.getPanes();
+		
+		panes.overlayImage.appendChild(div);
+		
+		}
+	
+		var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+	
+		if (point) 
+		{
+		div.style.left = (point.x - 50) + 'px';
+		div.style.top = (point.y - 125) + 'px';
+		}
+	}
+	
+	customMarker.prototype.remove = function() 
+	{
+	this.setMap(null);
+		
+		if (this.div) 
+		{
+			this.div.parentNode.removeChild(this.div);
+			this.div = null;
+			
+		}
+		
+	}
+	
+	customMarker.prototype.getPosition = function() 
+	{	
+		return this.latlng;
+	}
+	
+
+
+
+	function markershtmlCreate(){
+	markershtml.forEach(function(marker)
+	{
+		var newLatlng = new google.maps.LatLng( marker.Lat, marker.Lng );
+		image = marker.img;
+		name = marker.name;
+	
+		var overlay = new customMarker(
+		newLatlng, 
 		map,
 		{
-			marker_id: '123'
-		}
-	);
-*/
+			img: image,
+			name: name,
+			marker_id: '123',
+			colour: 'Red'
+		});
+	});
+	}//function asdqwe
 
-
-/*
-Create HTML Marker
-*/
-
-
-    function HTMLMarker(lat,lng){
-        this.lat = lat;
-        this.lng = lng;
-        this.pos = new google.maps.LatLng(lat,lng);
-    }
-    
-    HTMLMarker.prototype = new google.maps.OverlayView();
-    HTMLMarker.prototype.onRemove= function(){}
-    
-    //init your html element here
-    HTMLMarker.prototype.onAdd= function(){
-        div = document.createElement('DIV');
-        div.className = "arrow_box";
-        div.innerHTML = "<img  src='https://lh3.googleusercontent.com/p/AF1QipNEy-Z-xelTkS1y78cq11znvrc2XhwA5LIk24J_=w500-h500-k' alt=''>";
-        var panes = this.getPanes();
-        panes.overlayImage.appendChild(div);
-    }
-    
-    HTMLMarker.prototype.draw = function(){
-        var overlayProjection = this.getProjection();
-        var position = overlayProjection.fromLatLngToDivPixel(this.pos);
-        var panes = this.getPanes();
-        panes.overlayImage.style.left = position.x + 'px';
-        panes.overlayImage.style.top = position.y - 30 + 'px';
-    }
-
-	
-function asdqwe(){
-	window.alert('asdqwe');
-    //to use it
-    htmlMarker = HTMLMarker(44.73532729516236, 14.806330871582077);
-    htmlMarker.setMap(map);
-}//function asd
 
 /*
 End of create html marker
 */
 
-
-var htmlMarker = '';		
+		
 function listPlaces(){
 	
 	//clear the div that will be filled with the showPlaceList function
@@ -354,7 +368,7 @@ function callback(results, status) {
    // console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 		placeDetails = [];
-		
+		markershtml	= [];
         for (var i = 0; i < results.length; i++) {
 		//createMarker(results[i]);
 
@@ -368,23 +382,6 @@ function callback(results, status) {
 		
 	var LatLngObject = new google.maps.LatLng(lat,lng);
 	//window.alert(JSON.stringify(LatLngObject));
-
-	
-	overlay = new CustomMarker(
-		new google.maps.LatLng(lat,lng), 
-		map,
-		{
-			marker_id: '123',
-			colour: 'Red'
-
-		}
-	);
-	
-	    
-    htmlMarker = new HTMLMarker(lat, lng);
-    htmlMarker.setMap(map);
-		
-		
   
 			console.log(results[i]);
 			try{
@@ -392,6 +389,12 @@ function callback(results, status) {
 			}catch(err) { photoreference='https://cdn.browshot.com/static/images/not-found.png'; }
 
 		orientation = get_orientation(photoreference);
+
+
+//Adding the datas to the markershtml array
+markershtml.push( { Lat: lat, Lng: lng, name: name, img: photoreference  });	
+	
+	
 		
 	document.getElementById('placeList').innerHTML+=''+
         '<div class="col-xs-12 col-sm-6 col-md-3 col-xl-2">'+
@@ -416,6 +419,13 @@ function callback(results, status) {
 			
         }//for
 	
+	
+/*
+After the for loop place the html markers
+*/	
+
+markershtmlCreate();
+
 /*
 After get all spans with ratings in it,
 show the stars instead

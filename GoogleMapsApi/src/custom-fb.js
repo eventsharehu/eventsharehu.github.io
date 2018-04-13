@@ -271,7 +271,11 @@ function showMyEvent(events){
 			//document.getElementById('showMyEvents').innerHTML+=JSON.stringify(events.events.data[0].picture);
 			
 			console.log(events.events.data);
-			
+
+
+//Before the for loop, delete the markershtml array
+markershtml=[];	
+				
 			
 for (var i = 0; i < events.events.data.length; i++) {
 
@@ -283,6 +287,19 @@ for (var i = 0; i < events.events.data.length; i++) {
 
 			} //catch
 
+
+			try{
+				lat = events.events.data[i].place.location.latitude;
+				lng = events.events.data[i].place.location.longitude;
+			}catch(err) { 
+			  lat = '0';
+			  lng = '0';
+			} //catch
+
+
+//Adding the datas to the markershtml array
+markershtml.push( { Lat: lat, Lng: lng, name: events.events.data[i].name, img: photoreference  });	
+	
 	
 		document.getElementById('showMyEvents').innerHTML+=`
 		
@@ -298,7 +315,7 @@ for (var i = 0; i < events.events.data.length; i++) {
 							<p class="desc">`+events.events.data[i].place.name+`<br/>
 							</p>
 							<ul>								
-								<li style="width:33%; color: green;"  onclick="toogleBounds(`+events.events.data[i].place.location.latitude+`, `+events.events.data[i].place.location.longitude+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
+								<li style="width:33%; color: green;"  onclick="toogleBounds(`+lat+`, `+lng+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
 								<li style="width:33%; color: green;" class="fa fa-info" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ><span  ></span></li>
 								<li style="width:33%; color: green;"  onclick="window.alert('Fejlesztés alatt!')" ><span class="fa fa-location-arrow"> `+distance+` m</span></li>
 							</ul>
@@ -306,6 +323,10 @@ for (var i = 0; i < events.events.data.length; i++) {
 					</li> `;
 }//for				
 			
+/*
+After the for loop, place the html markers
+*/
+markershtmlCreate();
 	
 }//  function showMyEvent
 	
