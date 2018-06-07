@@ -79,7 +79,7 @@ var myAccessToken = '';
       FB.init({
         appId      : myAppId,
         xfbml      : true,
-        version    : 'v2.12'
+        version    : 'v3.0'
       });
 	  
       //custom-share();
@@ -118,7 +118,7 @@ var myAccessToken = '';
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.12&appId=' +myAppId+'&autoLogAppEvents=1';
+  js.src = 'https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v3.0&appId=' +myAppId+'&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 	
@@ -355,9 +355,126 @@ markershtmlCreate();
 
     }
       document.getElementById('events').innerHTML = s;
-  }
+  } //function eventsData
+  
+  
+  
+  
 
+  // Helyek keresése
+  function placesFB(){
+    FB.api('/search?q=*&type=place&center='+myLocation.lat+','+myLocation.lng+'&distance=5000&fields=name,category,location,picture.type(large)',  
+        function (response) {
+          if (response && !response.error) {
+			  //console.log('myEvents response:');
+              //console.log(response);
+              //eventsData(response);
+			  showPlacesFB(response);
+
+          }else{events2 = response.error;
+		  showPlacesFB(response.error); }//else
+								
+						
+        }// function response
+    ); //FB.api
+	
+	/*
+	 * If we return a variable there, it will returned before
+	 * the variable would be overwritten in the if-statement 
+	*/
+	
+  } // function placesFB
+  
  
+function showPlacesFB(places){
+
+let s =' ';
+
+	
+for (var i = 0; i < places.data.length; i++) {
+
+			try{
+				photoreference= places.data[i].picture.data.url;
+			}catch(err) { 
+			  //photoreference='https://cdn.browshot.com/static/images/not-found.png'; 
+			  photoreference = 'http://graph.facebook.com/'+events.events.data[i].id+'/picture'; 
+
+			} //catch
+
+
+			try{
+				lat = places.data[i].location.latitude;
+				lng = places.data[i].location.longitude;
+			}catch(err) { 
+			  lat = '0';
+			  lng = '0';
+			} //catch
+			
+			try{
+				if(places.data[i].location.street != undefined){
+				address=places.data[i].location.city + ', ' + places.data[i].location.street;
+				}else{address=places.data[i].location.city;}
+			}catch(err) { 
+			  address= '-';
+			} //catch
+
+distance = (haversineDistance(lat, lng, myLocation.lat, myLocation.lng)*1000).toFixed(0);
+			
+//Adding the datas to the markershtml array
+markershtml.push( { Lat: lat, Lng: lng, name: places.data[i].name, img: photoreference  });	
+	
+	
+photoreference = places.data[i].picture.data.url;
+		document.getElementById('placesFB').innerHTML+=`
+		
+					<li>
+						
+						<div class="thumb" style="background-image: url(`+photoreference+`); background-repeat: no-repeat; background-size: cover; background-position: center;" >
+						
+						<span class="bottom_date" style="background-color: green; color: white;">`+places.data[i].name+`</span>
+						</div>
+												
+						<div class="info">
+							<h2 class="title">`+places.data[i].name+`</h2>
+							<p class="desc">`+address+`<br/>
+							</p>
+							<ul>								
+								<li style="width:33%; color: green;"  onclick="toogleBounds(`+lat+`, `+lng+`)" ><span class="glyphicon glyphicon-map-marker" ></span></li>
+								<li style="width:33%; color: green;" class="fa fa-info" data-toggle="modal" data-target="#placeDetailsModal" onclick="listPlaceDetails('`+placeId+`')" ><span  ></span></li>
+								<li style="width:33%; color: green;"  onclick="window.open('https://www.google.com/maps/dir/?api=1&origin=`+myLocation.lat+`,`+myLocation.lng+`&destination=`+lat+`,`+lng+`&travelmode=walking')" ><span class="fa fa-location-arrow"> `+distance+` m</span></li>
+							</ul>
+						</div>
+					</li> `;
+}//for
+
+		
+/*
+After the for loop, place the html markers
+*/
+markershtmlCreate();
+
+s+= places.data[0].name;
+document.getElementById('places_fb').innerHTML += JSON.stringify(myLocation);
+
+
+//Before the for loop, delete the markershtml array
+markershtml=[];	
+	
+	
+/*			
+for (var i = 0; i < places.data.length; i++) {
+
+
+
+
+//Adding the datas to the markershtml array
+markershtml.push( { Lat: lat, Lng: lng, name: events.events.data[i].name, img: photoreference  });	
+	
+	
+}//for	
+*/
+	
+ } //showPlacesFB
 	
 	
 	
