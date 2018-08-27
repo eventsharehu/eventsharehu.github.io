@@ -7,75 +7,72 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: #cdd4fc;">
 
 <div class="container">
-  <h2>Projektjeim</h2>
+  <br/>
+  <div class="jumbotron ">
+	<h2>My hobbyprojects</h2>
+  </div>
   <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Info</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in warning">
-        <div class="panel-body">
+
+  
+  <a href="#info" data-target="#info" data-toggle="collapse">
+	<h3 class="list-group-item list-group-item-info active ">Info</h3>
+  </a>
+  <div id="info" class="collapse in " style="background-color: white;" >
+  <div class="panel-group panel-body "><br><p class="h4">
 			Jelenleg az alábbi webes hobbiprojekteken dolgozom, melyek a rövid leírás végén található link segítségével kipróbálhatók.
 			A többi hobbiprojekt a következő linken tekinthető meg 			
-			<a href="https://github.com/buzaslajos" class="btn btn-primary" role="button">Link</a>
+			<a href="https://github.com/buzaslajos" class="btn btn-primary btn-xs" role="button">Link</a>
 
-		</div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Eszköznyilvántartó</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
+  </div> <!-- panel-group -->
+  </div> <!-- googlemapsapi -->	
+	
+
+  <a href="#" data-target="#eszkoznyilvantarto" data-toggle="collapse">
+	<h3 class="list-group-item list-group-item-danger  ">Eszköznyilvántartó</h3>
+  </a>
+  <div id="eszkoznyilvantarto" class="collapse out " style="background-color: white;" >
+  <div class="panel-group panel-body "><br><p class="h4">
 			Tárgyi eszköz nyilvántartását elősegítő webes alkalmazás QuaggaJS segítségével <br/>
 			(csak https vagy localhost alól működik a vonalkódolvasás) <br/><br/>
 			<!-- http://a.kabachnik.info/a-javascript-barcode-reader-with-bootstrap-3-and-quaggajs.html -->
 			<a href="eszkoznyilvantarto/" class="btn btn-primary" role="button">Link</a>
-		</div>
-      </div>
-    </div>
+  </div> <!-- panel-group -->
+  </div> <!-- googlemapsapi -->	
 	
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Google maps API</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
+		
+  
+  <a href="#" data-target="#googlemapsapi" data-toggle="collapse">
+	<h3 class="list-group-item  active ">Google maps API</h3>
+  </a>
+  <div id="googlemapsapi" class="collapse out " style="background-color: white;" >
+  <div class="panel-group panel-body "><br><p class="h4">
 			Listázza a közelben lévő pub-okat (később kiválasztható lesz, milyen típusú helyeket mutasson, illetve keresőszavakat is meg lehet majd adni)
 			<br/><br/>
 			<a href="GoogleMapsApi/" class="btn btn-primary" role="button">Link</a>
-		</div>
-      </div>
-    </div>
+  </div> <!-- panel-group -->
+  </div> <!-- googlemapsapi -->	
 	
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Google Places Autocomplete</a>
-        </h4>
-      </div>
-      <div id="collapse4" class="panel-collapse collapse">
-        <div class="panel-body">
-			Modify the Google Places Autocomplete function
+	
+  <a href="#" data-target="#googleplacesautocomplete" data-toggle="collapse">
+	<h3 class="list-group-item list-group-item-info active ">Google Places Autocomplete</h3>
+  </a>
+  <div id="googleplacesautocomplete" class="collapse out " style="background-color: white;" >
+  <div class="panel-group panel-body "><br><p class="h4">
+	Modify the Google Places Autocomplete function
 			<br/><br/>
 			<a href="Autocomplete/" class="btn btn-primary" role="button">Link</a>
-		</div>
-      </div>
-    </div>
+  </div> <!-- panel-group -->
+  </div> <!-- googleplacesautocomplete -->	
 	
 	
-  </div> 
-</div>
+  </div>  <!-- panel-group -->
+  
+
+
+</div> <!-- container -->
     
 </body>
 </html>
